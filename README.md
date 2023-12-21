@@ -39,7 +39,7 @@
 - ログイン機能
 - 新規投稿・投稿一覧・詳細・編集・削除
   ：画像とコメント、切りたい牌の選択肢を載せて投稿。
-- 画像加工・合成 ⭐︎（gem carrierwave、mini_magick）
+- 画像加工・合成（gem carrierwave、mini_magick）
 - 投票機能(Javascript, Jquery)
   ：投稿者があげた選択肢に投票をしてもらい、投票数が投稿に映るようにする。
 - コメント機能
