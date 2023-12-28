@@ -62,3 +62,6 @@
 
 - 画像認識機能(Google Cloud Vision API )
   ：画像を AI に読み込んで学習してもらい、① 自動で手配の選択肢を上げてもらったり、② 考えられる役の提案、③ リーチまでのシャンテン数を教えてくれる機能をつけたい。
+
+##　画面遷移図
+https://www.figma.com/file/YZ1g8ymXLKuTq0ZoXSynyP/nanikiru?type=design&node-id=0%3A1&mode=design&t=i7oimFWpTcESIH1i-1
