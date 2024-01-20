@@ -1,16 +1,33 @@
-<!-- app/views/user_sessions/new.html.erb -->
-<h1>ログイン</h1>
+<!DOCTYPE html>
+<html lang="ja">
 
-<%= form_with url: user_sessions_path, local: true do |f| %>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
+<body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+    <%= render 'layouts/header' %>
 
-  <%= f.submit "ログイン" %>
-<% end %>
+    <div class="flex items-center justify-center bg-gray-200 py-12">
+        <div class="w-full max-w-md">
+            <h1 class="mb-8 text-4xl text-center text-gray-800">ログイン</h1>
+
+            <%= form_with url: user_sessions_path, local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
+                <div class="mb-4">
+                    <%= f.label :メールアドレス, class: "block text-gray-700 text-1xl font-bold mb-2" %>
+                    <%= f.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+
+                <div class="mb-6">
+                    <%= f.label :パスワード, class: "block text-gray-700 text-1xl font-bold mb-2" %>
+                    <%= f.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <%= f.submit "ログイン", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <%= render 'layouts/footer' %>
+
+</body>
+</html>
