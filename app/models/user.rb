@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :image, ImageUploader
   authenticates_with_sorcery!
   validates :name, presence: true
   validates :nickname, presence: true
