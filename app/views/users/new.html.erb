@@ -22,6 +22,7 @@
         <div class="mx-0 sm:mx-6 text-gray-600"><br>
 
             <%= form_with model: @user, url: users_path, local: true, html: { multipart: true } do |form| %>
+            <%# <%= form_with model: @user, url: posts_path, local: true, html: { multipart: true } do |form| %>
                 <% if @user.errors.any? %>
                     <div id="error_explanation">
                         <ul>
@@ -33,13 +34,13 @@
                 <% end %>
 
                 <div class="mb-4">
-                    <%= form.label :name, "名前" %>
+                    <%= form.label :name, "名前(ニックネーム)" %>
                     <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50" %>
                 </div>
 
                 <div class="mb-4">
-                    <%= form.label :favorite_role, "好きな役" %>
-                    <%= form.text_field :favorite_role, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50" %>
+                    <%= form.label :nickname, "好きな役" %>
+                    <%= form.text_field :nickname, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50" %>
                 </div>
 
                 <div class="mb-4">
@@ -59,7 +60,7 @@
 
                 <div class="mb-10">
                     <%= form.label :image, "アイコン画像" %><br>
-                    <%= form.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "mt-5 " %>
+                    <%= form.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "mt-5" %>
                 </div>
                 <div class="actions">
                     <%= form.submit "登録", class: "bg-blue-900 hover:bg-blue-700 text-white font-sans py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-10" %>
