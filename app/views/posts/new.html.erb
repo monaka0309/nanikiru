@@ -1,9 +1,58 @@
-<h1>New post</h1>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- ヘッドの内容 -->
+</head>
+<body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
-<%= render "form", post: @post %>
+    <%= render 'layouts/header' %>
 
-<br>
+    <%= render 'layouts/sidebar' %>
 
-<div>
-  <%= link_to "Back to posts", posts_path %>
-</div>
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl mb-6 text-gray-700">新規投稿画面</h1>
+
+        <%= form_with(model: @post, local: true) do |form| %>
+            <% if @post.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+                    <ul>
+                        <% @post.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="mb-4">
+                <%= form.label :title, class: 'text-black' %>
+                <%= form.text_field :title, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
+            </div>
+
+            <div class="mb-6">
+                <%= form.label :content, class: 'text-black' %>
+                <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
+            </div>
+
+            <div class="mb-6">
+                <%= form.label :image, class: 'text-black' %><br>
+                <%= form.file_field :image %>
+            </div>
+
+            <div class="actions">
+                <%= form.submit "投稿する", class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+            </div>
+        <% end %>
+
+        <br>
+
+        <div>
+            <%= link_to "Back to posts", posts_path, class: 'text-blue-500 hover:underline' %>
+        </div>
+    </div>
+
+    <%= render 'layouts/footer' %>
+
+</body>
+</html>
