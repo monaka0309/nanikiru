@@ -1,14 +1,32 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>投稿一覧</title>
+</head>
+<body class="bg-gray-200 font-sans leading-normal tracking-normal">
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/sidebar' %> 
 
-<h1>Posts</h1>
+    <main class="container mx-auto px-6 pt-8 text-gray-600">
+        <h1 class="text-3xl font-bold mb-10">投稿一覧</h1>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
-</div>
+        <% if @posts.any? %>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <% @posts.each do |post| %>
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <h2 class="text-xl font-bold mb-2"><%= post.title %></h2>
+                        <p class="text-gray-700"><%= post.content %></p>
+                        <!-- その他の投稿情報 -->
+                    </div>
+                <% end %>
+            </div>
+        <% else %>
+            <p class="mb-10">まだ投稿がありません。</p>
+        <% end %>
+    </main>
 
-<%= link_to "New post", new_post_path %>
+    <%= render 'layouts/footer' %>
+
+    <!-- スクリプトなど -->
+</body>
+</html>
