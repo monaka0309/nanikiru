@@ -28,10 +28,30 @@
                 <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
             </div>
 
+            <div class="mb-6">
+                <%= form.label :選択肢, class: 'text-gray-600' %>
+                <!-- ここに画像選択のためのボタンやフィールドを配置 -->
+                <div id="tile-choice" class="tile-choice">
+                <!-- ユーザーが選択した画像を表示 -->
+                </div>
+                
+                <div id="tile-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <% Dir.glob("app/assets/images/tiles/*").each do |path| %>
+                        <%= image_tag path.split('/').last, class: "tile-image", data: { path: path.split('/').last } %>
+                        <% end %>
+                    </div>
+                </div>
+
+
+
+                <%= button_tag '画像を選択', type: 'button', id: 'open-modal', class: 'btn btn-primary' %>
+            </div>
+
             <div class="mb-10">
                 <%= form.label :画像（スクリーンショットなど）, class: 'text-gray-600' %><br>
-                <br>
-                <%= form.file_field :image %>
+                <%= form.file_field :image, id: 'image-input', direct_upload: true %>
+                <div id="image-preview" class="mt-3"></div>
             </div>
 
             <div class="actions">
@@ -44,3 +64,4 @@
 
 </body>
 </html>
+

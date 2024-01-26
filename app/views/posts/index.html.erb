@@ -14,9 +14,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <% @posts.each do |post| %>
                     <div class="bg-white rounded-lg shadow p-4">
-                        <h2 class="text-xl font-bold mb-2"><%= post.title %></h2>
                         <p class="text-gray-700"><%= post.content %></p>
-                        <!-- その他の投稿情報 -->
+                        <!-- 画像が存在する場合のみ画像を表示 -->
+                        <% if post.image.present? %>
+                            <%= image_tag post.image.url %>
+                        <% end %>
                     </div>
                 <% end %>
             </div>
@@ -30,3 +32,5 @@
     <!-- スクリプトなど -->
 </body>
 </html>
+
+

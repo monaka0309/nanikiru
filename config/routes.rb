@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create', as: :user_sessions
   delete 'logout', to: 'user_sessions#destroy', as: :logout
 
-  # 投稿関連のルーティング
-  resources :posts
+  # 投稿関連のルーティング（votesをネスト）
+  resources :posts do
+    resources :votes, only: [:create, :destroy] # 必要に応じてdestroyを追加
+  end
 
   # 静的ページ
   get 'about', to: 'pages#about' # アプリについて
@@ -18,8 +20,4 @@ Rails.application.routes.draw do
 
   # ルートURL
   root "posts#index"
-
-  # 追加機能に関するルーティングが必要な場合はここに追加
-  # 例: 通知機能
-  # resources :notifications, only: [:index]
 end

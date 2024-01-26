@@ -1,0 +1,8 @@
+<%= form_with(model: tile) do |form| %>
+  <!-- 利用可能な画像のリストを作成する -->
+  <%= form.label :image_path %>
+  <%= form.select :image_path, options_for_select(Dir.glob('tiles/*').map {|path| [path.split('/').last, path]}), { include_blank: true }, required: true %>
+
+  <!-- サブミットボタンなど他のフォーム要素 -->
+
+<% end %>
