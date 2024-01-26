@@ -1,14 +1,14 @@
-
 class ApplicationController < ActionController::Base
-    private
-  
+    before_action :require_login
+
     def require_login
       unless current_user
-        # ユーザーがログインしていない場合の処理（リダイレクトなど）
       end
     end
   
+    private
+  
     def current_user
-      # 現在のユーザーを返すロジック（セッションやクッキーを使用）
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 end
