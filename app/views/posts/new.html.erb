@@ -50,7 +50,7 @@
     <%= render 'layouts/footer' %>
     
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("turbo:load", function() {
             const input = document.querySelector('.image-input');
             const preview = document.getElementById('image-preview');
 
@@ -70,9 +70,7 @@
                     reader.readAsDataURL(file);
                 }
             });
-        
 
-        
             const openModalButton = document.getElementById("openModal");
             const closeModalButton = document.getElementById("closeModal");
             const modal = document.getElementById("modal");
