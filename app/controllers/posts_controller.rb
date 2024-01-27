@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :require_login, only: %i[new create edit update destroy]
+
 
   # GET /posts or /posts.json
   def index
@@ -22,6 +24,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user # ここでログインユーザーを関連付ける
 
     respond_to do |format|
       if @post.save
