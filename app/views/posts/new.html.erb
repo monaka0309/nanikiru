@@ -4,7 +4,6 @@
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
     <%= render 'layouts/header' %>
-
     <%= render 'layouts/sidebar' %>
 
     <div class="container mx-auto mt-5 p-10">
@@ -41,11 +40,14 @@
                         <% end %>
                     </div>
                 </div>
-
-
-
                 <%= button_tag '画像を選択', type: 'button', id: 'open-modal', class: 'btn btn-primary' %>
             </div>
+                <button type="button" id="openModal" class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    モーダルを開く
+                </button>
+            </div>
+
+            <%= render 'posts/modal' %>
 
             <div class="mb-10">
                 <%= form.label :画像（スクリーンショットなど）, class: 'text-gray-600' %><br>
@@ -59,7 +61,6 @@
             </div>
         <% end %>
     </div>
-
     <%= render 'layouts/footer' %>
 
     <script>
@@ -83,7 +84,22 @@
                     reader.readAsDataURL(file);
                 }
             });
+
+            const openModalButton = document.getElementById("openModal");
+            const closeModalButton = document.getElementById("closeModal");
+            const modal = document.getElementById("modal");
+
+            // モーダルを開く
+            openModalButton.addEventListener("click", function() {
+                modal.classList.remove("hidden");
+            });
+
+            // モーダルを閉じる
+            closeModalButton.addEventListener("click", function() {
+                modal.classList.add("hidden");
+            });
         });
+
     </script>
 
 </body>
