@@ -34,7 +34,6 @@
                 <div id="tile-choice" class="tile-choice">
                 <!-- ユーザーが選択した画像を表示 -->
                 </div>
-                
                 <div id="tile-modal" class="modal" style="display: none;">
                     <div class="modal-content">
                         <% Dir.glob("app/assets/images/tiles/*").each do |path| %>
@@ -50,8 +49,9 @@
 
             <div class="mb-10">
                 <%= form.label :画像（スクリーンショットなど）, class: 'text-gray-600' %><br>
-                <%= form.file_field :image, id: 'image-input', direct_upload: true %>
-                <div id="image-preview" class="mt-3"></div>
+                <br>
+                <%= form.file_field :image, class: 'image-input', direct_upload: true %>
+                <div id="image-preview" class="mt-4"></div>
             </div>
 
             <div class="actions">
@@ -61,6 +61,30 @@
     </div>
 
     <%= render 'layouts/footer' %>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const input = document.querySelector('.image-input');
+            const preview = document.getElementById('image-preview');
+
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                        preview.innerHTML = ''; // Clear the preview
+                        preview.appendChild(img); // Append the new image
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
