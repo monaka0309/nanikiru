@@ -7,11 +7,11 @@ import "./image_preview"
 document.addEventListener('DOMContentLoaded', function() {
     var modal = document.getElementById('tile-modal');
     var openModalButton = document.getElementById('open-modal');
-  
+
     openModalButton.addEventListener('click', function() {
       modal.style.display = 'block';
     });
-  
+
     var tileImages = document.querySelectorAll('.tile-image');
     tileImages.forEach(function(tileImage) {
       tileImage.addEventListener('click', function() {
@@ -21,4 +21,3 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
-  
