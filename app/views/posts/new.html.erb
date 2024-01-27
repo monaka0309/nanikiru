@@ -4,7 +4,6 @@
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
     <%= render 'layouts/header' %>
-
     <%= render 'layouts/sidebar' %>
 
     <div class="container mx-auto mt-5 p-10">
@@ -28,6 +27,14 @@
                 <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
             </div>
 
+            <div class="mb-6">
+                <button type="button" id="openModal" class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    モーダルを開く
+                </button>
+            </div>
+
+            <%= render 'posts/modal' %>
+
             <div class="mb-10">
                 <%= form.label :画像（スクリーンショットなど）, class: 'text-gray-600' %><br>
                 <br>
@@ -40,9 +47,8 @@
             </div>
         <% end %>
     </div>
-
     <%= render 'layouts/footer' %>
-
+    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const input = document.querySelector('.image-input');
@@ -64,8 +70,26 @@
                     reader.readAsDataURL(file);
                 }
             });
+        
+
+        
+            const openModalButton = document.getElementById("openModal");
+            const closeModalButton = document.getElementById("closeModal");
+            const modal = document.getElementById("modal");
+
+            // モーダルを開く
+            openModalButton.addEventListener("click", function() {
+                modal.classList.remove("hidden");
+            });
+
+            // モーダルを閉じる
+            closeModalButton.addEventListener("click", function() {
+                modal.classList.add("hidden");
+            });
         });
+
     </script>
 
 </body>
 </html>
+
