@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-
+<head>
+  <!-- ここにTailwind CSSとdaisyUIのリンクまたはインポートを含める -->
+</head>
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
     <%= render 'layouts/header' %>
@@ -8,7 +10,6 @@
 
     <div class="container mx-auto mt-5 p-10">
         <h1 class="text-3xl mb-6 text-gray-700">新規投稿画面</h1>
-
         <%= form_with(model: @post, local: true) do |form| %>
             <% if @post.errors.any? %>
                 <div id="error_explanation">
@@ -27,14 +28,9 @@
                 <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
             </div>
 
-            <div class="mb-6">
-                <button type="button" id="openModal" class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                    投票してもらう選択肢を選ぶ
-                </button>
-            </div>
-
-            <%= render 'posts/modal' %>
-
+            <!-- モーダルを開くためのボタン -->
+            <label for="modal_1" class="btn modal-button mb-10">投票してもらう選択肢を選ぶ</label>
+            
             <div class="mb-10">
                 <%= form.label :画像（スクリーンショットなど）, class: 'text-gray-600' %><br>
                 <br>
@@ -47,6 +43,19 @@
             </div>
         <% end %>
     </div>
+
+    <!-- モーダル -->
+    <input type="checkbox" id="modal_1" class="modal-toggle" />
+    <div class="modal" role="dialog">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">牌の選択肢を選んでください。</h3>
+        <p class="py-4">モーダルの内容がここに入ります。</p><br>
+        <div class="modal-action">
+          <label for="modal_1" class="btn">閉じる</label>
+        </div>
+      </div>
+    </div>
+
     <%= render 'layouts/footer' %>
     
     <script>
