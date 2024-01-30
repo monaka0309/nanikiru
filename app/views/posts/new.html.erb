@@ -29,7 +29,7 @@
             </div>
 
             <!-- モーダルを開くためのボタン -->
-            <label for="modal_1" class="btn modal-button mb-10">投票してもらう選択肢を選ぶ</label>
+            <label for="modal_1" class="btn btn-outline modal-button mb-10">投票してもらう選択肢を選ぶ</label>
             
             <div class="mb-10">
                 <%= form.label :画像（スクリーンショットなど）, class: 'text-gray-600' %><br>
@@ -47,17 +47,70 @@
     <!-- モーダル -->
     <input type="checkbox" id="modal_1" class="modal-toggle" />
     <div class="modal" role="dialog">
-      <div class="modal-box">
-        <h3 class="font-bold text-lg">牌の選択肢を選んでください。</h3>
-        <!-- 画像を表示 -->
-        <%= image_tag 'ton.png', size: "60x90" %>
+        <div class="modal-box w-full max-w-md sm:max-w-sm lg:max-w-[600px] p-4">
 
-        <!--閉じる -->
-        <div class="modal-action"><br>
-          <label for="modal_1" class="btn">閉じる</label>
+
+            <!-- カードのコンテナ -->
+            <div class="card bg-neutral text-neutral-content w-full bg-blue-900 p-4 rounded-lg">
+                <div class="card-body items-center text-center">
+                    <!-- カードのタイトル -->
+                    <h2 class="card-title">牌の選択肢を選んでください。</h2>
+
+                    <!-- 画像を横並びで表示するためのコンテナ -->
+                    <div class="grid grid-cols-5 flex flex-wrap items-center">
+                    
+                    <!--マンズ-->
+                    <%= image_tag 'iman.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'ryanman.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'sanman.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'suman.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'uman.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'umanaka.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'roman.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'timan.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'paman.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'kyuman.png', size: "60x90", class: 'mx-2' %>
+                    <!--ソウズ-->
+                    <%= image_tag 'iso.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'ryanso.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'sanzo.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'suso.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'uso.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'usoaka.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'roso.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'tiso.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'paso.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'kyuso.png', size: "60x90", class: 'mx-2' %>
+                    <!--ピンズ-->
+                    <%= image_tag 'ipin.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'ryanpin.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'sanpin.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'supin.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'upin.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'upinaka.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'ropin.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'tipin.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'papin.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'kyupin.png', size: "60x90", class: 'mx-2' %>
+                    <!--字牌-->
+                    <%= image_tag 'ton.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'nan.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'sha.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'pei.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'haku.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'hatu.png', size: "60x90", class: 'mx-2' %>
+                    <%= image_tag 'tyun.png', size: "60x90", class: 'mx-2' %>
+                    </div>
+
+                    <!-- カードのアクション（ボタン） -->
+                    <div class="card-actions justify-end">
+                        <label for="modal_1" class="btn btn-active btn-neutral mt-5">閉じる</label>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
+
 
     <%= render 'layouts/footer' %>
     

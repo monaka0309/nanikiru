@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.custom-btn-bg {
+    @apply bg-blue-500 text-white;
+  }
+  
