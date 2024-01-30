@@ -152,62 +152,30 @@
 
     <script>
         document.addEventListener("turbo:load", function() {
-            const input = document.querySelector('.image-input');
-            const preview = document.getElementById('image-preview');
-
-            input.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
-                        preview.innerHTML = ''; // Clear the preview
-                        preview.appendChild(img); // Append the new image
-                    };
-
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            const openModalButton = document.getElementById("openModal");
-            const closeModalButton = document.getElementById("closeModal");
-            const modal = document.getElementById("modal");
-
-            // モーダルを開く
-            openModalButton.addEventListener("click", function() {
-                modal.classList.remove("hidden");
-            });
-
-            // モーダルを閉じる
-            closeModalButton.addEventListener("click", function() {
-                modal.classList.add("hidden");
-            });
-        });
-
-
-        document.addEventListener("turbo:load", function() {
-            // 選択された画像を表示エリアに追加する関数
             function addSelectedImage(imageSrc) {
                 const imageArea = document.getElementById('selected-images');
+                const existingImages = imageArea.getElementsByTagName('img').length;
+
+                // 既に4枚の画像がある場合は新しい画像を追加しない
+                if (existingImages >= 4) {
+                    alert('最大4枚の画像を選択できます。');
+                    return;
+                }
+
                 const img = document.createElement('img');
                 img.src = imageSrc;
-                img.style.width = '1.5cm'; // 横幅を2cmに設定
-                img.style.height = '2cm'; // 縦幅を3cmに設定
-                img.classList.add('mx-2', 'my-2'); // 余白を追加
-                imageArea.appendChild(img); // 新しい画像を表示エリアに追加
+                img.style.width = '2cm';  // 横幅を2cmに設定
+                img.style.height = '3cm';  // 縦幅を3cmに設定
+                img.classList.add('mx-2', 'my-2');  // 余白を追加
+                imageArea.appendChild(img);  // 新しい画像を表示エリアに追加
             }
 
-            // モーダル内の全ての画像に対してクリックイベントリスナーを設定
             document.querySelectorAll('.modal img').forEach(function(img) {
                 img.addEventListener('click', function() {
-                    addSelectedImage(this.src); // クリックされた画像を表示エリアに追加
-                    document.getElementById('modal_1').checked = false; // モーダルを閉じる
+                    addSelectedImage(this.src);  // クリックされた画像を表示エリアに追加
+                    document.getElementById('modal_1').checked = false;  // モーダルを閉じる
                 });
             });
-
         });
 
 
