@@ -5,3 +5,14 @@
     @apply bg-blue-500 text-white;
   }
   
+.tile-image {
+  width: 46px;
+  height: 66px;
+}
+
+@media (min-width: 640px) {
+  .tile-image {
+      width: 64px;
+      height: 90px;
+  }
+}

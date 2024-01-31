@@ -7,18 +7,31 @@
 <body class="bg-gray-200 font-sans leading-normal tracking-normal w-5/6 mx-auto max-w-screen-xl">
     <%= render 'layouts/header' %>
     <%= render 'layouts/sidebar' %>
-    <main class="container mx-auto px-6 pt-8 text-gray-600 mb-10">
+    <main class="container mx-auto px-4 pt-8 text-gray-600 mb-10">
         <h1 class="text-3xl font-bold mb-10">投稿一覧</h1>
 
         <% if @posts.any? %>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1">
                 <% @posts.each do |post| %>
-                    <div class="bg-white rounded-lg shadow p-4">
+                    <div class="bg-white rounded-lg shadow p-4 mb-4">
                         <p class="text-gray-700"><%= post.content %></p>
                         <!-- 画像が存在する場合のみ画像を表示 -->
                         <% if post.image.present? %>
                             <%= image_tag post.image.url %>
+                        <% end %><br>
+
+                        切るべきと思う牌を選択してください。<br>
+
+                        <!-- モーダルで選択された牌画像の表示 -->
+                        <% if post.selected_images.present? %>
+                            <div class="flex flex-wrap justify-center mt-2">
+                                <% post.selected_images.each do |image_url| %>
+                                    <%= image_tag image_url, class: "tile-image rounded-lg m-2" %>
+
+                                <% end %>
+                            </div>
                         <% end %>
+                        
                     </div>
                 <% end %>
             </div>
