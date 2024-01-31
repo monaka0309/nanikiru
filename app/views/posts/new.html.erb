@@ -151,33 +151,66 @@
     <%= render 'layouts/footer' %>
 
     <script>
+        // 新規投稿ページで画像ファイルを挿入した際にプレビューが表示される。
         document.addEventListener("turbo:load", function() {
-            function addSelectedImage(imageSrc) {
-                const imageArea = document.getElementById('selected-images');
-                const existingImages = imageArea.getElementsByTagName('img').length;
+            const input = document.querySelector('.image-input');
+            const preview = document.getElementById('image-preview');
 
-                // 既に4枚の画像がある場合は新しい画像を追加しない
-                if (existingImages >= 4) {
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                        preview.innerHTML = ''; // Clear the preview
+                        preview.appendChild(img); // Append the new image
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+        document.addEventListener("turbo:load", function() {
+            // 画像を選択した時に呼ばれる関数
+            function addSelectedImage(imageSrc) {
+                // 選択された画像の枚数が4枚未満であることを確認
+                const imageArea = document.getElementById('selected-images');
+                if (imageArea.getElementsByTagName('img').length >= 4) {
                     alert('最大4枚の画像を選択できます。');
                     return;
                 }
 
+                // 隠しフォームフィールドを作成して値を設定
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'post[selected_images][]'; // パラメータ名を修正
+                input.value = imageSrc;
+                document.querySelector('form').appendChild(input); // form_withで生成されたフォームに追加
+
+                // 画像を画面に表示
                 const img = document.createElement('img');
                 img.src = imageSrc;
-                img.style.width = '1.5cm';  // 横幅を2cmに設定
-                img.style.height = '2cm';  // 縦幅を3cmに設定
-                img.classList.add('mx-2', 'my-2');  // 余白を追加
-                imageArea.appendChild(img);  // 新しい画像を表示エリアに追加
-            }
+                img.style.width = '1.5cm';
+                img.style.height = '2cm';
+                img.classList.add('mx-2', 'my-2');
+                imageArea.appendChild(img);
+                }
 
+
+
+            
+
+            // モーダル内のすべての画像に対してイベントリスナーを設定
             document.querySelectorAll('.modal img').forEach(function(img) {
                 img.addEventListener('click', function() {
-                    addSelectedImage(this.src);  // クリックされた画像を表示エリアに追加
-                    document.getElementById('modal_1').checked = false;  // モーダルを閉じる
+                    addSelectedImage(this.src); // クリックされた画像を処理
+                    document.getElementById('modal_1').checked = false; // モーダルを閉じる
                 });
             });
         });
-
 
     </script>
 
