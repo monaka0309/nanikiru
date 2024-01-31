@@ -14,8 +14,7 @@ class UserSessionsController < ApplicationController
     end
 
     def destroy
-    # ログアウト処理
         logout
-        redirect_to(root_path, notice: 'ログアウトしました。')
+        redirect_to root_url, notice: 'ログアウトしました'
     end
 end

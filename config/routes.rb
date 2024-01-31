@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :user_sessions, only: [:create]
   get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create'
+
   delete 'logout', to: 'user_sessions#destroy', as: :logout
+
 
   # 投稿関連のルーティング
   resources :posts

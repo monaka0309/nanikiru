@@ -3,14 +3,17 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, notice: '会員登録ができました。'
+      auto_login(@user) # これでユーザーを自動的にログイン状態にします
+      redirect_to root_path, notice: '会員登録が完了し、ログインしました。'
     else
       render :new
     end
   end
+  
 
   private
 

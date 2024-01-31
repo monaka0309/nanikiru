@@ -16,3 +16,7 @@
       height: 90px;
   }
 }
+
+.error-message {
+  color: red;
+}

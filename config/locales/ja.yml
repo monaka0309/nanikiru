@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: "名前"
+        nickname: "ニックネーム"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "を入力してください"
+            nickname:
+              blank: "を入力してください"
+            email:
+              blank: "を入力してください"
+            password:
+              too_short: "は%{count}文字以上で入力してください"
+              blank: "を入力してください"
+            password_confirmation:
+              blank: "を入力してください"
