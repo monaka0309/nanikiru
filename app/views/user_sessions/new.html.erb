@@ -11,13 +11,19 @@
             <h1 class="mb-8 text-4xl text-center text-gray-800">ログイン</h1>
 
             <%= form_with url: user_sessions_path, local: true, data: { turbo: false }, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
+                <% if flash[:alert] %>
+                    <div class="mb-4 text-red-500">
+                        <%= flash[:alert] %>
+                    </div> <%# エラーメッセージの div タグを閉じる %>
+                <% end %>
+
                 <div class="mb-4">
-                    <%= f.label :メールアドレス, class: "block text-black text-1xl font-bold mb-2" %>
+                    <%= f.label :email, "メールアドレス", class: "block text-black text-1xl font-bold mb-2" %>
                     <%= f.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 bg-violet-50 leading-tight focus:outline-none focus:shadow-outline" %>
                 </div>
 
                 <div class="mb-6">
-                    <%= f.label :パスワード, class: "block text-black text-1xl font-bold mb-2" %>
+                    <%= f.label :password, "パスワード", class: "block text-black text-1xl font-bold mb-2" %>
                     <%= f.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 bg-violet-50 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
                 </div>
 
