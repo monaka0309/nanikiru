@@ -3,7 +3,7 @@ class UserSessionsController < ApplicationController
 
     def new
     end
-  
+
     def create
       # ログイン処理
       user = login(params[:email], params[:password])
@@ -14,12 +14,14 @@ class UserSessionsController < ApplicationController
         render :new
       end
     end
-  
+
     def destroy
       # ログアウト処理
       logout
       redirect_to(root_path, notice: 'ログアウトしました。')
+        logout
+        redirect_to root_url, notice: 'ログアウトしました'
     end
   end
-  
+
 
