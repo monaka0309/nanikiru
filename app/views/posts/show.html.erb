@@ -16,7 +16,7 @@
             
             <!-- 投稿者が添付した画像ファイルの表示 -->
             <% if @post.image.present? %>
-                <div class="flex justify-center my-6">
+                <div class="flex justify-center my-6 md:mx-6">
                     <%= image_tag @post.image.url, class: "rounded-lg" %>
                 </div>
             <% end %>
