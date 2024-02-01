@@ -7,7 +7,7 @@
     <%= render 'layouts/header' %>
     <%= render 'layouts/sidebar' %>
 
-    <div class="container mx-auto mt-5 p-10">
+    <div class="container mx-auto mt-5 p-10 text-gray-600">
         <h1 class="text-3xl mb-6 text-gray-700">新規投稿画面</h1>
         <%= form_with(model: @post, local: true) do |form| %>
             <% if @post.errors.any? %>
@@ -23,7 +23,7 @@
             <% end %>
 
             <div class="mb-6">
-                <%= form.label :あなたの考え, class: 'text-gray-600' %>
+                <%= form.label :あなたの考え %>
                 <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
             </div>
             <div class="mb-6">
@@ -47,6 +47,16 @@
             </div>
 
             <%= render 'posts/modal' %>
+
+            <div class="mb-10">
+                <%= form.label :画像（スクリーンショットなど） %><br>
+                <br>
+                <%= form.file_field :image, class: 'image-input', direct_upload: true %>
+                <div id="image-preview" class="mt-4"></div>
+            </div>
+
+            <%= form.label :牌の選択肢の設定 %><br>
+
             <!-- モーダルを開くためのボタン -->
             <label for="modal_1" class="btn btn-neutral modal-button">投票してもらう選択肢を選ぶ</label>
             <br>

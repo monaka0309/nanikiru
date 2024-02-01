@@ -1,10 +1,69 @@
-<h1>Editing post</h1>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- ヘッドの内容 -->
+</head>
+<body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
-<%= render "form", post: @post %>
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/sidebar' %>
 
-<br>
+    <div class="container mx-auto mt-8 text-gray-600">
+        <h2 class="text-xl font-bold mb-4 text-gray-700">投稿を編集</h2>
 
-<div>
-  <%= link_to "Show this post", @post %> |
-  <%= link_to "Back to posts", posts_path %>
-</div>
+        <%= form_with(model: @post, local: true) do |form| %>
+            <% if @post.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+                    <ul>
+                        <% @post.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="mb-4">
+                <%= form.label :content, "あなたの考え" %>
+                <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
+            </div>
+
+            <div class="mb-4">
+                <%= form.label :image, "画像" %>
+                <%= form.file_field :image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight' %>
+                <% if @post.image? %>
+                    <%= image_tag @post.image.url %>
+                <% end %>
+            </div>
+
+            <!-- モーダルを開くためのボタンと選択された画像を表示するエリア -->
+            <%= form.label :牌の選択肢の設定, class: 'text-gray-600' %><br>
+            <label for="modal_1" class="btn btn-neutral modal-button">投票してもらう選択肢を選ぶ</label><br>
+            （※最大4つまで）
+            <div id="selected-images" class="mb-6 flex">
+                <% @post.selected_images.each do |image_url| %>
+                    <!-- 既に選択されている画像を表示 -->
+                    <%= image_tag image_url, class: "mx-2 my-2", style: "width: 1.5cm; height: 2cm;" %>
+                    <!-- 隠しフィールドで既存の画像URLを送信 -->
+                    <%= form.hidden_field :selected_images, multiple: true, value: image_url %>
+                <% end %>
+            </div>
+
+            <div class="actions my-4">
+                <%= form.submit "更新する", class: 'bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+            </div>
+        <% end %>
+
+        <!-- モーダルのHTMLコード -->
+        <!-- ここに新規投稿ページからコピーしたモーダルのHTMLを貼り付ける -->
+
+    </div>
+
+    <%= render 'layouts/footer' %>
+
+    <!-- JavaScriptコード -->
+    <!-- ここに新規投稿ページからコピーしたJavaScriptを貼り付ける -->
+    <!-- 既に選択されている画像を処理するコードを含める必要があります -->
+
+</body>
+</html>
