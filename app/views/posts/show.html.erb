@@ -21,7 +21,7 @@
                 </div>
             <% end %>
 
-            下記の選択肢から投票してください。
+            下記の選択肢から投票してください。<br>
 
             <!-- モーダルで選択された牌画像の表示 -->
             <% if @post.selected_images.present? %>
@@ -30,6 +30,11 @@
                         <%= image_tag image_url, class: "rounded-lg m-2", width: "60", height: "90" %>
                     <% end %>
                 </div>
+            <% end %>
+
+            <!-- 編集ボタンの表示制御 -->
+            <% if current_user == @post.user %>
+                <%= link_to '編集', edit_post_path(@post), class: 'btn btn-outline my-4' %>
             <% end %>
 
         </div>
