@@ -13,12 +13,11 @@
     <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content text-1xl">
 
       <% if current_user %>
-        <li class="mb-5"><%= button_to 'ログアウト', logout_path, method: :delete, form: { class: "inline" }, class: "text-blue-500" %></li>
+        <li class="mb-5"><%= link_to 'ログアウト', logout_path, method: :delete, data: { turbo_method: :delete }, class: "text-blue-500 block" %></li>
       <% else %>
         <li class="mb-5"><%= link_to 'ログイン', login_path, class: "text-blue-500" %></li>
         <li class="mb-5"><%= link_to '会員登録', new_user_path, class: "text-blue-500" %></li>
       <% end %>
-
 
       <li class="mb-5"><a href="#about">アプリについて</a></li>
       <li class="mb-5"><a href="/posts/new">新規投稿</a></li>
