@@ -159,7 +159,6 @@
         document.addEventListener("turbo:load", function() {
             const input = document.querySelector('.image-input');
             const preview = document.getElementById('image-preview');
-
             input.addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
@@ -192,6 +191,7 @@
                 input.type = 'hidden';
                 input.name = 'post[selected_images][]'; // パラメータ名を修正
                 input.value = imageSrc;
+                console.log(document.querySelector('form'));
                 document.querySelector('form').appendChild(input); // form_withで生成されたフォームに追加
 
                 // 画像を画面に表示

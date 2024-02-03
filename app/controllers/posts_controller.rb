@@ -24,7 +24,8 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-    @post.user = current_user # ここでログインユーザーを関連付ける
+    @post.user = current_user
+    # @post.selected_images = ["haku.jpg"]
 
     respond_to do |format|
       if @post.save
@@ -66,7 +67,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:content, :image, :user_id, selected_images: [])
+      params.require(:post).permit(:content, :image, :user_id, {selected_images: []})
     end
     
 end
