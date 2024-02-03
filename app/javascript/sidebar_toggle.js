@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
     var sidebar = document.getElementById("sidebar");
     var sidebarToggle = document.getElementById("sidebarToggle");
   
