@@ -144,11 +144,24 @@
             });
         });
         document.addEventListener("turbo:load", function() {
-            // 画像を選択した時に呼ばれる関数
             function addSelectedImage(imageSrc) {
-                // 選択された画像の枚数が4枚未満であることを確認
                 const imageArea = document.getElementById('selected-images');
-                if (imageArea.getElementsByTagName('img').length >= 4) {
+                const existingImages = imageArea.getElementsByTagName('img');
+
+                // 既に選択されている画像のURLを配列に格納
+                let existingImageUrls = [];
+                for (let i = 0; i < existingImages.length; i++) {
+                    existingImageUrls.push(existingImages[i].src);
+                }
+
+                // 選択された画像が既に存在するかチェック
+                if (existingImageUrls.includes(imageSrc)) {
+                    alert('同じ画像は選択できません。');
+                    return;
+                }
+
+                // 選択された画像の枚数が4枚未満であることを確認
+                if (existingImages.length >= 4) {
                     alert('画像の最大枚数は4枚です。');
                     return;
                 }
@@ -156,10 +169,9 @@
                 // 隠しフォームフィールドを作成して値を設定
                 const input = document.createElement('input');
                 input.type = 'hidden';
-                input.name = 'post[selected_images][]'; // パラメータ名を修正
+                input.name = 'post[selected_images][]';
                 input.value = imageSrc;
-                console.log(document.querySelector('form'));
-                document.querySelector('form').appendChild(input); // form_withで生成されたフォームに追加
+                document.querySelector('form').appendChild(input);
 
                 // 画像を画面に表示
                 const img = document.createElement('img');
@@ -168,16 +180,20 @@
                 img.style.height = '2cm';
                 img.classList.add('mx-2', 'my-2');
                 imageArea.appendChild(img);
-                }
+
+                // モーダルを閉じる
+                document.getElementById('modal_1').checked = false;
+            }
 
             // モーダル内のすべての画像に対してイベントリスナーを設定
             document.querySelectorAll('.modal img').forEach(function(img) {
                 img.addEventListener('click', function() {
                     addSelectedImage(this.src); // クリックされた画像を処理
-                    document.getElementById('modal_1').checked = false; // モーダルを閉じる
                 });
             });
         });
+
+
 
     </script>
 
