@@ -27,7 +27,7 @@
             <% if @post.selected_images.present? %>
                 <div class="flex flex-wrap justify-center">
                     <% @post.selected_images.each do |image_url| %>
-                        <%= image_tag image_url, class: "rounded-lg m-2", width: "60", height: "90" %>
+                        <%= image_tag image_url, class: "rounded-lg m-2", width: "55", height: "80" %>
                     <% end %>
                 </div>
             <% end %>
