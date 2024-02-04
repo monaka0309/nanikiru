@@ -9,7 +9,7 @@
     <%= render 'layouts/sidebar' %>
 
     <div class="container mx-auto mt-8 text-gray-600">
-        <h2 class="text-xl font-bold mb-4 text-gray-700">投稿を編集</h2>
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">投稿を編集</h2>
 
         <%= form_with(model: @post, local: true) do |form| %>
             <% if @post.errors.any? %>
@@ -28,13 +28,20 @@
                 <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
             </div>
 
+            
             <div class="mb-4">
                 <%= form.label :image, "画像" %>
-                <%= form.file_field :image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight' %>
-                <% if @post.image? %>
-                    <%= image_tag @post.image.url %>
-                <% end %>
+                <%= form.file_field :image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight', id: 'post_image' %>
+                <div id="image-preview" class="mt-4">
+                    
+                    <% if @post.image? %>
+                        <%= image_tag @post.image.url, class: 'rounded-lg max-w-full h-auto' %>
+                    <% end %>
+
+                </div>
             </div>
+
+            
 
             <!-- モーダルを開くためのボタンと選択された画像を表示するエリア -->
             <%= form.label :牌の選択肢の設定, class: 'text-gray-600' %><br>
@@ -54,16 +61,35 @@
             </div>
         <% end %>
 
-        <!-- モーダルのHTMLコード -->
-        <!-- ここに新規投稿ページからコピーしたモーダルのHTMLを貼り付ける -->
-
     </div>
 
     <%= render 'layouts/footer' %>
 
-    <!-- JavaScriptコード -->
-    <!-- ここに新規投稿ページからコピーしたJavaScriptを貼り付ける -->
-    <!-- 既に選択されている画像を処理するコードを含める必要があります -->
+    <script>
+        document.addEventListener("turbo:load", function() {
+            const imageInput = document.querySelector('#post_image');
+            const imagePreview = document.getElementById('image-preview');
+
+            imageInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        imagePreview.innerHTML = ''; // Clear the existing preview
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                        imagePreview.appendChild(img); // Append the new image
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+
+
 
 </body>
 </html>
