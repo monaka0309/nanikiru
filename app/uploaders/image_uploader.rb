@@ -4,7 +4,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -38,7 +38,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # アップロードを許可するファイルの種類を指定します
   def extension_whitelist
-    %w[jpg jpeg gif png]
+    %w[jpg jpeg gif png heic webp]
   end
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -51,4 +51,18 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg"
   # end
+
+    #🔥WebPに変換
+    process :convert_to_webp
+
+    def convert_to_webp
+      manipulate! do |img|
+        img.format 'webp'
+        img
+      end
+    end
+      #🔥拡張子を.webpで保存
+    def filename
+      super.chomp(File.extname(super)) + '.webp' if original_filename.present?
+    end
 end
