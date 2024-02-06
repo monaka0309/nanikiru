@@ -22,3 +22,21 @@ ja:
               blank: "を入力してください"
             password_confirmation:
               blank: "を入力してください"
+  alerts:
+    login_required: "ログインしてください"
+  posts:
+    create:
+      success: "投稿が正常に作成されました。"
+    update:
+      success: "投稿が正常に更新されました。"
+    destroy:
+      success: "投稿が正常に削除されました。"
+  user_sessions:
+    login:
+      success: "ログインに成功しました。"
+      failure: "ログインに失敗しました。"
+    logout:
+      success: "ログアウトしました。"
+  users:
+    create:
+      success: "会員登録が完了し、ログインしました。"

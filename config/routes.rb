@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # ユーザー関連のルーティング
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: %i[new create show]
 
   resources :user_sessions, only: [:create]
   get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create'
 
   delete 'logout', to: 'user_sessions#destroy', as: :logout
-
 
   # 投稿関連のルーティング
   resources :posts
@@ -19,6 +20,5 @@ Rails.application.routes.draw do
   get 'terms', to: 'pages#terms' # 利用規約ページ
 
   # ルートURL
-  root "posts#index"
-
+  root 'posts#index'
 end
