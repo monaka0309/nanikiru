@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# このマイグレーションは、データベース内に 'users' テーブルを作成します。
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|

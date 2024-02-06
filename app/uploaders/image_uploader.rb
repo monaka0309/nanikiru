@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# 画像のアップロードを扱うためのアップローダー
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
