@@ -5,3 +5,6 @@ AllCops:
   TargetRubyVersion: 3.2
   NewCops: enable
 # ここにプロジェクト特有の設定や除外ルールを追加
+Layout/LineLength:
+  Exclude:
+    - "config/initializers/sorcery.rb"
