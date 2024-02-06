@@ -1,0 +1,7 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+# ここにプロジェクト特有の設定や除外ルールを追加
