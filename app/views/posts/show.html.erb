@@ -32,10 +32,20 @@
                 </div>
             <% end %>
 
-            <!-- 編集ボタンの表示制御 -->
-            <% if current_user == @post.user %>
-                <%= link_to '編集', edit_post_path(@post), class: 'btn btn-outline my-4' %>
-            <% end %>
+            <!-- 編集ボタンと削除ボタンのためのコンテナ -->
+            <div class="flex items-center gap-4">
+                <!-- 編集ボタン -->
+                <% if current_user == @post.user %>
+                    <%= link_to '編集', edit_post_path(@post), class: 'btn btn-outline my-4' %>
+                <% end %>
+
+                <!-- 削除ボタン -->
+                <% if current_user == @post.user %>
+                    <%= button_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline my-4' %>
+                <% end %>
+            </div>
+
+
 
         </div>
     </main>
