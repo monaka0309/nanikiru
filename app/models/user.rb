@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 # User モデルはアプリケーションのユーザーを表します。
-# ユーザーは名前、ニックネーム、メールアドレスを持ち、Sorceryライブラリを使用して認証機能を実装しています。
-# ユーザーはパスワードを使って登録・ログインでき、パスワードは確認用と一致する必要があります。
-# また、ユーザーはプロフィール画像をアップロードでき、
-# そのためにImageUploaderがマウントされています。
+
 class User < ApplicationRecord
+  has_many :posts
   mount_uploader :image, ImageUploader
   authenticates_with_sorcery!
   validates :name, presence: true
