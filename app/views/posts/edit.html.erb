@@ -19,3 +19,27 @@
 </body>
 </html>
 
+<script>
+    document.addEventListener("turbo:load", function() {
+        // 投稿画像のプレビュー表示機能
+        const imageInput = document.querySelector('#post_image');
+        const imagePreview = document.getElementById('image-preview');
+
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = ''; // Clear the existing preview
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                    imagePreview.appendChild(img); // Append the new image
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
