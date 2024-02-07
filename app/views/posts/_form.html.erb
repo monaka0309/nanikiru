@@ -35,6 +35,9 @@
     <% end %>
   </div>
 
+  <!-- リセットボタンを追加 -->
+  <button type="button" id="reset-selection" class="btn btn-outline">選択をリセット</button>
+
   <!-- モーダル -->
   <input type="checkbox" id="modal_1" class="modal-toggle" />
   <div class="modal" role="dialog">
@@ -140,11 +143,41 @@
             });
         });
     }
-    console.log(selected-images);
+
+    // リセットボタンのクリックイベント
+    const resetButton = document.getElementById('reset-selection');
+    if (resetButton) {
+      resetButton.addEventListener('click', function() {
+        resetSelection();
+      });
+    }
+
+    function resetSelection() {
+      // 選択された画像をクリア
+      const selectedImagesArea = document.getElementById('selected-images');
+      selectedImagesArea.innerHTML = '';
+
+      // 隠しフォームフィールドをクリア
+      document.querySelectorAll("input[name='post[selected_images][]']").forEach(input => {
+        input.remove();
+      });
+    }
+
+    // 既存の選択画像クリックイベントにリセット機能を追加
+    document.querySelectorAll('.selected-image').forEach(function(img) {
+      img.addEventListener('click', function() {
+        // 選択を解除し、隠しフォームフィールドを削除
+        this.remove();
+        document.querySelector("input[value='" + this.src + "']").remove();
+      });
+    });
+
 
     function addSelectedImage(imageSrc) {
             const imageArea = document.getElementById('selected-images');
             const existingImages = imageArea.getElementsByTagName('img');
+
+            console.log(existingImages);
 
             // 既に選択されている画像のURLを配列に格納
             let existingImageUrls = [];
