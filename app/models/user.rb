@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 # User モデルはアプリケーションのユーザーを表します。
-
 class User < ApplicationRecord
-  has_many :posts
+  has_many :posts, dependent: :destroy
   mount_uploader :image, ImageUploader
   authenticates_with_sorcery!
   validates :name, presence: true
