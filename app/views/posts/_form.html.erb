@@ -1,27 +1,186 @@
-<%= form_with(model: @post, local: true, multipart: true) do |form| %>
-  <% if @post.errors.any? %>
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
       <ul>
-        <% @post.errors.full_messages.each do |message| %>
+        <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="mb-6">
-    <%= form.label :あなたの考え, class: 'text-gray-600' %>
+  <div class="mb-4">
+    <%= form.label :content, "あなたの考え" %>
     <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
   </div>
 
-  <div class="mb-6">
-    <%= form.label :画像を選択, class: 'text-gray-600' %>
-    <%= form.file_field :image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
+  <div class="mb-4">
+    <%= form.label :image, "画像" %>
+    <%= form.file_field :image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight', id: 'post_image' %>
+    <div id="image-preview" class="mt-4">
+      <% if post.image? %>
+        <%= image_tag post.image.url, class: 'rounded-lg max-w-full h-auto' %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit "投稿する", class: 'bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+  <%= form.label :牌の選択肢の設定, class: 'text-gray-600' %><br>
+  <label for="modal_1" class="btn btn-neutral modal-button">投票してもらう選択肢を選ぶ</label><br>
+  （※最大4つまで）
+  <div id="selected-images" class="mb-6 flex">
+    <% post.selected_images.each do |image_url| %>
+      <%= image_tag image_url, class: "mx-2 my-2", style: "width: 1.5cm; height: 2cm;" %>
+      <%= form.hidden_field :selected_images, multiple: true, value: image_url %>
+    <% end %>
+  </div>
+
+  <!-- モーダル -->
+  <input type="checkbox" id="modal_1" class="modal-toggle" />
+  <div class="modal" role="dialog">
+      <div class="modal-box w-full max-w-md sm:max-w-sm lg:max-w-[600px] p-4">
+
+
+          <!-- カードのコンテナ -->
+          <div class="card bg-neutral text-neutral-content w-full bg-blue-900 p-4 rounded-lg">
+              <div class="card-body items-center text-center">
+                  <!-- カードのタイトル -->
+                  <h2 class="card-title">牌の選択肢を選んでください。</h2>
+
+                  <!-- 画像を横並びで表示するためのコンテナ -->
+                  <div class="grid grid-cols-5 flex flex-wrap items-center">
+                  
+                  <!--マンズ-->
+                  <%= image_tag 'iman.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'ryanman.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'sanman.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'suman.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'uman.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'umanaka.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'roman.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'timan.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'paman.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'kyuman.jpg', size: "60x90", class: 'mx-2' %>
+                  <!--ソウズ-->
+                  <%= image_tag 'iso.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'ryanso.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'sanzo.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'suso.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'uso.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'usoaka.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'roso.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'tiso.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'paso.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'kyuso.jpg', size: "60x90", class: 'mx-2' %>
+                  <!--ピンズ-->
+                  <%= image_tag 'ipin.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'ryanpin.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'sanpin.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'supin.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'upin.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'upinaka.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'ropin.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'tipin.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'papin.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'kyupin.jpg', size: "60x90", class: 'mx-2' %>
+                  <!--字牌-->
+                  <%= image_tag 'ton.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'nan.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'sha.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'pei.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'haku.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'hatu.jpg', size: "60x90", class: 'mx-2' %>
+                  <%= image_tag 'tyun.jpg', size: "60x90", class: 'mx-2' %>
+                  </div>
+
+                  <!-- カードのアクション（ボタン） -->
+                  <div class="card-actions justify-end">
+                      <label for="modal_1" class="btn btn-active btn-neutral mt-5">閉じる</label>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="actions my-4">
+    <%= form.submit post.new_record? ? '投稿する' : '更新する', class: 'bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
   </div>
 <% end %>
+
+<script>
+    // 新規投稿ページで画像ファイルを挿入した際にプレビューが表示される。
+    document.addEventListener("turbo:load", function() {
+        const input = document.querySelector('.image-input');
+        const preview = document.getElementById('image-preview');
+        input.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                    preview.innerHTML = ''; // Clear the preview
+                    preview.appendChild(img); // Append the new image
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+    document.addEventListener("turbo:load", function() {
+        function addSelectedImage(imageSrc) {
+            const imageArea = document.getElementById('selected-images');
+            const existingImages = imageArea.getElementsByTagName('img');
+
+            // 既に選択されている画像のURLを配列に格納
+            let existingImageUrls = [];
+            for (let i = 0; i < existingImages.length; i++) {
+                existingImageUrls.push(existingImages[i].src);
+            }
+
+            // 選択された画像が既に存在するかチェック
+            if (existingImageUrls.includes(imageSrc)) {
+                alert('同じ画像は選択できません。');
+                return;
+            }
+
+            // 選択された画像の枚数が4枚未満であることを確認
+            if (existingImages.length >= 4) {
+                alert('画像の最大枚数は4枚です。');
+                return;
+            }
+
+            // 隠しフォームフィールドを作成して値を設定
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'post[selected_images][]';
+            input.value = imageSrc;
+            document.querySelector('form').appendChild(input);
+
+            // 画像を画面に表示
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.style.width = '1.5cm';
+            img.style.height = '2cm';
+            img.classList.add('mx-2', 'my-2');
+            imageArea.appendChild(img);
+
+            // モーダルを閉じる
+            document.getElementById('modal_1').checked = false;
+        }
+
+        // モーダル内のすべての画像に対してイベントリスナーを設定
+        document.querySelectorAll('.modal img').forEach(function(img) {
+            img.addEventListener('click', function() {
+                addSelectedImage(this.src); // クリックされた画像を処理
+            });
+        });
+    });
+
+
+
+</script>
 
