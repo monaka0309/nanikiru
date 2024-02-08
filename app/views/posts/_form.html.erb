@@ -1,4 +1,4 @@
-<%= form_with(model: post, local: true) do |form| %>
+<%= form_with(model: post, local: true, data: { turbo: false }) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -106,13 +106,12 @@
   </div>
 
 
-  <div class="actions my-4">
+<div class="actions my-4">
     <%= form.submit post.new_record? ? '投稿する' : '更新する', class: 'bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
   </div>
 <% end %>
 
 <script>
-    // 新規投稿ページで画像ファイルを挿入した際にプレビューが表示される。
     document.addEventListener("turbo:load", function() {
     const selectedImagesArea = document.getElementById('selected-images');
 
@@ -149,6 +148,7 @@
         const imageArea = document.getElementById('selected-images');
         const existingImages = imageArea.getElementsByTagName('img');
 
+
         // 既に選択されている画像のURLを配列に格納
         let existingImageUrls = [];
         for (let i = 0; i < existingImages.length; i++) {
@@ -157,6 +157,7 @@
 
         // 選択された画像が既に存在するかチェック
         if (existingImageUrls.includes(imageSrc)) {
+
             alert('同じ画像は選択できません。');
             return;
         }
