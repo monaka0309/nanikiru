@@ -114,35 +114,7 @@
 <script>
     // 新規投稿ページで画像ファイルを挿入した際にプレビューが表示される。
     document.addEventListener("turbo:load", function() {
-    const preview = document.getElementById('image-preview');
-    const imageInput = document.querySelector('.image-input');
     const selectedImagesArea = document.getElementById('selected-images');
-    const modalImages = document.querySelectorAll('.modal img');
-
-    if (imageInput && preview) {
-        imageInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
-                    preview.innerHTML = '';
-                    preview.appendChild(img);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-
-    if (selectedImagesArea && modalImages.length) {
-        modalImages.forEach(function(img) {
-            img.addEventListener('click', function() {
-                addSelectedImage(this.src);
-            });
-        });
-    }
 
     // リセットボタンのクリックイベント
     const resetButton = document.getElementById('reset-selection');
@@ -174,48 +146,45 @@
 
 
     function addSelectedImage(imageSrc) {
-            const imageArea = document.getElementById('selected-images');
-            const existingImages = imageArea.getElementsByTagName('img');
+        const imageArea = document.getElementById('selected-images');
+        const existingImages = imageArea.getElementsByTagName('img');
 
-            console.log(existingImages);
-
-            // 既に選択されている画像のURLを配列に格納
-            let existingImageUrls = [];
-            for (let i = 0; i < existingImages.length; i++) {
-                existingImageUrls.push(existingImages[i].src);
-            }
-            console.log(existingImages);
-
-            // 選択された画像が既に存在するかチェック
-            if (existingImageUrls.includes(imageSrc)) {
-                alert('同じ画像は選択できません。');
-                return;
-            }
-
-            // 選択された画像の枚数が4枚未満であることを確認
-            if (existingImages.length >= 4) {
-                alert('画像の最大枚数は4枚です。');
-                return;
-            }
-
-            // 隠しフォームフィールドを作成して値を設定
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'post[selected_images][]';
-            input.value = imageSrc;
-            document.querySelector('form').appendChild(input);
-
-            // 画像を画面に表示
-            const img = document.createElement('img');
-            img.src = imageSrc;
-            img.style.width = '1.5cm';
-            img.style.height = '2cm';
-            img.classList.add('mx-2', 'my-2');
-            imageArea.appendChild(img);
-
-            // モーダルを閉じる
-            document.getElementById('modal_1').checked = false;
+        // 既に選択されている画像のURLを配列に格納
+        let existingImageUrls = [];
+        for (let i = 0; i < existingImages.length; i++) {
+            existingImageUrls.push(existingImages[i].src);
         }
+
+        // 選択された画像が既に存在するかチェック
+        if (existingImageUrls.includes(imageSrc)) {
+            alert('同じ画像は選択できません。');
+            return;
+        }
+
+        // 選択された画像の枚数が4枚未満であることを確認
+        if (existingImages.length >= 4) {
+            alert('画像の最大枚数は4枚です。');
+            return;
+        }
+
+        // 隠しフォームフィールドを作成して値を設定
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'post[selected_images][]';
+        input.value = imageSrc;
+        document.querySelector('form').appendChild(input);
+
+        // 画像を画面に表示
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.style.width = '1.5cm';
+        img.style.height = '2cm';
+        img.classList.add('mx-2', 'my-2');
+        imageArea.appendChild(img);
+
+        // モーダルを閉じる
+        document.getElementById('modal_1').checked = false;
+    }
 
         // モーダル内のすべての画像に対してイベントリスナーを設定
         document.querySelectorAll('.modal img').forEach(function(img) {
