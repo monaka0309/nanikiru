@@ -7,3 +7,7 @@ one:
 two:
   tile: two
   user: two
+  user: one
+  post: one
+  post: two
+  choice: MyString

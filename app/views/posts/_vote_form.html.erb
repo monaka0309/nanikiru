@@ -1,0 +1,17 @@
+
+<% if post.selected_images.present? %>
+  <div class="flex flex-wrap justify-center mt-2">
+    <% post.selected_images.each do |image_url| %>
+
+      <%= link_to post_votes_path(post_id: post.id, choice: image_url), method: :post, remote: true, class: "tile-image rounded-lg m-2" do %>
+    
+
+        <%= image_tag image_url %>
+        <div class="votes-count" id="votes-count-for-<%= image_url.parameterize %>">
+            <%= post.votes.where(choice: image_url).count %> 票
+        </div>
+
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

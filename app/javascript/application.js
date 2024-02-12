@@ -22,3 +22,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 import "./modal"
+import Rails from "@rails/ujs";
+Rails.start();

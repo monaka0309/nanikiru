@@ -10,11 +10,9 @@ Rails.application.routes.draw do
 
   delete 'logout', to: 'user_sessions#destroy', as: :logout
 
-  # 投稿関連のルーティング
   resources :posts do
-    resources :votes, only: [:create, :destroy]
+    resources :votes, only: [:create, :destroy], defaults: { format: 'js' }
   end
-
 
   # 静的ページ
   get 'about', to: 'pages#about' # アプリについて

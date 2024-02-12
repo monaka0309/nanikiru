@@ -7,4 +7,5 @@ class Vote < ApplicationRecord
   validates :post_tile_id, presence: true
   # 同じpost_tile_idに対して、ユーザーは一回しか投票できないようにする
   validates :post_tile_id, uniqueness: { scope: :user_id }
+
 end

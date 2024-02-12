@@ -7,3 +7,4 @@ one:
 two:
   name: MyString
   image_path: MyString
+  image: MyString
