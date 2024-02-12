@@ -1,0 +1,10 @@
+
+<% if @status == :created %>
+  // 投票が作成された場合、票数を増やします。
+  var votesCountElement = document.querySelector("#votes-count-for-<%= @vote.choice.parameterize %>");
+  votesCountElement.textContent = parseInt(votesCountElement.textContent) + 1 + " 票";
+<% elsif @status == :destroyed %>
+  // 投票が削除された場合、票数を減らします。
+  var votesCountElement = document.querySelector("#votes-count-for-<%= @vote.choice.parameterize %>");
+  votesCountElement.textContent = parseInt(votesCountElement.textContent) - 1 + " 票";
+<% end %>

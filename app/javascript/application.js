@@ -4,3 +4,5 @@ import "./controllers"
 import "./sidebar_toggle"
 import "./image_preview"
 import "./modal"
+import Rails from "@rails/ujs";
+Rails.start();
