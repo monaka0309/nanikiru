@@ -13,23 +13,39 @@
         <% if @posts.any? %>
             <div class="grid grid-cols-1">
                 <% @posts.each do |post| %>
-                    <div class="bg-white rounded-lg shadow p-4 mb-4">
-                        <p class="text-gray-700 mb-3"><%= post.content %></p>
-                        <% if post.image.present? %>
-                            <%= image_tag post.image.url %>
-                        <% end %><br>
+                <div class="bg-white rounded-lg shadow p-4 mb-4">
+                    <%= link_to post_path(post) do %>
+                    <p class="text-gray-700 mb-3"><%= post.content %></p>
+                    <% if post.image.present? %>
+                        <%= image_tag post.image.url %>
+                    <% end %>
+                    <% end %><br>
 
-                        下の選択肢から投票してください。<br>
-                        <%= render 'posts/vote_form', post: post %>
-                    </div>
+                    下の選択肢から投票してください。<br>
+                    <%= render 'posts/vote_form', post: post %>
+                </div>
                 <% end %>
             </div>
-        <% else %>
+            <% else %>
             <p class="mb-10">まだ投稿がありません。</p>
         <% end %>
+
+
     </main>
 
     <%= render 'layouts/footer' %>
+
+    <script>
+        // 牌画像のリンクがクリックされた時、イベントの伝播を停止する
+        document.addEventListener('click', function(event) {
+            const target = event.target;
+            if (target.classList.contains('tile-image')) {
+                event.preventDefault(); // リンクのデフォルトの挙動をキャンセル
+                event.stopPropagation(); // イベントの伝播を停止
+                // ここでAjaxによる投票のリクエストを実行する
+            }
+        }, false);
+    </script>
 
 </body>
 </html>
