@@ -3,9 +3,8 @@ class VotesController < ApplicationController
   before_action :require_login
   before_action :find_post
 
-
   def create
-    vote = @post.votes.where(user: current_user, tile: @tile).first_or_initialize
+    vote = @post.votes.where(user: current_user, choice: params[:choice]).first_or_initialize
 
     if vote.new_record?
       vote.save
@@ -17,7 +16,13 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @post }
-      format.js   # JavaScriptのレスポンスを返す
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.replace(
+          "votes_for_#{params[:choice].parameterize}",
+          partial: "votes/vote_count",
+          locals: { post: @post, choice: params[:choice] }
+        )
+      }
     end
   end
 
@@ -26,6 +31,4 @@ class VotesController < ApplicationController
   def find_post
     @post = Post.find(params[:post_id])
   end
-
 end
-

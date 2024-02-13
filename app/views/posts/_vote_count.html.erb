@@ -1,0 +1,3 @@
+<div class="votes-count" id="votes-count-for-<%= choice.parameterize %>">
+  <%= post.votes.where(choice: choice).count %> 票
+</div>
