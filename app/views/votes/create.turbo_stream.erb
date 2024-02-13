@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "votes_for_#{params[:choice].parameterize}" do %>
+  <%= render partial: "votes/vote_count", locals: { post: @post, choice: params[:choice] } %>
+<% end %>

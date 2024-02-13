@@ -29,14 +29,5 @@
     </main>
     <%= render 'layouts/footer' %>
 
-    <script>
-        document.addEventListener("turbolinks:load", function() {
-        document.querySelectorAll('.vote-image').forEach(function(image) {
-            image.addEventListener('click', function() {
-            Rails.fire(this.closest('form'), 'submit');
-            });
-        });
-        });
-    </script>
 </body>
 </html>
