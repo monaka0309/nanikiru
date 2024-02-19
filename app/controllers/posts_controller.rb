@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   # 投稿一覧を表示
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc) # 新しい投稿が上にくるように並べ替え
   end
 
   # 特定の投稿を表示
