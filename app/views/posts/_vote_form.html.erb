@@ -2,15 +2,19 @@
   <div class="flex flex-wrap justify-center mt-2">
     <% post.selected_images.each do |image_url| %>
 
-      <%= link_to post_votes_path(post_id: post.id, choice: image_url), method: :post, data: { turbo_frame: "votes_for_#{post.id}" }, class: "tile-image rounded-lg m-2" do %>
+
+
+      <%= link_to post_votes_path(post_id: post.id, choice: image_url), method: :post, data: { turbo_frame: "votes_for_#{post.id}_#{image_url.parameterize}" }, class: "tile-image rounded-lg m-2" do %>
         <%= image_tag image_url %>
-        <turbo-frame id="votes_for_<%= image_url.parameterize %>">
+        <turbo-frame id="votes_for_<%= post.id %>_<%= image_url.parameterize %>">
           <div class="votes-count">
             <%= post.votes.where(choice: image_url).count %> 票
           </div>
         </turbo-frame>
       <% end %>
+
     <% end %>
   </div>
 <% end %>
+
 
