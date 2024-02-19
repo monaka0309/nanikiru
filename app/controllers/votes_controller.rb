@@ -1,3 +1,4 @@
+
 class VotesController < ApplicationController
   before_action :require_login
   before_action :find_post
@@ -17,7 +18,7 @@ class VotesController < ApplicationController
       format.html { redirect_to @post }
       format.turbo_stream {
         render turbo_stream: turbo_stream.replace(
-          "votes_for_#{params[:choice].parameterize}",
+          "votes_for_#{post.id}_#{params[:choice].parameterize}",
           partial: "votes/vote_count",
           locals: { post: @post, choice: params[:choice] }
         )
