@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   # 投稿一覧を表示
   def index
-    @posts = Post.all.order(created_at: :desc) # 新しい投稿が上にくるように並べ替え
+    @posts = Post.includes(:votes).order(created_at: :desc)
   end
 
   # 特定の投稿を表示
@@ -16,26 +16,38 @@ class PostsController < ApplicationController
   # 新規投稿フォーム
   def new
     @post = Post.new
+    @tile_images = Tile.all.order(id: :asc).pluck(:image_path)
   end
 
   # 投稿編集フォーム
-  def edit; end
+  def edit
+    @post = Post.find(params[:id])
+    @tiles = Tile.all
+  end
 
   # 新規投稿を作成
-  # POST /posts or /posts.json
   def create
     @post = current_user.posts.build(post_params)
 
     if @post.save
+      # ここで牌との関連を作成する
+      params[:post][:tile_ids].each do |tile_id|
+        @post.post_tiles.create(tile_id: tile_id) unless tile_id.blank?
+      end
       redirect_to @post, notice: I18n.t('posts.create.success')
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
+  # # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
+      # 投稿に関連する牌の更新処理をここに追加する
+      @post.post_tiles.destroy_all
+      params[:post][:tile_ids].each do |tile_id|
+        @post.post_tiles.create(tile_id: tile_id) unless tile_id.blank?
+      end
       redirect_to @post, notice: I18n.t('posts.update.success')
     else
       render :edit, status: :unprocessable_entity
@@ -57,6 +69,7 @@ class PostsController < ApplicationController
 
   # ストロングパラメーター
   def post_params
-    params.require(:post).permit(:content, :image, { selected_images: [] })
+    # selected_images の代わりに tile_ids の配列を許可
+    params.require(:post).permit(:content, :image, tile_ids: [])
   end
 end
