@@ -24,14 +24,7 @@
 
             下記の選択肢から投票してください。<br>
 
-            <!-- モーダルで選択された牌画像の表示 -->
-            <% if @post.selected_images.present? %>
-                <div class="flex flex-wrap justify-center">
-                    <% @post.selected_images.each do |image_url| %>
-                        <%= image_tag image_url, class: "rounded-lg m-2", width: "55", height: "80" %>
-                    <% end %>
-                </div>
-            <% end %>
+            <!-- モー
 
             <!-- 編集ボタンと削除ボタンのためのコンテナ -->
             <div class="flex items-center gap-4">
