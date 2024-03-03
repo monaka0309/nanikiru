@@ -22,16 +22,19 @@ class PostsController < ApplicationController
   # 投稿編集フォーム
   def edit
     @post = Post.find(params[:id])
-    @tiles = Tile.all
+    @tile_images = Tile.all.order(id: :asc).pluck(:image_path)
+    @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
   end
 
   # 新規投稿を作成
   def create
     @post = current_user.posts.build(post_params)
-
     if @post.save
       # ここで牌との関連を作成する
-      params[:post][:tile_ids].each do |tile_id|
+      # post_tiles_params = ["i-man.png","ryan-man.png"]
+      post_tiles_params["selected_images"].each do |tile_image_path|
+        # tile_image_path = "i-man.png"
+        tile_id = Tile.find_by(image_path: tile_image_path).id # tile_id
         @post.post_tiles.create(tile_id: tile_id) unless tile_id.blank?
       end
       redirect_to @post, notice: I18n.t('posts.create.success')
@@ -45,7 +48,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       # 投稿に関連する牌の更新処理をここに追加する
       @post.post_tiles.destroy_all
-      params[:post][:tile_ids].each do |tile_id|
+      params[:post][:post_tiles].each do |tile_id|
         @post.post_tiles.create(tile_id: tile_id) unless tile_id.blank?
       end
       redirect_to @post, notice: I18n.t('posts.update.success')
@@ -68,8 +71,13 @@ class PostsController < ApplicationController
   end
 
   # ストロングパラメーター
+  # 投稿自体を作るためのパラメータ(=postsテーブル)
   def post_params
-    # selected_images の代わりに tile_ids の配列を許可
-    params.require(:post).permit(:content, :image, tile_ids: [])
+    params.require(:post).permit(:content, :image)
+  end
+
+  # 投稿に紐づく牌がどれかを選択するためのパラメータ(=post_tilesテーブル)
+  def post_tiles_params
+    params.require(:post).permit(selected_images: [])
   end
 end

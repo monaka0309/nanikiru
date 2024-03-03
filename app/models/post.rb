@@ -5,7 +5,7 @@
 class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   belongs_to :user
-  has_many :post_tiles
+  has_many :post_tiles, dependent: :destroy
   has_many :tiles, through: :post_tiles
-  has_many :votes, through: :post_tiles
+  has_many :votes, through: :post_tiles, dependent: :destroy
 end

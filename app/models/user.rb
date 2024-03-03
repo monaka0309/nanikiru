@@ -3,7 +3,7 @@
 # User モデルはアプリケーションのユーザーを表します。
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
-  has_many :votes
+  has_many :votes, dependent: :destroy
   mount_uploader :image, ImageUploader
   authenticates_with_sorcery!
   validates :name, presence: true
