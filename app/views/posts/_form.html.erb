@@ -26,7 +26,7 @@
   </div>
 
   <!-- モーダルのトリガーボタン -->
-  <button id="openModalButton" class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded">牌の選択肢を表示</button>
+  <%# <button id="openModalButton" class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded">牌の選択肢を表示</button>
   <!-- モーダル -->
   <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center" style="display:none;">
     <div class="bg-white rounded-lg p-5">
@@ -36,12 +36,13 @@
 
           <!-- 画像を表示 -->
           <% @tile_images.each do |filename| %>
-            <%= image_tag "#{filename}", class: 'mx-2', size: '60x90' %>
-          <% end %>
-        <button id="closeModalButton" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded">閉じる</button>
-      </div>
-    </div>
-  </div>
+          
+            <%# <%= image_tag "#{filename}", class: 'mx-2', size: '60x90' %> 
+          <%# <% end %> 
+        <%# <button id="closeModalButton" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded">閉じる</button> %>
+      <%# </div> %>
+    <%# </div> %>
+  <%# </div>  %>
 
 
 
@@ -51,9 +52,12 @@
     <label for="modal_1" class="btn btn-neutral modal-button">投票してもらう選択肢を選ぶ</label><br>
     （※最大4つまで）
     <div id="selected-images" class="mb-6 flex">
-      <% post.selected_images.each do |image_url| %>
-        <%= image_tag image_url, class: "mx-2 my-2", style: "width: 1.5cm; height: 2cm;" %>
-        <%= form.hidden_field :selected_images, multiple: true, value: image_url %>
+
+      <% if @post_tiles %>
+        <% @post_tiles.each do |image_url| %>
+          <%= image_tag image_url, class: "mx-2 my-2", style: "width: 1.5cm; height: 2cm;" %>
+          <%= form.hidden_field :selected_images, multiple: true, value: image_url %>
+        <% end %>
       <% end %>
     </div>
 
@@ -61,7 +65,7 @@
     <button type="button" id="reset-selection" class="btn btn-outline">選択をリセット</button>
 
     <!-- モーダル -->
-    <input type="checkbox" id="modal_1" class="modal-toggle" />
+    <input type="checkbox" id="modal_1" class="modal-toggle hidden" />
     <div class="modal" role="dialog">
         <div class="modal-box w-full max-w-md sm:max-w-sm lg:max-w-[600px] p-4">
 
@@ -74,7 +78,10 @@
 
                     <!-- 画像を横並びで表示するためのコンテナ -->
                     <div class="grid grid-cols-5 flex flex-wrap items-center">
-                    
+                      <% @tile_images.each do |filename| %>
+                        <%= image_tag "#{filename}", id: "#{filename}", class: 'mx-2', size: '60x90' %>
+                      <% end %>
+
                     </div>
                     <!-- カードのアクション（ボタン） -->
                     <div class="card-actions justify-end">
@@ -97,26 +104,26 @@
 
 <script>
   document.addEventListener("turbo:load", function() {
-    // 変数定義
-    // モーダルを開くボタン
-    var openModalButton = document.getElementById('openModalButton');
+    // // 変数定義
+    // // モーダルを開くボタン
+    // var openModalButton = document.getElementById('openModalButton');
     
-    // モーダルを閉じるボタン
-    var closeModalButton = document.getElementById('closeModalButton');
+    // // モーダルを閉じるボタン
+    // var closeModalButton = document.getElementById('closeModalButton');
     
-    // モーダル本体
-    var modal = document.getElementById('modal');
+    // // モーダル本体
+    // var modal = document.getElementById('modal');
     
     
-    // モーダルを開く
-    openModalButton.addEventListener('click', function() {
-      modal.style.display = 'flex';
-    });
+    // // モーダルを開く
+    // openModalButton.addEventListener('click', function() {
+    //   modal.style.display = 'flex';
+    // });
     
-    // モーダルを閉じる
-    closeModalButton.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
+    // // モーダルを閉じる
+    // closeModalButton.addEventListener('click', function() {
+    //   modal.style.display = 'none';
+    // });
   
 
   
@@ -151,7 +158,7 @@
   });
 
 
-  function addSelectedImage(imageSrc) {
+  function addSelectedImage(imageId,imageSrc) {
       const imageArea = document.getElementById('selected-images');
       const existingImages = imageArea.getElementsByTagName('img');
 
@@ -179,7 +186,7 @@
       const input = document.createElement('input');
       input.type = 'hidden';
       input.name = 'post[selected_images][]';
-      input.value = imageSrc;
+      input.value = imageId;
       document.querySelector('form').appendChild(input);
 
       // 画像を画面に表示
@@ -197,7 +204,7 @@
       // モーダル内のすべての画像に対してイベントリスナーを設定
       document.querySelectorAll('.modal img').forEach(function(img) {
           img.addEventListener('click', function() {
-              addSelectedImage(this.src); // クリックされた画像を処理
+              addSelectedImage(this.id, this.src); // クリックされた画像を処理
           });
       });
   });
