@@ -48,7 +48,8 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       # 投稿に関連する牌の更新処理をここに追加する
       @post.post_tiles.destroy_all
-      params[:post][:post_tiles].each do |tile_id|
+      post_tiles_params["selected_images"].each do |tile_image_path|
+        tile_id = Tile.find_by(image_path: tile_image_path).id
         @post.post_tiles.create(tile_id: tile_id) unless tile_id.blank?
       end
       redirect_to @post, notice: I18n.t('posts.update.success')
