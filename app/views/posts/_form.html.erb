@@ -25,29 +25,6 @@
     </div>
   </div>
 
-  <!-- モーダルのトリガーボタン -->
-  <%# <button id="openModalButton" class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded">牌の選択肢を表示</button>
-  <!-- モーダル -->
-  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center" style="display:none;">
-    <div class="bg-white rounded-lg p-5">
-      <!-- モーダルコンテンツ -->
-      <div class="text-center">
-        <h2 class="mb-4">牌の選択肢を選んでください。</h2>
-
-          <!-- 画像を表示 -->
-          <% @tile_images.each do |filename| %>
-          
-            <%# <%= image_tag "#{filename}", class: 'mx-2', size: '60x90' %> 
-          <%# <% end %> 
-        <%# <button id="closeModalButton" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded">閉じる</button> %>
-      <%# </div> %>
-    <%# </div> %>
-  <%# </div>  %>
-
-
-
-
-
   <%= form.label :牌の選択肢の設定, class: 'text-gray-600' %><br>
     <label for="modal_1" class="btn btn-neutral modal-button">投票してもらう選択肢を選ぶ</label><br>
     （※最大4つまで）
@@ -104,29 +81,7 @@
 
 <script>
   document.addEventListener("turbo:load", function() {
-    // // 変数定義
-    // // モーダルを開くボタン
-    // var openModalButton = document.getElementById('openModalButton');
-    
-    // // モーダルを閉じるボタン
-    // var closeModalButton = document.getElementById('closeModalButton');
-    
-    // // モーダル本体
-    // var modal = document.getElementById('modal');
-    
-    
-    // // モーダルを開く
-    // openModalButton.addEventListener('click', function() {
-    //   modal.style.display = 'flex';
-    // });
-    
-    // // モーダルを閉じる
-    // closeModalButton.addEventListener('click', function() {
-    //   modal.style.display = 'none';
-    // });
-  
 
-  
   const selectedImagesArea = document.getElementById('selected-images');
 
   // リセットボタンのクリックイベント
