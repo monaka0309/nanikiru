@@ -5,6 +5,7 @@ if Rails.application.credentials.aws
         config.fog_provider = 'fog/aws'
         config.fog_directory = Rails.application.credentials.aws.bucket_name
         config.fog_public = false
+        config.asset_host = "https://s3.ap-northeast-1.amazonaws.com/nanikiru"
         config.fog_credentials = {
           provider: 'AWS',
           aws_access_key_id: Rails.application.credentials.aws.access_key_id,
