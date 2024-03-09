@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy', as: :logout
 
   resources :posts do
-    resources :votes, only: [:create, :destroy], defaults: { format: 'js' }
+    resources :post_tiles do
+      resources :votes, only: [:create, :destroy]
+
+    end
   end
 
   # 静的ページ

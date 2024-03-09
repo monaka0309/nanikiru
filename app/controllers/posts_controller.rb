@@ -8,10 +8,13 @@ class PostsController < ApplicationController
   # 投稿一覧を表示
   def index
     @posts = Post.includes(:votes).order(created_at: :desc)
+    @current_user = current_user
   end
 
   # 特定の投稿を表示
-  def show; end
+  def show
+    @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
+  end
 
   # 新規投稿フォーム
   def new
@@ -48,7 +51,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       # 投稿に関連する牌の更新処理をここに追加する
       @post.post_tiles.destroy_all
-      post_tiles_params["selected_images"].each do |tile_image_path|
+        post_tiles_params["selected_images"].each do |tile_image_path|
         tile_id = Tile.find_by(image_path: tile_image_path).id
         @post.post_tiles.create(tile_id: tile_id) unless tile_id.blank?
       end
@@ -62,6 +65,20 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to posts_url, notice: I18n.t('posts.destroy.success')
+  end
+
+  # 特定のPost IDに対する選択肢（PostTile）と投票数、および関連するタイルの画像をハッシュ化する
+  def post_tiles_with_vote_count(post_id)
+    # 関連付けられたレコードを一度に読み込むためにincludesを使用
+    Post.find(post_id)
+        .post_tiles
+        .includes(:tile)
+        .map do |post_tile|
+          {
+            image: post_tile.tile.image,
+            count: post_tile.votes.size
+          }
+        end
   end
 
   private

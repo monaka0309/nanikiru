@@ -24,7 +24,14 @@
 
             下記の選択肢から投票してください。<br>
 
-            <!-- モー
+            <div id="selected-images" class="mb-6 flex">
+                <% if @post_tiles %>
+                    <% @post_tiles.each do |image_url| %>
+                    <%= image_tag image_url, class: "mx-2 my-2", style: "width: 1.5cm; height: 2cm;" %>
+                    <%# <%= form.hidden_field :selected_images, multiple: true, value: image_url %>
+                    <% end %>
+                <% end %>
+            </div>
 
             <!-- 編集ボタンと削除ボタンのためのコンテナ -->
             <div class="flex items-center gap-4">

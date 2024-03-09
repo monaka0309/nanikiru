@@ -1,46 +1,74 @@
+# frozen_string_literal: true
+
 class VotesController < ApplicationController
 
   before_action :require_login
-  before_action :find_post
 
   def create
-    # ユーザーの現在の投票を検索します。
-    current_vote = @post.votes.find_by(user: current_user)
-
-    if current_vote
-      if current_vote.choice == params[:choice]
-        # 同じ選択肢に対する既存の投票を削除します。
-        current_vote.destroy
-        @status = :destroyed
-      else
-        # 選択肢を更新します。
-        current_vote.update(choice: params[:choice])
-        @status = :updated
+    post_tile = PostTile.find(params[:post_tile_id])
+    vote = current_user.votes.build(post_tile: post_tile)
+    if vote.save
+      # 投票が成功した場合の処理
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile', locals: { post_tile: post_tile })
+        end
       end
-      @vote = current_vote
-    else
-      # 新しい投票を作成します。
-      @vote = @post.votes.create(user: current_user, choice: params[:choice])
-      @status = :created
     end
+    # if vote = current_user.votes.find_by(post_tile_id: post_tile.id)
+    #   vote&.destroy
 
-    # レスポンスのフォーマットを処理します。
-    respond_to do |format|
-      # format.html { redirect_to @post }
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.replace(
-          "votes_for_#{@post.id}_#{params[:choice].parameterize}",
-          partial: "votes/vote_count",
-          locals: { post: @post, choice: params[:choice], status: @status }
-        )
-      }
+    #   respond_to do |format|
+    #     format.turbo_stream do
+    #       render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile', locals: { post_tile: post_tile })
+    #     end
+    #   end
+    # else
+    #   vote = current_user.votes.build(post_tile: post_tile)
+
+    #   if vote.save
+    #     # 投票が成功した場合の処理
+    #     respond_to do |format|
+    #       format.turbo_stream do
+    #         render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile', locals: { post_tile: post_tile })
+    #       end
+    #     end
+    #   end
+    # end
+  end
+
+  def destroy
+    post_tile = PostTile.find(params[:post_tile_id])
+    if vote = current_user.votes.find_by(post_tile_id: post_tile.id)
+      vote&.destroy
+
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile', locals: { post_tile: post_tile })
+        end
+      end
     end
   end
 
-  private
 
-  def find_post
-    @post = Post.find(params[:post_id])
-  end
+    # if vote = current_user.votes.find_by(post_tile_id: post_tile.id)
+    #   vote&.destroy
+
+    #   respond_to do |format|
+    #     format.turbo_stream do
+    #       render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile', locals: { post_tile: post_tile })
+    #     end
+    #   end
+    # else
+    #   vote = current_user.votes.build(post_tile: post_tile)
+
+    #   if vote.save
+    #     # 投票が成功した場合の処理
+    #     respond_to do |format|
+    #       format.turbo_stream do
+    #         render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile', locals: { post_tile: post_tile })
+    #       end
+    #     end
+    #   end
+    # end
 end
-

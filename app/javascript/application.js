@@ -22,5 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 import "./modal"
+import "./post_tile_voting"
 import Rails from "@rails/ujs";
 Rails.start();
