@@ -29,7 +29,6 @@
     <label for="modal_1" class="btn btn-neutral modal-button">投票してもらう選択肢を選ぶ</label><br>
     （※最大4つまで）
     <div id="selected-images" class="mb-6 flex">
-
       <% if @post_tiles %>
         <% @post_tiles.each do |image_url| %>
           <%= image_tag image_url, class: "mx-2 my-2", style: "width: 1.5cm; height: 2cm;" %>

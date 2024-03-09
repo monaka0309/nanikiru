@@ -29,9 +29,10 @@
                             <%= image_tag post.image.url %>
                         <% end %>
                     <% end %><br>
-
-                    下の選択肢から投票してください。<br>
-                    <%= render 'posts/vote_form', post: post %>
+                    <p>下の選択肢から投票してください。</p>
+                    <% post.post_tiles.each do |post_tile| %>
+                        <%= render 'posts/post_tile', post_tile: post_tile %>
+                    <% end %>
                 </div>
                 <% end %>
             </div>
@@ -41,29 +42,6 @@
 
     </main>
     <%= render 'layouts/footer' %>
-
-    <script>
-        // 牌画像のリンクがクリックされた時、イベントの伝播を停止する
-        document.addEventListener('click', function(event) {
-            const target = event.target;
-            if (target.classList.contains('tile-image')) {
-                event.preventDefault(); // リンクのデフォルトの挙動をキャンセル
-                event.stopPropagation(); // イベントの伝播を停止
-                // ここでAjaxによる投票のリクエストを実行する
-            }
-        }, false);
-
-        document.addEventListener('turbo:submit-end', (event) => {
-            // スクロール位置を記録
-            const scrollPosition = window.scrollY;
-
-            requestAnimationFrame(() => {
-            // スクロール位置を復元
-            window.scrollTo({ top: scrollPosition, behavior: 'auto' });
-            });
-        });
-
-    </script>
 
 </body>
 </html>

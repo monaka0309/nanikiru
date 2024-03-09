@@ -1,5 +1,6 @@
 class Vote < ApplicationRecord
   belongs_to :user
-  belongs_to :post_tile  # post の代わりに post_tile に変更
-  validates :choice, presence: true  # `choice` のバリデーションを追加
+  belongs_to :post_tile
+
+  validates :user_id, uniqueness: { scope: :post_tile_id, message: "はすでにこの選択肢に投票しています" }
 end
