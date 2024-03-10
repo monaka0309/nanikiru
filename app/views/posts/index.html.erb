@@ -30,9 +30,11 @@
                         <% end %>
                     <% end %><br>
                     <p>下の選択肢から投票してください。</p>
-                    <% post.post_tiles.each do |post_tile| %>
-                        <%= render 'posts/post_tile', post_tile: post_tile %>
-                    <% end %>
+                    <div class="grid grid-cols-5 flex flex-wrap items-center">
+                        <% post.post_tiles.each do |post_tile| %>
+                            <%= render 'posts/post_tile', post_tile: post_tile %>
+                        <% end %>
+                    </div>
                 </div>
                 <% end %>
             </div>
