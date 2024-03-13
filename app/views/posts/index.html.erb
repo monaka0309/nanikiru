@@ -20,25 +20,21 @@
         <% if @posts.any? %>
             <div class="grid grid-cols-1">
                 <% @posts.each do |post| %>
-                <div class="bg-white rounded-lg shadow p-10 mb-4 post-card">
-                    <%= link_to post_path(post) do %>
-                
-                    <p class="text-gray-700 mb-3" style="font-size: 14px;"><%= post.content %></p>
-
-                        <% if post.image.present? %>
-                            <%= image_tag post.image.url %>
-                        <% end %>
-                    <% end %><br>
-                    <p>下の選択肢から投票してください。</p>
-                    <div class="grid grid-cols-5 flex flex-wrap items-center">
-                        <% post.post_tiles.each do |post_tile| %>
-                            <%= render 'posts/post_tile', post_tile: post_tile %>
-                        <% end %>
+                    <div class="bg-white rounded-lg shadow p-10 mb-4 post-card">
+                        <%= link_to post_path(post) do %>
+                        <p class="text-gray-700 mb-3" style="font-size: 14px;"><%= post.content %></p>
+                            <% if post.image.present? %>
+                                <%= image_tag post.image.url %>
+                            <% end %>
+                        <% end %><br>
+                        <p>下の選択肢から投票してください。</p>
+                        <div>
+                            <%= render 'posts/post_tiles', post: post %>
+                        </div>
                     </div>
-                </div>
                 <% end %>
             </div>
-            <% else %>
+        <% else %>
             <p class="mb-10">まだ投稿がありません。</p>
         <% end %>
 

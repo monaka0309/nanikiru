@@ -1,0 +1,5 @@
+<div id="post_tiles_<%= post.id %>" class="grid grid-cols-5 flex flex-wrap items-center">
+    <% post.post_tiles.each do |post_tile| %>
+        <%= render 'posts/post_tile', post_tile: post_tile %>
+    <% end %>
+</div>
