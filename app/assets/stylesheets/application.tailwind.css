@@ -10,7 +10,7 @@
   height: 66px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 580px) {
   .tile-image {
       width: 64px;
       height: 90px;

@@ -11,33 +11,30 @@
         }
     </style>
 </head>
-<body class="bg-gray-200 font-sans leading-normal tracking-normal">
+<body class="bg-gray-200">
     <%= render 'layouts/header' %>
     <%= render 'layouts/sidebar' %>
     <main class="container mx-auto px-4 pt-8 text-gray-600 mb-10">
-        <% if flash[:alert] %>
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed top-0 left-0 right-0" role="alert" >
-                <span class="block sm:inline"><%= flash[:alert] %></span>
-            </div>
-        <% end %>
+    <% if @posts.any? %>
+            <% @posts.each do |post| %>
+                <div class="w-100 sm:w-5/6 mx-auto post-card bg-white rounded p-5 mb-4 sm:p-10">
+                    <%= link_to post_path(post) do %>
+                    <p class="text-gray-700 mb-3" style="font-size: 16px;"><%= post.content %></p>
+                        <% if post.image.present? %>
+                            <%= image_tag post.image.url %>
+                        <% end %>
+                    <% end %><br>
+                    <div class="text-md">下記の選択肢から投票してください。</div><br>
 
-        <% if @posts.any? %>
-            <div class="grid grid-cols-1">
-                <% @posts.each do |post| %>
-                    <div class="bg-white rounded-lg shadow p-10 mb-4 post-card">
-                        <%= link_to post_path(post) do %>
-                        <p class="text-gray-700 mb-3" style="font-size: 14px;"><%= post.content %></p>
-                            <% if post.image.present? %>
-                                <%= image_tag post.image.url %>
-                            <% end %>
-                        <% end %><br>
-                        <p>下の選択肢から投票してください。</p>
-                        <div>
-                            <%= render 'posts/post_tiles', post: post %>
+                    <div class="grid grid-cols-1">
+                        <div class="rounded-lg px-1">
+                            <div>
+                                <%= render 'posts/post_tiles', post: post %>
+                            </div>
                         </div>
                     </div>
-                <% end %>
-            </div>
+                </div>
+            <% end %>
         <% else %>
             <p class="mb-10">まだ投稿がありません。</p>
         <% end %>

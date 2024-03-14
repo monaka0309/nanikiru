@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to root_path, alert: I18n.t('alerts.login_required')
+    redirect_to login_path, alert: I18n.t('alerts.login_required')
   end
 end
