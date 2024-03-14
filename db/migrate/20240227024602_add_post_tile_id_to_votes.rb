@@ -1,3 +1,4 @@
+# post_tile_idに投票する機能。
 class AddPostTileIdToVotes < ActiveRecord::Migration[7.0]
   def change
     add_column :votes, :post_tile_id, :bigint

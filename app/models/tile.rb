@@ -1,3 +1,4 @@
+# 新規投稿時に添付する牌画像のこと。
 class Tile < ApplicationRecord
     # 画像がimages/tilesディレクトリ内に存在することを検証するカスタムバリデーション
     validate :image_path_must_be_in_tiles_directory

@@ -1,3 +1,4 @@
+# 投票機能についてのこと。
 class Vote < ApplicationRecord
   belongs_to :user
   belongs_to :post_tile # postsとtilesの関係を管理する中間テーブルに対する関連付け
