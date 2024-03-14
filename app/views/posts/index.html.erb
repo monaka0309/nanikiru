@@ -15,7 +15,11 @@
     <%= render 'layouts/header' %>
     <%= render 'layouts/sidebar' %>
     <main class="container mx-auto px-4 pt-8 text-gray-600 mb-10">
-        <h1 class="text-3xl font-bold mb-10">投稿一覧</h1>
+        <% if flash[:alert] %>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed top-0 left-0 right-0" role="alert" >
+                <span class="block sm:inline"><%= flash[:alert] %></span>
+            </div>
+        <% end %>
 
         <% if @posts.any? %>
             <div class="grid grid-cols-1">

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# 投票機能のコントローラー
 class VotesController < ApplicationController
   before_action :require_login
 
@@ -17,28 +18,29 @@ class VotesController < ApplicationController
     end
 
     # 投票を作成
-    vote = current_user.votes.build(post_tile: post_tile)
-    if vote.save
-      # 投票が成功した場合の処理
-      respond_to do |format|
-        format.turbo_stream do
-          # 全てのpost_tilesを作り直す
-          render turbo_stream: turbo_stream.replace("post_tiles_#{post.id}", partial: 'posts/post_tiles', locals: { post: post })
-        end
+    vote = current_user.votes.build(post_tile:)
+    return unless vote.save
+
+    # 投票が成功した場合の処理
+    respond_to do |format|
+      format.turbo_stream do
+        # 全てのpost_tilesを作り直す
+        render turbo_stream: turbo_stream.replace("post_tiles_#{post.id}", partial: 'posts/post_tiles',
+                                                                           locals: { post: })
       end
     end
   end
 
-
   def destroy
     post_tile = PostTile.find(params[:post_tile_id])
-    if vote = current_user.votes.find_by(post_tile_id: post_tile.id)
-      vote&.destroy
+    return unless vote = current_user.votes.find_by(post_tile_id: post_tile.id)
 
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile', locals: { post_tile: post_tile })
-        end
+    vote&.destroy
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile',
+                                                             locals: { post_tile: })
       end
     end
   end

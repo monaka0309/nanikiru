@@ -19,13 +19,13 @@ class PostsController < ApplicationController
   # 新規投稿フォーム
   def new
     @post = Post.new
-    @tile_images = Tile.all.order(id: :asc).pluck(:image_path)
+    @tile_images = Tile.order(id: :asc).pluck(:image_path)
   end
 
   # 投稿編集フォーム
   def edit
     @post = Post.find(params[:id])
-    @tile_images = Tile.all.order(id: :asc).pluck(:image_path)
+    @tile_images = Tile.order(id: :asc).pluck(:image_path)
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
   end
 
@@ -35,10 +35,10 @@ class PostsController < ApplicationController
     if @post.save
       # ここで牌との関連を作成する
       # post_tiles_params = ["i-man.png","ryan-man.png"]
-      post_tiles_params["selected_images"].each do |tile_image_path|
+      post_tiles_params['selected_images'].each do |tile_image_path|
         # tile_image_path = "i-man.png"
         tile_id = Tile.find_by(image_path: tile_image_path).id # tile_id
-        @post.post_tiles.create(tile_id: tile_id) unless tile_id.blank?
+        @post.post_tiles.create(tile_id:) if tile_id.present?
       end
       redirect_to @post, notice: I18n.t('posts.create.success')
     else
@@ -51,9 +51,9 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       # 投稿に関連する牌の更新処理をここに追加する
       @post.post_tiles.destroy_all
-        post_tiles_params["selected_images"].each do |tile_image_path|
+      post_tiles_params['selected_images'].each do |tile_image_path|
         tile_id = Tile.find_by(image_path: tile_image_path).id
-        @post.post_tiles.create(tile_id: tile_id) unless tile_id.blank?
+        @post.post_tiles.create(tile_id:) if tile_id.present?
       end
       redirect_to @post, notice: I18n.t('posts.update.success')
     else

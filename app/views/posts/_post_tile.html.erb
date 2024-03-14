@@ -1,7 +1,9 @@
 <div id="<%= dom_id(post_tile) %>">
 
   <% if current_user == nil %>
-    <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
+    <%= link_to post_post_tile_votes_path(post_tile.post.id, post_tile.id), method: :post do %>
+        <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
+    <% end %>
   <% else %>
     <% if post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id) %>
       <%= link_to post_post_tile_vote_path(post_tile.post.id, post_tile.id, post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id).id), method: :delete do %>

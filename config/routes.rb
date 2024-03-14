@@ -12,8 +12,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :post_tiles do
-      resources :votes, only: [:create, :destroy]
-
+      resources :votes, only: %i[create destroy]
     end
   end
 
