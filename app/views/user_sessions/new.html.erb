@@ -12,9 +12,12 @@
 
             <%= form_with url: user_sessions_path, local: true, data: { turbo: false }, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |f| %>
                 <% if flash[:alert] %>
-                    <div class="mb-4 text-red-500">
-                        <%= flash[:alert] %>
-                    </div> <%# エラーメッセージの div タグを閉じる %>
+                    <div class="mb-4 text-red-500 font-mono">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
+                            <%= flash[:alert] %>
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+                        </div>
+                    </div>
                 <% end %>
 
                 <div class="mb-4">

@@ -2,7 +2,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- ヘッドの内容 -->
+    <style>
+        /* PC表示時のみ適用されるスタイル */
+        @media (min-width: 1024px) {
+            .post-card {
+                max-width: 65%;
+                margin: 0 auto 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
@@ -10,28 +18,29 @@
     <%= render 'layouts/sidebar' %>
 
     <main class="container mx-auto px-6 pt-8 text-gray-600 mb-10">
+
         <h1 class="text-3xl font-bold mb-10">投稿詳細</h1>
 
-        <div class="bg-white rounded-lg shadow p-4 mt-10">
-            <p class="text-gray-700 mb-5 text-xl"><%= @post.content %></p>
-            
+        <div class="w-100 sm:w-5/6 mx-auto post-card bg-white rounded p-5 mb-4 sm:p-10">
+            <p class="text-gray-700 mb-5 text-lg">
+                <%= @post.content %></p>
+
             <!-- 投稿者が添付した画像ファイルの表示 -->
             <% if @post.image.present? %>
-                <div class="flex justify-center my-6 md:mx-6">
+                <div class="flex justify-center my-6 sm:mx-6">
                     <%= image_tag @post.image.url, class: "rounded-lg" %>
                 </div>
             <% end %>
 
-            下記の選択肢から投票してください。<br>
+            <div class="text-md">下記の選択肢から投票してください。</div><br>
 
-            <div id="selected-images" class="mb-6 flex">
-                <% if @post_tiles %>
-                    <% @post_tiles.each do |image_url| %>
-                    <%= image_tag image_url, class: "mx-2 my-2", style: "width: 1.5cm; height: 2cm;" %>
-                    <%# <%= form.hidden_field :selected_images, multiple: true, value: image_url %>
-                    <% end %>
-                <% end %>
-            </div>
+                <div class="grid grid-cols-1">
+                    <div class="rounded-lg px-1">
+                        <div>
+                            <%= render 'posts/post_tiles', post: @post %>
+                        </div>
+                    </div>
+                </div>
 
             <!-- 編集ボタンと削除ボタンのためのコンテナ -->
             <div class="flex items-center gap-4">
