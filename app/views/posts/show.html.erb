@@ -47,7 +47,7 @@
         </div>
 
         <%# コメント表示 %>
-        <div class="block sm:w-5/6 mx-auto p-3 rounded-lg bg-white text-gray">
+        <div class="block sm:w-5/6 mx-auto p-3 rounded-lg bg-white text-gray my-3">
 
             <div>
                 <p class="font-sanz">コメント件数：<%= @post.comments.count %></p>
@@ -65,13 +65,16 @@
                                 <%= comment.user.name %>
                             </h3>
                         </div>
-                        <p class="text-gray-600 mt-2">
+                        <p class="text-gray-600 mt-2 text-lg">
                             <%= comment.content %>
                         </p>
                         <p class="text-slate-400 text-sm text-right">
                             <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
                         </p>
-
+                        <!-- 削除ボタン -->
+                        <% if comment.user == current_user %>
+                            <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline' %>
+                        <% end %>
                     </div>
                 <% end %>
             </div>
@@ -79,10 +82,10 @@
 
         <%# コメント入力 %>
         <div class="sm:w-5/6 mx-auto">
-            <div class="my-4 bg-gray pb-2">
+            <div class="bg-gray pb-2">
                 <%= form_with model: [@post, @comment] do |f| %>
                     <div class="block mx-auto text-sm text-gray-900">
-                        <%= f.text_area :content, class: 'block w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 p-5 text-lg sm:text-xl', rows: '5', placeholder: "記入例：ここは役満を狙いましょう。" %>
+                        <%= f.text_area :content, class: 'block w-full text-gray-900 bg-white rounded-lg border border-gray-300 p-5 text-lg sm:text-xl', rows: '5', placeholder: "記入例：ここは役満を狙いましょう。" %>
                         <%# 送信ボタン %>
                         <%= f.submit "送信する", class: 'actions font-mono bg-neutral-600 hover:bg-gray-900 text-white sm:text-mg font-bold py-2 sm:py-3 px-4 sm:px-5 my-2 rounded ml-1' %>
                     </div>
