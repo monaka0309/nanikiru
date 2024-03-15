@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   # 特定の投稿を表示
   def show
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   # 新規投稿フォーム
@@ -34,9 +36,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       # ここで牌との関連を作成する
-      # post_tiles_params = ["i-man.png","ryan-man.png"]
       post_tiles_params['selected_images'].each do |tile_image_path|
-        # tile_image_path = "i-man.png"
         tile_id = Tile.find_by(image_path: tile_image_path).id # tile_id
         @post.post_tiles.create(tile_id:) if tile_id.present?
       end

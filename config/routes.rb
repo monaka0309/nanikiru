@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     resources :post_tiles do
       resources :votes, only: %i[create destroy]
     end
+    resources :comments, only: %i[create destroy]
   end
+
+  post 'posts/:id', to: 'posts#create'
+
 
   # 静的ページ
   get 'about', to: 'pages#about' # アプリについて

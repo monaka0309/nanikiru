@@ -21,10 +21,15 @@
                     <%= link_to post_path(post) do %>
                     <p class="text-gray-700 mb-3" style="font-size: 16px;"><%= post.content %></p>
                         <% if post.image.present? %>
-                            <%= image_tag post.image.url %>
+                            <%= image_tag post.image.url, class: "rounded"%>
                         <% end %>
                     <% end %><br>
-                    <div class="text-md">下記の選択肢から投票してください。</div><br>
+
+                    <% if logged_in? %>
+                        <div class="text-md font-mono">下記の選択肢から投票してください。</div><br>
+                    <% else %>
+                        <div class="text-md"></div><br>
+                    <% end %>
 
                     <div class="grid grid-cols-1">
                         <div class="rounded-lg px-1">

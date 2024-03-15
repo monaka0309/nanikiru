@@ -26,7 +26,7 @@ class VotesController < ApplicationController
       format.turbo_stream do
         # 全てのpost_tilesを作り直す
         render turbo_stream: turbo_stream.replace("post_tiles_#{post.id}", partial: 'posts/post_tiles',
-                                                                           locals: { post: })
+                                                                            locals: { post: })
       end
     end
   end
@@ -40,7 +40,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(post_tile, partial: 'posts/post_tile',
-                                                             locals: { post_tile: })
+                                                              locals: { post_tile: })
       end
     end
   end

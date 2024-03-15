@@ -10,25 +10,25 @@
     </div>
   <% end %>
 
-  <div class="mb-4">
+  <div class="mb-4 font-mono">
     <%= form.label :content, "あなたの考え" %>
     <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
   </div>
 
-  <div class="mb-4">
+  <div class="mb-4 font-mono">
     <%= form.label :image, "画像" %>
     <%= form.file_field :image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight', id: 'post_image' %>
-    <div id="image-preview" class="mt-4">
+    <div id="image-preview" class="mt-4 font-mono">
       <% if post.image? %>
         <%= image_tag post.image.url, class: 'rounded-lg max-w-full h-auto' %>
       <% end %>
     </div>
   </div>
 
-  <%= form.label :牌の選択肢の設定, class: 'text-gray-600' %><br>
-    <label for="modal_1" class="btn btn-neutral modal-button">投票してもらう選択肢を選ぶ</label><br>
+  <%= form.label :牌の選択肢の設定, class: 'text-gray-600 font-mono' %><br>
+    <label for="modal_1" class="btn btn-neutral modal-button font-mono">投票してもらう選択肢を選ぶ</label><br>
     （※最大4つまで）
-    <div id="selected-images" class="mb-6 flex">
+    <div id="selected-images" class="mb-6 flex font-mono">
       <% if @post_tiles %>
         <% @post_tiles.each do |image_url| %>
           <%= image_tag image_url, class: "mx-2 my-2", style: "width: 1.5cm; height: 2cm;" %>
@@ -38,7 +38,7 @@
     </div>
 
     <!-- リセットボタンを追加 -->
-    <button type="button" id="reset-selection" class="btn btn-outline">選択をリセット</button>
+    <button type="button" id="reset-selection" class="btn btn-outline font-mono">選択をリセット</button>
 
     <!-- モーダル -->
     <input type="checkbox" id="modal_1" class="modal-toggle hidden" />
@@ -48,7 +48,7 @@
 
             <!-- カードのコンテナ -->
             <div class="card bg-neutral text-neutral-content w-full bg-blue-900 p-4 rounded-lg">
-                <div class="card-body items-center text-center">
+                <div class="card-body items-center text-center font-mono">
                     <!-- カードのタイトル -->
                     <h2 class="card-title">牌の選択肢を選んでください。</h2>
 
@@ -69,7 +69,7 @@
     </div>
 
 
-  <div class="actions my-4">
+  <div class="actions my-4 font-mono">
     <%= form.submit post.new_record? ? '投稿する' : '更新する', class: 'bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
   </div>
 <% end %>
