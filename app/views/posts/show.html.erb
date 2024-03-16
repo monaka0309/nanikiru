@@ -83,7 +83,6 @@
         <%# コメント入力 %>
         <div class="sm:w-5/6 mx-auto">
             <div class="bg-gray pb-2">
-                
                 <%= form_with model: [@post, @comment] do |f| %>
                     <div class="block mx-auto text-sm text-gray-900">
                         <%= f.text_area :content, class: 'block w-full text-gray-900 bg-white rounded-lg border border-gray-300 p-5 text-lg sm:text-xl', rows: '5', placeholder: "記入例：ここは役満を狙いましょう。" %>

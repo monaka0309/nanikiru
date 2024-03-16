@@ -40,3 +40,6 @@ ja:
   users:
     create:
       success: "会員登録が完了し、ログインしました。"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
