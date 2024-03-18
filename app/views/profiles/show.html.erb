@@ -29,8 +29,6 @@
         <div class="text-mg w-100 sm:w-5/6 mx-auto">
             <%# 投稿一覧 %>
             <% if @posts.any? %>
-                    
-                <%# 全ての投稿が表示されてる！ %>
                 <% @posts.each do |post| %>
                     <div class="post-card bg-white rounded p-5 mb-4 sm:p-10 font-mono">
                         <div class="flex justify-left items-center gap-4">
