@@ -18,51 +18,48 @@
     <%= render 'layouts/header' %>
     <%= render 'layouts/sidebar' %>
 
-    <div class="container px-4 md:px-0 max-w-6xl mx-auto -mt-3">
-        <p class="text-xl md:text-3xl text-gray-600 mt-5">会員登録</p>
+    <div class="container px-4 mx-auto w-full">
+        <p class="text-2xl sm:text-3xl text-gray-600 mt-5">ユーザー登録</p>
         <div class="mx-0 sm:mx-6 text-gray-600"><br>
-
             <%= form_with model: @user, url: users_path, local: true, html: { multipart: true, 'data-turbo': 'false' } do |form| %>
 
                 <% if @user.errors.any? %>
                     <div id="error_explanation">
-                        <ul>
+                        <ul class="font-mono">
                         <% @user.errors.full_messages.each do |message| %>
                             <li class="error-message"><%= message %></li>
                         <% end %>
                         </ul>
                     </div>
                 <% end %>
-
-
                 <div class="my-4">
-                    <%= form.label :name, "名前(ニックネーム)" %>
+                    <%= form.label :name %>
                     <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50" %>
                 </div>
 
                 <div class="mb-4">
-                    <%= form.label :nickname, "好きな役" %>
-                    <%= form.text_field :nickname, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50" %>
-                </div>
-
-                <div class="mb-4">
-                    <%= form.label :メールアドレス %>
+                    <%= form.label :email %>
                     <%= form.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50" %>
                 </div>
 
                 <div class="mb-4">
-                    <%= form.label :パスワード %>
+                    <%= form.label :password %>
                     <%= form.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight bg-violet-50" %>
                 </div>
 
                 <div class="mb-4">
-                    <%= form.label :password_confirmation, "パスワードの確認" %>
+                    <%= form.label :password_confirmation %>
                     <%= form.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight bg-violet-50" %>
                 </div>
 
                 <div class="mb-10">
-                    <%= form.label :image, "アイコン画像" %><br>
-                    <%= form.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "mt-5" %>
+                    <%= form.label :image %><br>
+                    <%= form.file_field :image, accept: "image/jpeg,image/gif,image/png,image/webp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight bg-gray-200" %>
+                    <div id="image-preview" class="mt-4 font-mono">
+                        <% if @user.image? %>
+                            <%= image_tag @user.image.url, class: 'rounded-lg max-w-full h-auto' %>
+                        <% end %>
+                    </div>
                 </div>
                 <div class="actions">
                     <%= form.submit "登録", class: "bg-blue-900 hover:bg-blue-700 text-white font-sans py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-10" %>
@@ -74,3 +71,28 @@
     <%= render 'layouts/footer' %>
 </body>
 </html>
+
+<script>
+    document.addEventListener("turbo:load", function() {
+        // 投稿画像のプレビュー表示機能
+        const imageInput = document.querySelector('#user_image');
+        const imagePreview = document.getElementById('image-preview');
+
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = ''; // Clear the existing preview
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                    imagePreview.appendChild(img); // Append the new image
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>

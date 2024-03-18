@@ -1,22 +1,23 @@
 <div id="<%= dom_id(post_tile) %>">
-
-  <% if current_user == nil %>
-    <%= link_to post_post_tile_votes_path(post_tile.post.id, post_tile.id), method: :post do %>
-        <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
-    <% end %>
-  <% else %>
-    <% if post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id) %>
-      <%= link_to post_post_tile_vote_path(post_tile.post.id, post_tile.id, post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id).id), method: :delete do %>
-        <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
+  <div class="w-full flex justify-center">
+    <% if current_user == nil %>
+      <%= link_to post_post_tile_votes_path(post_tile.post.id, post_tile.id), method: :post do %>
+          <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
       <% end %>
     <% else %>
-      <%= link_to post_post_tile_votes_path(post_tile.post.id, post_tile.id), method: :post do %>
-        <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
+      <% if post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id) %>
+        <%= link_to post_post_tile_vote_path(post_tile.post.id, post_tile.id, post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id).id), method: :delete do %>
+          <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
+        <% end %>
+      <% else %>
+        <%= link_to post_post_tile_votes_path(post_tile.post.id, post_tile.id), method: :post do %>
+          <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
 
-  <div class="votes-count">
+  <div class="votes-count text-center">
     <%= post_tile.votes.count %> 票
   </div>
 </div>
