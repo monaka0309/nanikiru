@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.includes(:votes).order(created_at: :desc)
     @current_user = current_user
-    # @posts = User.posts
+    @posts = Post.all.includes(:user).page(params[:page]).per(10)
   end
 
   # 特定の投稿を表示
@@ -17,8 +17,6 @@ class PostsController < ApplicationController
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
     @comments = @post.comments
     @comment = Comment.new
-    # @user = User.find_by(id: @post.user_id)
-    # @post = User.posts.find(params[:id])
   end
 
   # 新規投稿フォーム
