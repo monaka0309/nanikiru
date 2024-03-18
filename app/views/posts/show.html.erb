@@ -9,10 +9,12 @@
     <%= render 'layouts/sidebar' %>
 
     <main class="container mx-auto px-6 pt-8 text-gray-600 mb-10">
-
         <h1 class="text-3xl font-bold mb-5 font-mono w-100 sm:w-5/6 mx-auto">投稿詳細</h1>
-
         <div class="w-100 sm:w-5/6 mx-auto post-card bg-white rounded-lg p-5 mb-2 sm:p-8">
+            <div class="flex justify-left items-center gap-4">
+                <div><%= image_tag @post.user.image.url, class: 'rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %></div>
+                <div><%= @post.user.name %></div>
+            </div>
             <p class="text-gray-700 mb-5 text-lg">
                 <%= @post.content %></p>
 
@@ -57,14 +59,11 @@
                 <% @post.comments.each do |comment| %>
                     <div class="border rounded-md p-3 my-3">
                         <div class="flex gap-3 items-center">
-                            <img src="https://avatars.githubusercontent.com/u/22263436?v=4"
-                                class="object-cover w-8 h-8 rounded-full
-                                border-2 border-emerald-400  shadow-emerald-400
-                                ">
+                            <div class="flex justify-left items-center gap-4">
+                                <div><%= image_tag comment.user.image.url, class: 'rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %></div>
+                                <div><%= comment.user.name %></div>
+                            </div>
 
-                            <h3 class="font-bold">
-                                <%= comment.user.name %>
-                            </h3>
                         </div>
                         <p class="text-gray-600 mt-2 text-lg">
                             <%= comment.content %>
@@ -86,7 +85,7 @@
             <div class="bg-gray pb-2">
                 <%= form_with model: [@post, @comment] do |f| %>
                     <div class="block mx-auto text-sm text-gray-900">
-                        <%= f.text_area :content, class: 'block w-full text-gray-900 bg-white rounded-lg border border-gray-300 p-5 text-lg sm:text-xl', rows: '5', placeholder: "記入例：ここは役満を狙いましょう。" %>
+                        <%= f.text_area :content, class: 'block w-full text-gray-900 bg-white rounded-lg border border-gray-300 p-5 text-lg sm:text-xl', rows: '5', placeholder: "記入例：ここは役満を狙ってみてはどうですか？" %>
                         <%# 送信ボタン %>
                         <%= f.submit "送信する", class: 'actions font-mono bg-neutral-600 hover:bg-gray-900 text-white sm:text-mg font-bold py-2 sm:py-3 px-4 sm:px-5 my-2 rounded ml-1' %>
                     </div>

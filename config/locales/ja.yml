@@ -3,7 +3,6 @@ ja:
     attributes:
       user:
         name: "名前"
-        nickname: "好きな役"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード確認"
@@ -13,8 +12,6 @@ ja:
         user:
           attributes:
             name:
-              blank: "を入力してください"
-            nickname:
               blank: "を入力してください"
             email:
               blank: "を入力してください"
