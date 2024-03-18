@@ -18,11 +18,13 @@ ja:
               blank: "を入力してください"
             email:
               blank: "を入力してください"
+              taken: "はすでに使われています"
             password:
               too_short: "は%{count}文字以上で入力してください"
               blank: "を入力してください"
             password_confirmation:
               blank: "を入力してください"
+              confirmation: "が空白です"
   alerts:
     login_required: "ログインしてください"
   posts:
