@@ -8,7 +8,6 @@ class ProfilesController < ApplicationController
 
     def show
         @name = current_user.name
-        @nickname = current_user.nickname
         @posts = current_user.posts
     end
 
@@ -27,6 +26,6 @@ class ProfilesController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:email,:name,:nickname,:image)
+        params.require(:user).permit(:email,:name,:image)
     end
 end
