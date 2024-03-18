@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   # ユーザー関連のルーティング
-  resources :users, only: %i[new create show]
+  resources :users, only: %i[new create]
+
+  resource :profile,only: %i[edit update]
+  get 'profiles/:id', to: 'profiles#show'
 
   resources :user_sessions, only: [:create]
   get 'login', to: 'user_sessions#new', as: :login
@@ -16,9 +19,7 @@ Rails.application.routes.draw do
     end
     resources :comments, only: %i[create destroy]
   end
-
   post 'posts/:id', to: 'posts#create'
-
 
   # 静的ページ
   get 'about', to: 'pages#about' # アプリについて

@@ -3,10 +3,11 @@ ja:
     attributes:
       user:
         name: "名前"
-        nickname: "ニックネーム"
+        nickname: "好きな役"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード確認"
+        image: "画像"
     errors:
       models:
         user:
@@ -26,11 +27,11 @@ ja:
     login_required: "ログインしてください"
   posts:
     create:
-      success: "投稿が正常に作成されました。"
+      success: "投稿が作成されました。"
     update:
-      success: "投稿が正常に更新されました。"
+      success: "投稿が更新されました。"
     destroy:
-      success: "投稿が正常に削除されました。"
+      success: "投稿が削除されました。"
   user_sessions:
     login:
       success: "ログインに成功しました。"

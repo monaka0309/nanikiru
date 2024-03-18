@@ -10,24 +10,27 @@
 
   <div class="drawer-side">
     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content text-1xl">
-
+    <ul class="menu p-4 w-70 font-mono min-h-full bg-base-200 text-base-content">
       <% if current_user %>
-        <li class="mb-5"><%= link_to 'ログアウト', logout_path, method: :delete, data: { turbo_method: :delete }, class: "text-blue-500 block" %></li>
+        <div class="mt-5">
+          <i class="fa-solid fa-user fa-xl"></i>
+          <%= current_user.name %><br><br>
+          <%= image_tag current_user.image.url, class: 'rounded-full mb-3', size: '100x100' %>
+        </dev>
+        <li><%= link_to '  ログアウト', logout_path, method: :delete, data: { turbo_method: :delete }, class: "text-blue-500 block my-3 fa-solid fa-right-to-bracket fa-mg" %></li>
       <% else %>
-        <li class="mb-5"><%= link_to 'ログイン', login_path, class: "text-blue-500" %></li>
-        <li class="mb-5"><%= link_to '会員登録', new_user_path, class: "text-blue-500" %></li>
+        <li class="mt-2"><%= link_to '  ログイン', login_path, class: "text-blue-500 fa-solid fa-right-to-bracket fa-mg" %></li>
+        <li class="my-2"><%= link_to '  ユーザー登録', new_user_path, class: "text-blue-500 fa-solid fa-user fa-mg" %></li>
       <% end %>
 
-      <li class="mb-5"><a href="#about">アプリについて</a></li>
-      <li class="mb-5"><a href="/posts/new">新規投稿</a></li>
-      <li class="mb-5"><a href="/posts">投稿一覧</a></li>
-      <li class="mb-5"><a href="#notifications">通知</a></li>
-      <li class="mb-5"><a href="#profile">プロフィール</a></li>
-      <li class="mb-5"><a href="#contact">問い合わせページ</a></li>
-      <li class="mb-5"><a href="#privacy-policy">プライバシーポリシーページ</a></li>
-      <li class="mb-5"><a href="#terms">利用規約ページ</a></li>
-
+      <li class="mb-5"><a href="#about"><i class="fa-solid fa-compass fa-lg"></i>アプリについて</a></li>
+      <li class="mb-5"><a href="/posts/new"><i class="fa-regular fa-file fa-lg"></i>新規投稿</a></li>
+      <li class="mb-5"><a href="/posts"><i class="fa-solid fa-house fa-lg"></i>投稿一覧</a></li>
+      <li class="mb-5"><a href="#notifications"><i class="fa-solid fa-bell fa-lg"></i>通知</a></li>
+      <li class="mb-5"><a href="/profiles/show"><i class="fa-solid fa-circle-user fa-lg"></i></i>マイページ</a></li>
+      <li class="mb-5"><a href="#contact"><i class="fa-solid fa-envelope fa-lg"></i>問い合わせページ</></li>
+      <li class="mb-5"><a href="#privacy-policy"><i class="fa-solid fa-users fa-lg"></i>プライバシーポリシーページ</a></li>
+      <li class="mb-5"><a href="#terms"><i class="fa-regular fa-address-book fa-lg"></i>利用規約ページ</a></li>
     </ul>
   </div>
 </div>
