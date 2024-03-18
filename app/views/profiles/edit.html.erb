@@ -10,7 +10,6 @@
         <%# プロフィール %>
         <h1 class="text-2xl font-mono mb-2 font-mono ">プロフィール編集</h1>
             <%= form_with model: @user, url: profile_path, local: true do |f| %>
-
                 <%#  エラーメッセージ %>
                 <% if @user.errors.any? %>
                     <div id="error_explanation">
@@ -34,12 +33,10 @@
                             <% end %>
                         </div>
                     </div>
-
                     <%= f.submit "更新", class: "btn btn-outline"%>
                 </div>
             <%end%>
     </main>
-
     <%= render 'layouts/footer' %>
 </body>
 </html>
