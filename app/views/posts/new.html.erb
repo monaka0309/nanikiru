@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- ここにTailwind CSSとdaisyUIのリンクまたはインポートを含める -->
 </head>
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
@@ -12,11 +11,115 @@
         <h1 class="text-3xl font-bold mb-4 text-gray-700">新規投稿</h1>
         <%= render 'form', post: @post %>
     </div>
-    <%= render 'layouts/footer' %>
+    <div class="container mx-auto mt-5 p-10 text-gray-600">
+        <h1 class="text-3xl mb-6 text-gray-700">新規投稿画面</h1>
+        <%= form_with(model: @post, local: true) do |form| %>
+            <% if @post.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+                    <ul>
+                        <% @post.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="mb-6">
+                <%= form.label :あなたの考え %>
+                <%= form.text_area :content, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-violet-50' %>
+            </div>
+            <div class="mb-6">
+                <%= form.label :選択肢, class: 'text-gray-600' %>
+                <!-- ここに画像選択のためのボタンやフィールドを配置 -->
+                <div id="tile-choice" class="tile-choice">
+                <!-- ユーザーが選択した画像を表示 -->
+                </div>
+                <div id="tile-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <% Dir.glob("app/assets/images/tiles/*").each do |path| %>
+                        <%= image_tag path.split('/').last, class: "tile-image", data: { path: path.split('/').last } %>
+                        <% end %>
+                    </div>
+                </div>
+                <%= button_tag '画像を選択', type: 'button', id: 'open-modal', class: 'btn btn-primary' %>
+            </div>
+                <button type="button" id="openModal" class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    投票してもらう選択肢を選ぶ
+                </button>
+            </div>
+
+            <%= render 'posts/modal' %>
+
+            <div class="mb-10">
+                <%= form.label :画像（スクリーンショットなど） %><br>
+                <br>
+                <%= form.file_field :image, class: 'image-input', direct_upload: true %>
+                <div id="image-preview" class="mt-4"></div>
+            </div>
+
+            <%= form.label :牌の選択肢の設定 %><br>
+
+            <!-- モーダルを開くためのボタン -->
+            <label for="modal_1" class="btn btn-neutral modal-button">投票してもらう選択肢を選ぶ</label>
+            <br>
+            （※最大4つまで）
+            <!-- 選択された画像を表示するエリア -->
+            <div id="selected-images" class="mb-6 flex"></div>
+
+            <div class="actions">
+                <%= form.submit "投稿する", class: 'bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+            </div>
+        <% end %>
+    </div>
+
+    <!-- モーダル -->
+    <input type="checkbox" id="modal_1" class="modal-toggle" />
+    <div class="modal" role="dialog">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">牌の選択肢を選んでください。</h3>
+            <p class="py-4">モーダルの内容がここに入ります。</p><br>
+            <div class="modal-action">
+                <label for="modal_1" class="btn">閉じる</label>
+        </div>
+        <div class="modal-box">
+        <h3 class="font-bold text-lg">牌の選択肢を選んでください。</h3>
+        <!-- 画像を表示 -->
+        <%= image_tag 'ton.png', size: "60x90" %>
+
+        <!--閉じる -->
+        <div class="modal-action"><br>
+            <label for="modal_1" class="btn">閉じる</label>
+        <div class="modal-box w-full max-w-md sm:max-w-sm lg:max-w-[600px] p-4">
+
+
+            <!-- カードのコンテナ -->
+            <div class="card bg-neutral text-neutral-content w-full bg-blue-900 p-4 rounded-lg">
+                <div class="card-body items-center text-center">
+                    <!-- カードのタイトル -->
+                    <h2 class="card-title">牌の選択肢を選んでください。</h2>
+
+                    <!-- 画像を横並びで表示するためのコンテナ -->
+                    <div class="grid grid-cols-5 flex flex-wrap items-center">
+
+
+                    <!-- カードのアクション（ボタン） -->
+                    <div class="card-actions justify-end">
+                        <label for="modal_1" class="btn btn-active btn-neutral mt-5">閉じる</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container mx-auto mt-8 text-gray-600 px-5">
+        <h1 class="text-3xl font-bold mb-4 text-gray-700">新規投稿</h1>
+        <%= render 'form', post: @post %>
+    </div>
+
+          <%= render 'layouts/footer' %>
 </body>
 </html>
-
-
+<!-- 
 <script>
     document.addEventListener("turbo:load", function() {
         // 投稿画像のプレビュー表示機能
@@ -40,4 +143,78 @@
             }
         });
     });
+</script> -->
+
+<script>
+    // 新規投稿ページで画像ファイルを挿入した際にプレビューが表示される。
+    document.addEventListener("turbo:load", function() {
+        const input = document.querySelector('.image-input');
+        const preview = document.getElementById('image-preview');
+        input.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                    preview.innerHTML = ''; // Clear the preview
+                    preview.appendChild(img); // Append the new image
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+    document.addEventListener("turbo:load", function() {
+        function addSelectedImage(imageSrc) {
+            const imageArea = document.getElementById('selected-images');
+            const existingImages = imageArea.getElementsByTagName('img');
+
+            // 既に選択されている画像のURLを配列に格納
+            let existingImageUrls = [];
+            for (let i = 0; i < existingImages.length; i++) {
+                existingImageUrls.push(existingImages[i].src);
+            }
+
+            // 選択された画像が既に存在するかチェック
+            if (existingImageUrls.includes(imageSrc)) {
+                alert('同じ画像は選択できません。');
+                return;
+            }
+
+            // 選択された画像の枚数が4枚未満であることを確認
+            if (existingImages.length >= 4) {
+                alert('画像の最大枚数は4枚です。');
+                return;
+            }
+
+            // 隠しフォームフィールドを作成して値を設定
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'post[selected_images][]';
+            input.value = imageSrc;
+            document.querySelector('form').appendChild(input);
+
+            // 画像を画面に表示
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.style.width = '1.5cm';
+            img.style.height = '2cm';
+            img.classList.add('mx-2', 'my-2');
+            imageArea.appendChild(img);
+
+            // モーダルを閉じる
+            document.getElementById('modal_1').checked = false;
+        }
+
+        // モーダル内のすべての画像に対してイベントリスナーを設定
+        document.querySelectorAll('.modal img').forEach(function(img) {
+            img.addEventListener('click', function() {
+                addSelectedImage(this.src); // クリックされた画像を処理
+            });
+        });
+    });
 </script>
+

@@ -11,6 +11,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :salt
       t.string :image
 
+      t.string :image
+
       t.timestamps
     end
   end

@@ -6,6 +6,10 @@ one:
   choice: MyString
 
 two:
+  tile: one
+  tile: two
+  user: one
   user: two
+  post: one
   post: two
-  choice: MyString
+
