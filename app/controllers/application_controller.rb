@@ -2,7 +2,6 @@
 
 # アプリケーションの基本コントローラー
 class ApplicationController < ActionController::Base
-  before_action :require_login
 
   def require_login
     unless current_user
