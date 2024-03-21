@@ -8,15 +8,13 @@ class PostsController < ApplicationController
   def index
     @posts = Post.includes(:votes).order(created_at: :desc)
     @current_user = current_user
-    # @posts = User.posts
+    @posts = Post.all.includes(:user).page(params[:page]).per(10)
   end
 
   def show
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
     @comments = @post.comments
     @comment = Comment.new
-    # @user = User.find_by(id: @post.user_id)
-    # @post = User.posts.find(params[:id])
   end
 
   def new
