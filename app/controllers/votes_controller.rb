@@ -2,21 +2,12 @@
 
 # 投票機能のコントローラー
 class VotesController < ApplicationController
-
   before_action :require_login
 
   def create
     # post_idが同じpost_tile_idを持ってくる
     post_tile = PostTile.find(params[:post_tile_id])
     post = post_tile.post
-    # post_tiles = PostTile.where(post_id: post.id)
-
-    # # current_userの投票があったら削除する
-    # post_tiles.each do |target|
-    #   if destroy_vote = current_user.votes.find_by(post_tile_id: target.id)
-    #     destroy_vote.destroy
-    #   end
-    # end
 
     # 投票を作成
     vote = current_user.votes.build(post_tile:)

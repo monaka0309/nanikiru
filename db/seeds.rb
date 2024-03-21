@@ -1,3 +1,4 @@
+
 tiles = [
     { name: '東', image_path: 'path_to_image_of_east_tile' },
     { name: '南', image_path: 'path_to_image_of_south_tile' },
@@ -74,4 +75,3 @@ tiles = [
 #   tile.save!
 # end
 
-Post.destroy_all

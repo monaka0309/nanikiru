@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- ここにTailwind CSSとdaisyUIのリンクまたはインポートを含める -->
 </head>
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
 
     <%= render 'layouts/header' %>
     <%= render 'layouts/sidebar' %>
 
+    <div class="container mx-auto mt-8 text-gray-600 px-5">
+        <h1 class="text-3xl font-bold mb-4 text-gray-700">新規投稿</h1>
+        <%= render 'form', post: @post %>
+    </div>
     <div class="container mx-auto mt-5 p-10 text-gray-600">
         <h1 class="text-3xl mb-6 text-gray-700">新規投稿画面</h1>
         <%= form_with(model: @post, local: true) do |form| %>
@@ -100,48 +103,6 @@
                     <!-- 画像を横並びで表示するためのコンテナ -->
                     <div class="grid grid-cols-5 flex flex-wrap items-center">
 
-                    <!--マンズ-->
-                    <%= image_tag 'iman.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'ryanman.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'sanman.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'suman.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'uman.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'umanaka.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'roman.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'timan.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'paman.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'kyuman.jpg', size: "60x90", class: 'mx-2' %>
-                    <!--ソウズ-->
-                    <%= image_tag 'iso.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'ryanso.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'sanzo.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'suso.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'uso.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'usoaka.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'roso.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'tiso.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'paso.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'kyuso.jpg', size: "60x90", class: 'mx-2' %>
-                    <!--ピンズ-->
-                    <%= image_tag 'ipin.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'ryanpin.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'sanpin.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'supin.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'upin.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'upinaka.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'ropin.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'tipin.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'papin.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'kyupin.jpg', size: "60x90", class: 'mx-2' %>
-                    <!--字牌-->
-                    <%= image_tag 'ton.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'nan.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'sha.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'pei.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'haku.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'hatu.jpg', size: "60x90", class: 'mx-2' %>
-                    <%= image_tag 'tyun.jpg', size: "60x90", class: 'mx-2' %>
-                    </div>
 
                     <!-- カードのアクション（ボタン） -->
                     <div class="card-actions justify-end">
@@ -154,80 +115,106 @@
         <h1 class="text-3xl font-bold mb-4 text-gray-700">新規投稿</h1>
         <%= render 'form', post: @post %>
     </div>
-    <%= render 'layouts/footer' %>
+
+          <%= render 'layouts/footer' %>
 </body>
 </html>
+<!-- 
+<script>
+    document.addEventListener("turbo:load", function() {
+        // 投稿画像のプレビュー表示機能
+        const imageInput = document.querySelector('#post_image');
+        const imagePreview = document.getElementById('image-preview');
 
-    <script>
-        // 新規投稿ページで画像ファイルを挿入した際にプレビューが表示される。
-        document.addEventListener("turbo:load", function() {
-            const input = document.querySelector('.image-input');
-            const preview = document.getElementById('image-preview');
-            input.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
 
-                    reader.onload = function(e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
-                        preview.innerHTML = ''; // Clear the preview
-                        preview.appendChild(img); // Append the new image
-                    };
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = ''; // Clear the existing preview
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                    imagePreview.appendChild(img); // Append the new image
+                };
 
-                    reader.readAsDataURL(file);
-                }
-            });
+                reader.readAsDataURL(file);
+            }
         });
-        document.addEventListener("turbo:load", function() {
-            function addSelectedImage(imageSrc) {
-                const imageArea = document.getElementById('selected-images');
-                const existingImages = imageArea.getElementsByTagName('img');
+    });
+</script> -->
 
-                // 既に選択されている画像のURLを配列に格納
-                let existingImageUrls = [];
-                for (let i = 0; i < existingImages.length; i++) {
-                    existingImageUrls.push(existingImages[i].src);
-                }
+<script>
+    // 新規投稿ページで画像ファイルを挿入した際にプレビューが表示される。
+    document.addEventListener("turbo:load", function() {
+        const input = document.querySelector('.image-input');
+        const preview = document.getElementById('image-preview');
+        input.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
 
-                // 選択された画像が既に存在するかチェック
-                if (existingImageUrls.includes(imageSrc)) {
-                    alert('同じ画像は選択できません。');
-                    return;
-                }
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('rounded-lg', 'max-w-full', 'h-auto');
+                    preview.innerHTML = ''; // Clear the preview
+                    preview.appendChild(img); // Append the new image
+                };
 
-                // 選択された画像の枚数が4枚未満であることを確認
-                if (existingImages.length >= 4) {
-                    alert('画像の最大枚数は4枚です。');
-                    return;
-                }
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+    document.addEventListener("turbo:load", function() {
+        function addSelectedImage(imageSrc) {
+            const imageArea = document.getElementById('selected-images');
+            const existingImages = imageArea.getElementsByTagName('img');
 
-                // 隠しフォームフィールドを作成して値を設定
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'post[selected_images][]';
-                input.value = imageSrc;
-                document.querySelector('form').appendChild(input);
-
-                // 画像を画面に表示
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.style.width = '1.5cm';
-                img.style.height = '2cm';
-                img.classList.add('mx-2', 'my-2');
-                imageArea.appendChild(img);
-
-                // モーダルを閉じる
-                document.getElementById('modal_1').checked = false;
+            // 既に選択されている画像のURLを配列に格納
+            let existingImageUrls = [];
+            for (let i = 0; i < existingImages.length; i++) {
+                existingImageUrls.push(existingImages[i].src);
             }
 
-            // モーダル内のすべての画像に対してイベントリスナーを設定
-            document.querySelectorAll('.modal img').forEach(function(img) {
-                img.addEventListener('click', function() {
-                    addSelectedImage(this.src); // クリックされた画像を処理
-                });
+            // 選択された画像が既に存在するかチェック
+            if (existingImageUrls.includes(imageSrc)) {
+                alert('同じ画像は選択できません。');
+                return;
+            }
+
+            // 選択された画像の枚数が4枚未満であることを確認
+            if (existingImages.length >= 4) {
+                alert('画像の最大枚数は4枚です。');
+                return;
+            }
+
+            // 隠しフォームフィールドを作成して値を設定
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'post[selected_images][]';
+            input.value = imageSrc;
+            document.querySelector('form').appendChild(input);
+
+            // 画像を画面に表示
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.style.width = '1.5cm';
+            img.style.height = '2cm';
+            img.classList.add('mx-2', 'my-2');
+            imageArea.appendChild(img);
+
+            // モーダルを閉じる
+            document.getElementById('modal_1').checked = false;
+        }
+
+        // モーダル内のすべての画像に対してイベントリスナーを設定
+        document.querySelectorAll('.modal img').forEach(function(img) {
+            img.addEventListener('click', function() {
+                addSelectedImage(this.src); // クリックされた画像を処理
             });
         });
-    </script>
+    });
+</script>
 
