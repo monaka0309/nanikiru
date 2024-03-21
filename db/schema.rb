@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_24_000721) do
     t.string "email"
     t.string "crypted_password"
     t.string "salt"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"

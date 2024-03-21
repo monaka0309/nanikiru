@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   # ユーザー関連のルーティング
   resources :users, only: [:new, :create, :show]
 
-  # ログイン・ログアウト関連のルーティング
+  resources :user_sessions, only: [:create]
   get 'login', to: 'user_sessions#new', as: :login
-  post 'login', to: 'user_sessions#create', as: :user_sessions
+  post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy', as: :logout
 
   # 投稿関連のルーティング（votesをネスト）
@@ -20,4 +20,5 @@ Rails.application.routes.draw do
 
   # ルートURL
   root "posts#index"
+
 end
