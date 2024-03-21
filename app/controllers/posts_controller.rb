@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:votes).order(created_at: :desc)
-    @current_user = current_user
+    # @current_user = current_user
     @posts = Post.all.includes(:user).page(params[:page]).per(10)
   end
 
