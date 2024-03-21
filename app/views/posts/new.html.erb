@@ -82,16 +82,16 @@
             <p class="py-4">モーダルの内容がここに入ります。</p><br>
             <div class="modal-action">
                 <label for="modal_1" class="btn">閉じる</label>
-        </div>
-        <div class="modal-box">
-        <h3 class="font-bold text-lg">牌の選択肢を選んでください。</h3>
-        <!-- 画像を表示 -->
-        <%= image_tag 'ton.png', size: "60x90" %>
+            </div>
+            <div class="modal-box">
+            <h3 class="font-bold text-lg">牌の選択肢を選んでください。</h3>
+            <!-- 画像を表示 -->
+            <%= image_tag 'ton.png', size: "60x90" %>
 
-        <!--閉じる -->
-        <div class="modal-action"><br>
-            <label for="modal_1" class="btn">閉じる</label>
-        <div class="modal-box w-full max-w-md sm:max-w-sm lg:max-w-[600px] p-4">
+            <!--閉じる -->
+            <div class="modal-action"><br>
+                <label for="modal_1" class="btn">閉じる</label>
+            <div class="modal-box w-full max-w-md sm:max-w-sm lg:max-w-[600px] p-4">
 
 
             <!-- カードのコンテナ -->
@@ -111,15 +111,15 @@
                 </div>
             </div>
         </div>
-    <div class="container mx-auto mt-8 text-gray-600 px-5">
-        <h1 class="text-3xl font-bold mb-4 text-gray-700">新規投稿</h1>
-        <%= render 'form', post: @post %>
-    </div>
+        <div class="container mx-auto mt-8 text-gray-600 px-5">
+            <h1 class="text-3xl font-bold mb-4 text-gray-700">新規投稿</h1>
+            <%= render 'form', post: @post %>
+        </div>
 
-          <%= render 'layouts/footer' %>
+        <%= render 'layouts/footer' %>
 </body>
 </html>
-<!-- 
+<!--
 <script>
     document.addEventListener("turbo:load", function() {
         // 投稿画像のプレビュー表示機能
