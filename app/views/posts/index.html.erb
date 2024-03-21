@@ -54,6 +54,10 @@
         <% else %>
             <p class="mb-10">まだ投稿がありません。</p>
         <% end %>
+        <%# ページネーション %>
+        <div class="flex justify-center text-2xl font-mono pt-5">
+            <%= paginate @posts %>
+        </div>
     </main>
     <%= render 'layouts/footer' %>
 

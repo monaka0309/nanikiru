@@ -8,12 +8,13 @@ class ProfilesController < ApplicationController
 
     def show
         @name = current_user.name
-        @posts = current_user.posts
+        @posts = current_user.posts.includes(:user).page(params[:page]).per(10)
+
     end
 
     def update
         if @user.update(user_params)
-            redirect_to root_path,success: "ユーザーを更新しました"
+            redirect_to profile_path(@profile)
         else
             flash.now[:danger] = "ユーザーを更新できませんでした"
             render :edit
