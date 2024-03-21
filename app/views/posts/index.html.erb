@@ -57,51 +57,5 @@
     </main>
     <%= render 'layouts/footer' %>
 
-<body class="bg-gray-200 font-sans leading-normal tracking-normal w-5/6 mx-auto max-w-screen-xl">
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/sidebar' %>
-    <main class="container w-100 sm:w-5/6 mx-auto px-4 pt-8 text-gray-600 mb-10">
-        <% if @posts.any? %>
-            <% @posts.each do |post| %>
-                <%# ユーザー名・画像 %>
-                <div class="post-card bg-white rounded p-5 mb-4 sm:p-10">
-                    <div class="flex justify-left items-center gap-4">
-                        <div><%= image_tag post.user.image.url, class: 'rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %></div>
-                        <div><%= post.user.name %></div>
-                    </div>
-                    <%# 投稿 %>
-                    <%= link_to post_path(post) do %>
-                        <p class="text-gray-700 mb-3" style="font-size: 16px;"><%= post.content %></p>
-                        <% if post.image.present? %>
-                            <%= image_tag post.image.url, class: "rounded"%>
-                        <% end %>
-                    <% end %><br>
-                    <%# ログインの確認 %>
-                    <% if logged_in? %>
-                        <div class="text-md font-mono">下記の選択肢から投票してください。</div><br>
-                    <% else %>
-                        <div class="text-md"></div><br>
-                    <% end %>
-
-                    <div class="grid grid-cols-1">
-                        <div class="rounded-lg px-1">
-                            <div>
-                                <%= render 'posts/post_tiles', post: post %>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-slate-400 text-sm text-right mt-2">
-                        <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
-                    </p>
-                    <p class="fa-solid fa-comment-dots sm:fa-lg ml-2">  コメント数：<%= post.comments.count %></p>
-                </div>
-            <% end %>
-        <% else %>
-            <p class="mb-10">まだ投稿がありません。</p>
-        <% end %>
-    </main>
-
-    <%= render 'layouts/footer' %>
-
 </body>
 </html>

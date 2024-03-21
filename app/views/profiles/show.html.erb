@@ -9,17 +9,17 @@
     <main class="container mx-auto px-6 text-gray-600 mb-10">
         <%# プロフィール %>
         <h1 class="text-2xl font-bold mb-2 font-mono w-100 sm:w-5/6 mx-auto">プロフィール</h1>
-        <div class="bg-gray-300 text-gray-700 sm:w-5/6 mx-auto rounded-lg">
+        <div class="bg-gray-50 text-gray-700 sm:w-5/6 mx-auto rounded-lg">
             <div class="card-body font-mono w-full sm:w-11/12 mx-auto">
                 <table class="leading-10 text-lg text-left">
                     <%# テーブル %>
-                    <tr class="">
+                    <tr>
                         <th scope="row"><%= t(User.human_attribute_name(:name)) %></th>
                         <td><%= current_user.name %></td>
                     </tr>
                     <tr>
                         <th scope="row"><%= t(User.human_attribute_name(:image)) %></th>
-                        <td><%= image_tag current_user.image.url, class: 'rounded-full my-3', size: '200x200' %></td>
+                        <td><%= image_tag current_user.image.url, class: 'rounded-full my-3 border border-1 border-gray-500', size: '200x200' %></td>
                     </tr>
                 </table>
                 <%= link_to '編集', edit_profile_path, class: 'btn btn-outline w-20' %>

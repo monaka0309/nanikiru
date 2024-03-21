@@ -5,14 +5,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :require_login, only: %i[new create edit update destroy]
 
-  # 投稿一覧を表示
   def index
     @posts = Post.includes(:votes).order(created_at: :desc)
     @current_user = current_user
     # @posts = User.posts
   end
 
-  # 特定の投稿を表示
   def show
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
     @comments = @post.comments
@@ -21,20 +19,17 @@ class PostsController < ApplicationController
     # @post = User.posts.find(params[:id])
   end
 
-  # 新規投稿フォーム
   def new
     @post = Post.new
     @tile_images = Tile.order(id: :asc).pluck(:image_path)
   end
 
-  # 投稿編集フォーム
   def edit
     @post = Post.find(params[:id])
     @tile_images = Tile.order(id: :asc).pluck(:image_path)
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
   end
 
-  # 新規投稿を作成
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
@@ -49,7 +44,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
       # 投稿に関連する牌の更新処理をここに追加する
@@ -64,7 +58,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.destroy
     redirect_to posts_url, notice: I18n.t('posts.destroy.success')
