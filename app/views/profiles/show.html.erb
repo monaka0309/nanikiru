@@ -61,6 +61,12 @@
                             <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
                         </p>
                         <p class="fa-solid fa-comment-dots sm:fa-lg ml-2">  コメント数：<%= post.comments.count %></p>
+                        <%# 共有機能 %>
+                        <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
+                            <div class="search-button">
+                                <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
+                            </div>
+                        <% end %>
                     </div>
                 <% end %>
                 <div class="flex justify-center text-2xl font-mono pt-5">
