@@ -26,13 +26,19 @@
 
             <div class="text-md font-mono">下記の選択肢から投票してください。</div><br>
 
-                <div class="grid grid-cols-1">
-                    <div class="rounded-lg px-1">
-                        <div>
-                            <%= render 'posts/post_tiles', post: @post %>
-                        </div>
+            <div class="grid grid-cols-1">
+                <div class="rounded-lg px-1">
+                    <div>
+                        <%= render 'posts/post_tiles', post: @post %>
                     </div>
                 </div>
+            </div>
+            <%# 共有機能 %>
+            <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
+                <div class="search-button">
+                    <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
+                </div>
+            <% end %>
 
             <!-- 編集ボタンと削除ボタンのためのコンテナ -->
             <div class="flex items-center gap-4">
