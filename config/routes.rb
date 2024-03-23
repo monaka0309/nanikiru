@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'posts#index'
+
+  get 'static_pages/about'
+  get 'static_pages/contact'
+  get 'static_pages/privacy_policy'
+  get 'static_pages/terms_of_service'
+
   # ユーザー関連のルーティング
   resources :users, only: %i[new create]
 
@@ -20,12 +27,4 @@ Rails.application.routes.draw do
   end
   post 'posts/:id', to: 'posts#create'
 
-  # 静的ページ
-  get 'about', to: 'pages#about' # アプリについて
-  get 'contact', to: 'pages#contact' # 問い合わせページ
-  get 'privacy_policy', to: 'pages#privacy_policy' # プライバシーポリシーページ
-  get 'terms', to: 'pages#terms' # 利用規約ページ
-
-  # ルートURL
-  root 'posts#index'
 end
