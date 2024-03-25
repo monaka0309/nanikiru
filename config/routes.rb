@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get 'static_pages/contact'
   get 'static_pages/privacy_policy'
   get 'static_pages/terms_of_service'
-
   # ユーザー関連のルーティング
   resources :users, only: %i[new create]
 
