@@ -61,12 +61,16 @@
 
 
 ### その後の機能
+通知機能（WebSocket） ：投票時、コメント時に投稿者に通知が行きます。 また、毎日１９時に「困っている人を助けてあげよう！」と通知がいくようにします。<br>
+SNS への共有機能(Open Graph Protocol) ：共有時に投稿した盤面の写真を載せて共有できるようにします。<br>
+ユーザー検索機能(Ransack)<br>
+LINE API（ログイン、通知）<br>
+いいね機能<br>
+並び替え機能<br>
+<br>
 
-通知機能（WebSocket） ：投票時、コメント時に投稿者に通知が行きます。 また、毎日１９時に「困っている人を助けてあげよう！」と通知がいくようにします。
-SNS への共有機能(Open Graph Protocol) ：共有時に ① 投稿した盤面の写真と ② 投票が 1 番多い牌を載せて共有できるようにします。
-ユーザー検索機能(Ransack)
-LINE API（ログイン、通知）
-いいね機能
+### 余裕があれば取り入れたいこと。
+画像認識機能(Google Cloud Vision API ) ：画像を AI に読み込んで学習してもらい、① 自動で手配の選択肢を上げてもらったり、② 考えられる役の提案、③ リーチまでのシャンテン数を教えてくれる機能をつけたい。<br>
 <br>
 
 ## 技術選定
@@ -87,12 +91,11 @@ LINE API（ログイン、通知）
 |----|----|
 |GitHub|Amazon Web Services|
 
-	
 
-### 余裕があれば取り入れたいこと。
 
-画像認識機能(Google Cloud Vision API ) ：画像を AI に読み込んで学習してもらい、① 自動で手配の選択肢を上げてもらったり、② 考えられる役の提案、③ リーチまでのシャンテン数を教えてくれる機能をつけたい。
+## ER図
+<a href="https://gyazo.com/cd1bf8527a9eeb955bd606da741572ed"><img src="https://i.gyazo.com/cd1bf8527a9eeb955bd606da741572ed.png" alt="Image from Gyazo" width="1115"/></a>
+<br>
 
 ## 画面遷移図
-
 https://www.figma.com/file/YZ1g8ymXLKuTq0ZoXSynyP/nanikiru?type=design&node-id=0%3A1&mode=design&t=i7oimFWpTcESIH1i-1
