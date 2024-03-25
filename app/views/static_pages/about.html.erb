@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+</head>
+
+<body class="bg-gray-200">
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/sidebar' %>
+    <main class="container w-11/12 sm:w-5/6 mx-auto px-4 sm:px-10 py-20 mt-3 mb-20 text-gray-600 bg-white rounded-lg">
+        <div class="font-bold text-6xl sm:text-9xl text-gray-800 mb-3">
+            <p class="my-1">Nanikiru</p>
+            <p>-Mahjong</p>
+            <p class="text-sm font-mono py-4">あなたの１票が、誰かのロンを応援します。</p>
+        </div>
+        <img src="/assets/about.webp" class="my-10 sm:my-20">
+
+        <p class="text-6xl my-20">How to use…</p>
+        <div class="sm:mx-20">
+            <div class="flex justify-start mt-10">
+                <div class="h-auto max-w-xs">
+                    <img src="/assets/shinki.webp">
+                </div>
+                <div class="flex-initial pl-4 sm:pl-10">
+                    <p class="text-3xl sm:text-5xl mb-4">新規投稿</p>
+                    <p class="text-mg mb-2">テキストと画像、選択肢を決めて投稿することができます。</p>
+                    <p class="text-mg">投稿にはログインが必要です。</p>
+                </div>
+            </div>
+
+            <div class="flex justify-start mt-20">
+                <div class="h-auto max-w-xs border border-gray-200">
+                    <img src="/assets/post.webp">
+                </div>
+                <div class="flex-initial pl-4 sm:pl-10">
+                    <p class="text-3xl sm:text-5xl mb-4">投稿一覧</p>
+                    <p class="text-mg my-5 mb-2">人の投稿に投票が行えます。投票にはログインが必要です。</p>
+                    <p class="text-mg">投稿詳細ページに進むとコメントも出来ます。</p>
+                </div>
+            </div>
+
+            <div class="flex justify-start my-20">
+                <div class="h-auto max-w-xs">
+                    <img src="/assets/comment.webp">
+                </div>
+                <div class="flex-initial pl-4 sm:pl-10 sm:mb-10">
+                    <p class="text-2xl sm:text-5xl mb-4">コメント</p>
+                    <p class="text-mg mb-2">具体的な意見と伝えることもできます。</p>
+                    <p class="text-mg">コメントにはログインが必要です。</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <a href="https://gyazo.com/2b49bbe5c1f8893a7141ca3b00ce2cb5"><img src="https://i.gyazo.com/2b49bbe5c1f8893a7141ca3b00ce2cb5.gif" alt="Image from Gyazo" width="1000"/></a>
+        </div>
+        <div class="flex justify-center">
+            <div class="mt-20 mb-10">
+                <a href="/posts" class="bg-transparent hover:bg-gray-700 text-gray-600 font-semibold hover:text-white py-4 px-20 border border-gray-400 hover:border-transparent rounded">投稿一覧へ</a>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div>
+                <a href="/login" class="bg-transparent hover:bg-gray-700 text-gray-600 font-semibold hover:text-white py-4 px-20 border border-gray-400 hover:border-transparent rounded">ログインへ</a>
+            </div>
+        <div>
+
+    </main>
+
+    <%= render 'layouts/footer' %>
+</body>
+</html>

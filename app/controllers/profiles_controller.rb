@@ -8,8 +8,7 @@ class ProfilesController < ApplicationController
 
     def show
         @name = current_user.name
-        @posts = current_user.posts.includes(:user).page(params[:page]).per(10)
-
+        @posts = current_user.posts.includes(:user).page(params[:page]).per(10).order(created_at: :desc)
     end
 
     def update
