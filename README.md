@@ -1,6 +1,8 @@
 # なにきる 〜麻雀何切る相談アプリ〜<br>
 <br>
 
+<a href="https://gyazo.com/f36d7b50e4e693367f3ba7fe6a3c8320"><img src="https://i.gyazo.com/f36d7b50e4e693367f3ba7fe6a3c8320.png" alt="Image from Gyazo" width="390"/></a>
+
 ## サービス概要
 みなさんは麻雀をやっていて何を切っていいか分からない時はありませんか？<br>
 [なにきる]ではその悩みを解決します。<br>
