@@ -25,5 +25,4 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
   end
   post 'posts/:id', to: 'posts#create'
-
 end

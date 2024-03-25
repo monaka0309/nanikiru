@@ -2,11 +2,10 @@
 
 # アプリケーションの基本コントローラー
 class ApplicationController < ActionController::Base
-
   def require_login
-    unless current_user
-      not_authenticated
-    end
+    return if current_user
+
+    not_authenticated
   end
 
   protect_from_forgery with: :exception
