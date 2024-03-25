@@ -1,7 +1,7 @@
 # コメントテーブルの関係について
 class Comment < ApplicationRecord
-    belongs_to :user
-    belongs_to :post
+  belongs_to :user
+  belongs_to :post
 
-    validates :content, presence: true
+  validates :content, presence: true
 end

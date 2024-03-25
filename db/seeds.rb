@@ -1,14 +1,13 @@
-
 tiles = [
-    { name: '東', image_path: 'path_to_image_of_east_tile' },
-    { name: '南', image_path: 'path_to_image_of_south_tile' },
-    # ...他の牌のデータ
-  ]
+  { name: '東', image_path: 'path_to_image_of_east_tile' },
+  { name: '南', image_path: 'path_to_image_of_south_tile' }
+  # ...他の牌のデータ
+]
 
-  tiles.each do |tile|
-    Tile.create(name: '東', image_path: 'tiles/ton.png')
-    Tile.create(name: '南', image_path: 'tiles/nan.png')
-  end
+tiles.each do |_tile|
+  Tile.create(name: '東', image_path: 'tiles/ton.png')
+  Tile.create(name: '南', image_path: 'tiles/nan.png')
+end
 
 # frozen_string_literal: true
 
@@ -74,4 +73,3 @@ tiles = [
 #   tile.image_path = tile_attributes[:image_path]
 #   tile.save!
 # end
-
