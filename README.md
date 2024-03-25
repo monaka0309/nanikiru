@@ -51,8 +51,13 @@
 |----|
 |<a href="https://gyazo.com/2b49bbe5c1f8893a7141ca3b00ce2cb5"><img src="https://i.gyazo.com/2b49bbe5c1f8893a7141ca3b00ce2cb5.gif" alt="Image from Gyazo" width="1000"/></a>|
 
+|ユーザー登録画面|ログイン画面|
+|----|----|
+|<a href="https://gyazo.com/305c8b3cff9c5060a6f24e4bf055edc5"><img src="https://i.gyazo.com/305c8b3cff9c5060a6f24e4bf055edc5.png" alt="Image from Gyazo" width="1440"/></a>|<a href="https://gyazo.com/f16b97d1b9b5deb5d79717843c789aae"><img src="https://i.gyazo.com/f16b97d1b9b5deb5d79717843c789aae.png" alt="Image from Gyazo" width="1440"/></a>|
 
-
+|新規投稿画面|コメント画面|
+|----|----|
+|<a href="https://gyazo.com/0799ed210aec43c70476b1fa38386135"><img src="https://i.gyazo.com/0799ed210aec43c70476b1fa38386135.png" alt="Image from Gyazo" width="1440"/></a>|<a href="https://gyazo.com/9435cc946ec74301448856e0a952b992"><img src="https://i.gyazo.com/9435cc946ec74301448856e0a952b992.png" alt="Image from Gyazo" width="1440"/></a>|
 
 
 ### その後の機能
