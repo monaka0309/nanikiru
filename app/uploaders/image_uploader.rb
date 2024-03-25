@@ -30,7 +30,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
   # デフォルト画像の設定
   def default_url
-    'default.PNG'
+    'default.webp'
   end
 
   # Process files as they are uploaded:
