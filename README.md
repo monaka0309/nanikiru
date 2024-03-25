@@ -67,6 +67,27 @@ SNS への共有機能(Open Graph Protocol) ：共有時に ① 投稿した盤�
 ユーザー検索機能(Ransack)
 LINE API（ログイン、通知）
 いいね機能
+<br>
+
+## 技術選定
+|フロントエンド|CSS フレームワーク|
+|----|----|
+|JavaScript|Tailwind css|
+
+|バックエンド|認証・認可|
+|----|----|
+|Ruby on Rails 7.0.8|Sorcery|
+|Ruby 3.1.4|
+
+|RDS|デプロイ|
+|----|----|
+|PostgreSQL|heroku|
+
+|バージョン管理|Infrastructure|
+|----|----|
+|GitHub|Amazon Web Services|
+
+	
 
 ### 余裕があれば取り入れたいこと。
 
