@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   get 'static_pages/about'
-  get 'static_pages/contact'
   get 'static_pages/privacy_policy'
   get 'static_pages/terms_of_service'
   # ユーザー関連のルーティング
