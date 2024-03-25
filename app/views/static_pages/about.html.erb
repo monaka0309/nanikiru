@@ -1,161 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    // Initialization for ES Users
-    import {
-        Carousel,
-        initTWE,
-    } from "tw-elements";
-
-    initTWE({ Carousel });
 </head>
 
 <body class="bg-gray-200">
     <%= render 'layouts/header' %>
     <%= render 'layouts/sidebar' %>
-    <main class="container w-100 sm:w-5/6 mx-auto px-4 pt-8 text-gray-600 mb-10">
-        <div class="">
-
-
-        <%# 画像のスライド %>
-        <div
-        id="carouselDarkVariant"
-        class="relative"
-        data-twe-carousel-init
-        data-twe-ride="carousel">
-        <!-- Carousel indicators -->
-        <div
-            class="absolute inset-x-0 bottom-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
-            data-twe-carousel-indicators>
-            <button
-            data-twe-target="#carouselDarkVariant"
-            data-twe-slide-to="0"
-            data-twe-carousel-active
-            class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-black bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-            aria-current="true"
-            aria-label="Slide 1"></button>
-            <button
-            data-twe-target="#carouselDarkVariant"
-            class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-black bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-            data-twe-slide-to="1"
-            aria-label="Slide 1"></button>
-            <button
-            data-twe-target="#carouselDarkVariant"
-            class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-black bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-            data-twe-slide-to="2"
-            aria-label="Slide 1"></button>
+    <main class="container w-11/12 sm:w-5/6 mx-auto px-4 sm:px-10 py-20 mt-3 mb-20 text-gray-600 bg-white rounded-lg">
+        <div class="font-bold text-6xl sm:text-9xl text-gray-800 mb-3">
+            <p class="my-1">Nanikiru</p>
+            <p>-Mahjong</p>
+            <p class="text-sm font-mono py-4">あなたの１票が、誰かのロンを応援します。</p>
         </div>
+        <img src="/assets/about.webp" class="my-10 sm:my-20">
 
-        <!-- Carousel items -->
-        <div
-            class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
-            <!-- First item -->
-            <div
-            class="relative float-left -mr-[100%] w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-            data-twe-carousel-fade
-            data-twe-carousel-item
-            data-twe-carousel-active>
-            <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(19).webp"
-                class="block w-full"
-                alt="Motorbike Smoke" />
-            <div
-                class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-                <h5 class="text-xl">First slide label</h5>
-                <p>
-                Some representative placeholder content for the first slide.
-                </p>
+        <p class="text-6xl my-20">How to use…</p>
+        <div class="sm:mx-20">
+            <div class="flex justify-start mt-10">
+                <div class="h-auto max-w-xs">
+                    <img src="/assets/shinki.webp">
+                </div>
+                <div class="flex-initial pl-4 sm:pl-10">
+                    <p class="text-3xl sm:text-5xl mb-4">新規投稿</p>
+                    <p class="text-mg mb-2">テキストと画像、選択肢を決めて投稿することができます。</p>
+                    <p class="text-mg">投稿にはログインが必要です。</p>
+                </div>
             </div>
+
+            <div class="flex justify-start mt-20">
+                <div class="h-auto max-w-xs border border-gray-200">
+                    <img src="/assets/post.webp">
+                </div>
+                <div class="flex-initial pl-4 sm:pl-10">
+                    <p class="text-3xl sm:text-5xl mb-4">投稿一覧</p>
+                    <p class="text-mg my-5 mb-2">人の投稿に投票が行えます。投票にはログインが必要です。</p>
+                    <p class="text-mg">投稿詳細ページに進むとコメントも出来ます。</p>
+                </div>
             </div>
-            <!-- Second item -->
-            <div
-            class="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-            data-twe-carousel-fade
-            data-twe-carousel-item>
-            <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(35).webp"
-                class="block w-full"
-                alt="Mountaintop" />
-            <div
-                class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-                <h5 class="text-xl">Second slide label</h5>
-                <p>
-                Some representative placeholder content for the second slide.
-                </p>
-            </div>
-            </div>
-            <!-- Third item -->
-            <div
-            class="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-            data-twe-carousel-fade
-            data-twe-carousel-item>
-            <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(40).webp"
-                class="block w-full"
-                alt="Woman Reading a Book" />
-            <div
-                class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-black md:block">
-                <h5 class="text-xl">Third slide label</h5>
-                <p>
-                Some representative placeholder content for the third slide.
-                </p>
-            </div>
+
+            <div class="flex justify-start my-20">
+                <div class="h-auto max-w-xs">
+                    <img src="/assets/comment.webp">
+                </div>
+                <div class="flex-initial pl-4 sm:pl-10 sm:mb-10">
+                    <p class="text-2xl sm:text-5xl mb-4">コメント</p>
+                    <p class="text-mg mb-2">具体的な意見と伝えることもできます。</p>
+                    <p class="text-mg">コメントにはログインが必要です。</p>
+                </div>
             </div>
         </div>
-
-        <!-- Carousel controls - prev item-->
-        <button
-            class="absolute bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-black opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-black hover:no-underline hover:opacity-90 hover:outline-none focus:text-black focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
-            type="button"
-            data-twe-target="#carouselDarkVariant"
-            data-twe-slide="prev">
-            <span class="inline-block h-8 w-8 dark:grayscale">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-6 w-6">
-                <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-            </span>
-            <span
-            class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-            >Previous</span
-            >
-        </button>
-        <!-- Carousel controls - next item-->
-        <button
-            class="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-black opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-black hover:no-underline hover:opacity-90 hover:outline-none focus:text-black focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
-            type="button"
-            data-twe-target="#carouselDarkVariant"
-            data-twe-slide="next">
-            <span class="inline-block h-8 w-8 dark:grayscale">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-6 w-6">
-                <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-            </span>
-            <span
-            class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-            >Next</span
-            >
-        </button>
+        <div class="flex justify-center">
+            <a href="https://gyazo.com/2b49bbe5c1f8893a7141ca3b00ce2cb5"><img src="https://i.gyazo.com/2b49bbe5c1f8893a7141ca3b00ce2cb5.gif" alt="Image from Gyazo" width="1000"/></a>
         </div>
+        <div class="flex justify-center">
+            <div class="mt-20 mb-10">
+                <a href="/posts" class="bg-transparent hover:bg-gray-700 text-gray-600 font-semibold hover:text-white py-4 px-20 border border-gray-400 hover:border-transparent rounded">投稿一覧へ</a>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div>
+                <a href="/login" class="bg-transparent hover:bg-gray-700 text-gray-600 font-semibold hover:text-white py-4 px-20 border border-gray-400 hover:border-transparent rounded">ログインへ</a>
+            </div>
+        <div>
+
     </main>
-    <%= render 'layouts/footer' %>
 
+    <%= render 'layouts/footer' %>
 </body>
 </html>
