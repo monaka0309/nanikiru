@@ -57,11 +57,13 @@
                 <a href="/posts" class="bg-transparent hover:bg-gray-700 text-gray-600 font-semibold hover:text-white py-4 px-20 border border-gray-400 hover:border-transparent rounded">投稿一覧へ</a>
             </div>
         </div>
-        <div class="flex justify-center">
+        <% if !current_user %>
+            <div class="flex justify-center">
+                <div>
+                    <a href="/login" class="bg-transparent hover:bg-gray-700 text-gray-600 font-semibold hover:text-white py-4 px-20 border border-gray-400 hover:border-transparent rounded">ログインへ</a>
+                </div>
             <div>
-                <a href="/login" class="bg-transparent hover:bg-gray-700 text-gray-600 font-semibold hover:text-white py-4 px-20 border border-gray-400 hover:border-transparent rounded">ログインへ</a>
-            </div>
-        <div>
+        <% end %>
 
     </main>
 

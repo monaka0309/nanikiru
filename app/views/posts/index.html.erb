@@ -16,6 +16,7 @@
     <%= render 'layouts/header' %>
     <%= render 'layouts/sidebar' %>
     <main class="container w-100 sm:w-5/6 mx-auto px-4 pt-8 text-gray-600 mb-10">
+
         <% if @posts.any? %>
             <% @posts.each do |post| %>
                 <%# ユーザー名・画像 %>
@@ -50,13 +51,11 @@
                     </p>
                     <p class="fa-solid fa-comment-dots sm:fa-lg ml-2">  コメント数：<%= post.comments.count %></p><br>
                     <%# 共有機能 %>
-                    <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
+                    <%= link_to "https://twitter.com/share?url=https://www.nanikiru-mahjong.com/posts/#{post.id}&text=あなただったら何切る？", target: '_blank' do %>
                         <div class="search-button mt-1">
                             <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
                         </div>
                     <% end %>
-
-
                 </div>
             <% end %>
         <% else %>
