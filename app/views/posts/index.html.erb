@@ -22,7 +22,7 @@
                 <%# ユーザー名・画像 %>
                 <div class="post-card bg-white rounded p-5 mb-4 sm:p-10">
                     <div class="flex justify-left items-center gap-4">
-                        <div><%= image_tag post.user.image.url, class: 'rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %></div>
+                        <div><%= image_tag post.user.image.url, class: 'aspect-square rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %></div>
                         <div><%= post.user.name %></div>
                     </div>
                     <%# 投稿 %>
