@@ -19,7 +19,7 @@
                     </tr>
                     <tr>
                         <th scope="row"><%= t(User.human_attribute_name(:image)) %></th>
-                        <td><%= image_tag current_user.image.url, class: 'rounded-full my-3 border border-1 border-gray-500', size: '200x200' %></td>
+                        <td><%= image_tag current_user.image.url, class: 'aspect-square rounded-full my-3 border border-1 border-gray-500', size: '200x200' %></td>
                     </tr>
                 </table>
                 <%= link_to '編集', edit_profile_path, class: 'btn btn-outline w-20' %>
@@ -34,7 +34,7 @@
                 <% @posts.each do |post| %>
                     <div class="post-card bg-white rounded p-5 mb-4 sm:p-10 font-mono">
                         <div class="flex justify-left items-center gap-4">
-                            <div><%= image_tag post.user.image.url, class: 'rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %></div>
+                            <div><%= image_tag post.user.image.url, class: 'aspect-square rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %></div>
                             <div><%= post.user.name %></div>
                         </div>
                         <%= link_to post_path(post) do %>

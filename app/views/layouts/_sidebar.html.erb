@@ -15,7 +15,7 @@
         <div class="mt-5">
           <i class="fa-solid fa-user fa-xl"></i>
           <%= current_user.name %><br><br>
-          <%= image_tag current_user.image.url, class: 'rounded-full mb-3', size: '100x100' %>
+          <%= image_tag current_user.image.url, class: 'aspect-square rounded-full mb-3', size: '100x100' %>
         </dev>
         <li><%= link_to '  ログアウト', logout_path, method: :delete, data: { turbo_method: :delete }, class: "text-blue-500 block my-3 fa-solid fa-right-to-bracket fa-mg" %></li>
       <% else %>
