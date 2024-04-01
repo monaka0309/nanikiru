@@ -1,8 +1,7 @@
 <%= form_with(model: post, local: true, data: { turbo: false }) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-      <ul>
+      <ul class="text-red-500 font-mono">
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -45,7 +44,6 @@
     <div class="modal" role="dialog">
         <div class="modal-box w-full max-w-md sm:max-w-sm lg:max-w-[600px] p-4">
 
-
             <!-- カードのコンテナ -->
             <div class="card bg-neutral text-neutral-content w-full bg-blue-900 p-4 rounded-lg">
                 <div class="card-body items-center text-center font-mono">
@@ -53,12 +51,13 @@
                     <h2 class="card-title">牌の選択肢を選んでください。</h2>
 
                     <!-- 画像を横並びで表示するためのコンテナ -->
-                    <div class="grid grid-cols-5 flex flex-wrap items-center">
-                      <% @tile_images.each do |filename| %>
-                        <%= image_tag "#{filename}", id: "#{filename}", class: 'mx-2', size: '60x90' %>
-                      <% end %>
-
-                    </div>
+                    <% if @post_images.present? %>
+                      <div class="grid grid-cols-5 flex flex-wrap items-center">
+                        <% @post_images.each do |post_image| %>
+                          <%= image_tag post_image, id: post_image, class: 'mx-2', size: '60x90' %>
+                        <% end %>
+                      </div>
+                    <% end %>
                     <!-- カードのアクション（ボタン） -->
                     <div class="card-actions justify-end">
                         <label for="modal_1" class="btn btn-active btn-neutral mt-5">閉じる</label>

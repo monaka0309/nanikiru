@@ -17,22 +17,25 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @tile_images = Tile.order(id: :asc).pluck(:image_path)
+    @post_images = Tile.order(id: :asc).pluck(:image_path)
   end
 
   def edit
     @post = Post.find(params[:id])
-    @tile_images = Tile.order(id: :asc).pluck(:image_path)
+    @post_images = Tile.order(id: :asc).pluck(:image_path)
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
   end
 
   def create
     @post = current_user.posts.build(post_params)
+    # createアクションおよびupdateアクション内で、`post_tiles_params['selected_images']`を使用する部分を修正
     if @post.save
       # ここで牌との関連を作成する
-      post_tiles_params['selected_images'].each do |tile_image_path|
-        tile_id = Tile.find_by(image_path: tile_image_path).id # tile_id
-        @post.post_tiles.create(tile_id:) if tile_id.present?
+      if post_tiles_params['selected_images'].present?
+        post_tiles_params['selected_images'].each do |tile_image_path|
+          tile_id = Tile.find_by(image_path: tile_image_path).id # tile_id
+          @post.post_tiles.create(tile_id: tile_id) if tile_id.present?
+        end
       end
       redirect_to @post, notice: I18n.t('posts.create.success')
     else
