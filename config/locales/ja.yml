@@ -7,6 +7,9 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード確認"
         image: "画像"
+      post:
+        image: "画像"
+        blank: "が選択されていません"
     errors:
       models:
         user:
@@ -22,6 +25,9 @@ ja:
             password_confirmation:
               blank: "を入力してください"
               confirmation: "が空白です"
+        post:
+          image: "画像"
+          blank: "が選択されていません"
   alerts:
     login_required: "ログインしてください"
   posts:
