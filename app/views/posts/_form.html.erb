@@ -1,7 +1,7 @@
 <%= form_with(model: post, local: true, data: { turbo: false }) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
-      <ul class="text-red-500 font-mono">
+      <ul class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -51,10 +51,10 @@
                     <h2 class="card-title">牌の選択肢を選んでください。</h2>
 
                     <!-- 画像を横並びで表示するためのコンテナ -->
-                    <% if @post_images.present? %>
+                    <% if @tile_images.present? %>
                       <div class="grid grid-cols-5 flex flex-wrap items-center">
-                        <% @post_images.each do |post_image| %>
-                          <%= image_tag post_image, id: post_image, class: 'mx-2', size: '60x90' %>
+                        <% @tile_images.each do |tile_image| %>
+                          <%= image_tag tile_image, id: tile_image, class: 'mx-2', size: '60x90' %>
                         <% end %>
                       </div>
                     <% end %>
