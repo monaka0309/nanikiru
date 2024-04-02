@@ -4,6 +4,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :require_login, only: %i[new create edit update destroy]
+  before_action :correct_user, only: %i[edit update]
 
   def index
     @posts = Post.includes(:votes).order(created_at: :desc).page(params[:page]).per(10)
@@ -91,5 +92,12 @@ class PostsController < ApplicationController
   # 投稿に紐づく牌がどれかを選択するためのパラメータ(=post_tilesテーブル)
   def post_tiles_params
     params.require(:post).permit(selected_images: [])
+  end
+
+  def correct_user
+    @post = Post.find(params[:id])
+    if current_user != @post.user
+        redirect_to root_path(current_user)
+    end
   end
 end
