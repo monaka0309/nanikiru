@@ -30,7 +30,7 @@
                         <% if logged_in? %>
                             <div class="text-md font-mono my-4">下記の選択肢から投票してください。</div>
                         <% else %>
-                            <div class="text-md"></div>
+                            <div class="my-5"></div>
                         <% end %>
                         <div class="grid grid-cols-1">
                             <div class="rounded-lg px-1">
@@ -44,7 +44,7 @@
                         </p>
                         <p class="fa-solid fa-comment-dots sm:fa-lg ml-2">コメント数：<%= post.comments.count %></p>
                         <%= link_to "https://twitter.com/share?url=https://www.nanikiru-mahjong.com/posts/#{post.id}&text=あなただったら何切る？", target: '_blank' do %>
-                            <%= image_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
+                            <%= image_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black mt-2') %>
                         <% end %>
                     </div>
                 <% end %>
