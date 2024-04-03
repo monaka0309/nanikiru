@@ -29,6 +29,8 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @tile_images = Tile.order(id: :asc).pluck(:image_path)
+
     if @post.save
       # ここで牌との関連を作成する
       if post_tiles_params['selected_images'].present?
