@@ -1,6 +1,6 @@
 document.addEventListener("turbo:load", function() {
-    var sidebar = document.getElementById("sidebar");
-    var sidebarToggle = document.getElementById("sidebarToggle");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
   
     if (sidebar && sidebarToggle) {
       sidebarToggle.addEventListener("click", function() {
