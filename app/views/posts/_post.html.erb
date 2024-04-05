@@ -5,9 +5,11 @@
             <div><%= post.user.name %></div>
         </div>
         <p class="text-gray-700 mb-3" style="font-size: 16px;"><%= post.content %></p>
-        <% if post.image.present? %>
-            <%= image_tag post.image.url, class: "rounded" %>
-        <% end %>
+        <div class="flex justify-center">
+            <% if post.image.present? %>
+                <%= image_tag post.image.url, class: "rounded" %>
+            <% end %>
+        </div>
 <% end %>
     <% if logged_in? %>
         <div class="text-md font-mono my-4">下記の選択肢から投票してください。</div>
@@ -41,3 +43,4 @@
         </div>
     </div>
 </div>
+
