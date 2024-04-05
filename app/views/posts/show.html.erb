@@ -33,12 +33,21 @@
                     </div>
                 </div>
             </div>
-            <%# 共有機能 %>
-            <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
-                <div class="search-button">
-                    <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
+            <div class="grid grid-cols-2">
+                <div class="col-start-1">
+                    <%# 共有機能 %>
+                    <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
+                        <div class="search-button">
+                            <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
+                        </div>
+                    <% end %>
                 </div>
-            <% end %>
+                <div class="col-end-7">
+                    <p class="text-slate-400 text-sm sm:text-base text-right mt-2">
+                        <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
+                    </p>
+                </div>
+            </div>
 
             <!-- 編集ボタンと削除ボタンのためのコンテナ -->
             <div class="flex items-center gap-4">
