@@ -1,6 +1,6 @@
 # なにきる 〜麻雀何切る相談アプリ〜<br>
 
-### サイトリンク https://www.nanikiru-mahjong.com
+サイトリンク https://www.nanikiru-mahjong.com
 
 <br>
 <a href="https://gyazo.com/f36d7b50e4e693367f3ba7fe6a3c8320"><img src="https://i.gyazo.com/f36d7b50e4e693367f3ba7fe6a3c8320.png" alt="Image from Gyazo" width="390"/></a>
