@@ -21,14 +21,23 @@
             </div>
         </div>
     </div>
-    <p class="text-slate-400 text-sm text-right mt-2">
-        <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
-    </p>
-    <li class="fa-solid fa-comment-dots sm:fa-lg">
+    <li class="fa-solid fa-comment-dots sm:fa-lg my-3">
         <%= link_to "コメント数：", post_path(post) %>
         <%= post.comments.count %>
-        <%= link_to "https://twitter.com/share?url=https://www.nanikiru-mahjong.com/posts/#{post.id}&text=あなただったら何切る？", target: '_blank' do %>
-            <%= image_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black mt-2') %>
-        <% end %>
     </li>
+    <div class="grid grid-cols-2">
+        <div class="col-start-1">
+            <%# 共有機能 %>
+            <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
+                <div class="search-button">
+                    <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-end-7">
+            <p class="text-slate-400 text-sm sm:text-base text-right mt-2">
+                <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </p>
+        </div>
+    </div>
 </div>
