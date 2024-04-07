@@ -1,0 +1,16 @@
+
+<% if logged_in? %>
+    <% if post.favorited_by?(current_user) %>
+        <%= link_to post_favorites_path(post), data: { turbo_method: :delete } do %>
+            <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+            <%= post.favorites.count %> いいね
+        <% end %>
+    <% else %>
+        <%= link_to post_favorites_path(post), data: { turbo_method: :post } do %>
+            <i class="fas fa-heart" aria-hidden="true"></i>
+            <%= post.favorites.count %> いいね
+        <% end %>
+    <% end %>
+<% else %>
+<% end %>
+

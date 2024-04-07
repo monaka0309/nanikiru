@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :votes, only: %i[create destroy]
     end
     resources :comments, only: %i[create destroy]
+    resource :favorites, only: %i[create destroy]
   end
   post 'posts/:id', to: 'posts#create'
 end

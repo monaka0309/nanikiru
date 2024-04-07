@@ -11,6 +11,11 @@ class Post < ApplicationRecord
   has_many :tiles, through: :post_tiles
   has_many :votes, through: :post_tiles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   paginates_per 20
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 end
