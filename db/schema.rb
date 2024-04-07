@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_14_061018) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_05_084416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
     t.datetime "created_at", null: false
@@ -73,8 +80,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_14_061018) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
-
   add_foreign_key "post_tiles", "tiles"
   add_foreign_key "posts", "users"
-  add_foreign_key "votes", "post_tiles"
 end

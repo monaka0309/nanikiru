@@ -11,6 +11,10 @@
             <% end %>
         </div>
 <% end %>
+<div id="post_<%= post.id %>_favorite">
+    <%= render "posts/favorite", post: post %>
+</div>
+
     <% if logged_in? %>
         <div class="text-md font-mono my-4">下記の選択肢から投票してください。</div>
     <% else %>
