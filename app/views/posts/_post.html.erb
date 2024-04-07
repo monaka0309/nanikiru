@@ -11,9 +11,6 @@
             <% end %>
         </div>
 <% end %>
-<div id="post_<%= post.id %>_favorite">
-    <%= render "posts/favorite", post: post %>
-</div>
 
     <% if logged_in? %>
         <div class="text-md font-mono my-4">下記の選択肢から投票してください。</div>
@@ -27,10 +24,15 @@
             </div>
         </div>
     </div>
-    <li class="fa-solid fa-comment-dots sm:fa-lg my-3">
-        <%= link_to "コメント数：", post_path(post) %>
-        <%= post.comments.count %>
-    </li>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-3">
+        <li class="fa-solid fa-comment-dots sm:fa-lg my-3">
+            <%= link_to "コメント数：", post_path(post) %>
+            <%= post.comments.count %>
+        </li>
+        <div id="post_<%= post.id %>_favorite" class="my-2">
+            <%= render "posts/favorite", post: post %>
+        </div>
+    </div>
     <div class="grid grid-cols-2">
         <div class="col-start-1">
             <%# 共有機能 %>

@@ -1,4 +1,4 @@
-
+# いいね機能についてのコントローラー
 class FavoritesController < ApplicationController
     before_action :require_login
 
