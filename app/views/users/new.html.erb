@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="actions">
-                    <%= form.submit "登録", class: "bg-blue-900 hover:bg-blue-700 text-white font-sans py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-10" %>
+                    <%= form.submit "登録", class: "bg-blue-900 hover:bg-blue-700 text-white font-sans py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-10", data: { disable_with: "送信中..." } %>
                 </div>
             <% end %>
         </div>

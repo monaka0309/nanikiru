@@ -66,16 +66,10 @@
             </div>
         </div>
     </div>
-
-
   <div class="actions my-4 font-mono">
-    <%= form.submit post.new_record? ? '投稿する' : '更新する', class: 'bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+    <%= form.submit post.new_record? ? '投稿する' : '更新する', class: 'bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded', data: { disable_with: "送信中..." } %>
   </div>
 <% end %>
-
-
-
-
 
 <script>
   document.addEventListener("turbo:load", function() {
