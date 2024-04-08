@@ -6,7 +6,7 @@
       <% end %>
     <% else %>
       <% if post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id) %>
-        <%= link_to post_post_tile_vote_path(post_tile.post.id, post_tile.id, post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id).id), method: :delete do %>
+        <%= link_to post_post_tile_vote_path(post_tile.post.id, post_tile.id, post_tile.votes.find_by(user_id: current_user.id, post_tile_id: post_tile.id).id), method: :delete, class: "border-2 border-green-500 hover:border-gray-500 focus:border-green-500 px-1 py-1 rounded-md text-gray-700 hover:text-gray-900" do %>
           <%= image_tag post_tile.tile.image_path, class: 'tile-image' %>
         <% end %>
       <% else %>
@@ -16,7 +16,6 @@
       <% end %>
     <% end %>
   </div>
-
   <div class="votes-count text-center">
     <%= post_tile.votes.count %> 票
   </div>
