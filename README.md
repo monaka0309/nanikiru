@@ -82,7 +82,7 @@
 ## 技術選定
 |フロントエンド|CSS フレームワーク|
 |----|----|
-|JavaScript|Tailwind css|
+|JavaScript|Tailwind css, daisyUI|
 
 |バックエンド|認証・認可|
 |----|----|
