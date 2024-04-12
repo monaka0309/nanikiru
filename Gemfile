@@ -38,6 +38,9 @@ gem 'kaminari'
 gem 'meta-tags'
 gem 'mini_magick'
 gem 'sorcery'
+gem 'omniauth-auth0'
+gem 'omniauth-line'
+gem 'omniauth-rails_csrf_protection'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
