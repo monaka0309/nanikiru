@@ -223,10 +223,12 @@ Rails.application.config.sorcery.configure do |config|
 
   config.line.key = Rails.application.credentials.dig(:line, :channel_id)
   config.line.secret = Rails.application.credentials.dig(:line, :channel_secret)
-  config.line.callback_url = 'https://www.nanikiru-mahjong.com'
+  config.line.callback_url = 'https://www.nanikiru-mahjong.com/oauth/callback?provider=line'
+  # config.line.callback_url = Settings.sorcery[:line_callback_url]
   config.line.scope = 'profile'
-  # config.line.bot_prompt = "normal"
-  # config.line.user_info_mapping = {name: 'displayName'}
+  # config.line.bot_prompt = "normal"(LINEログイン時に公式アカウントを自動追加する機能)
+  config.line.user_info_mapping = {name: 'displayName'}
+
 
   # For information about Discord API
   # https://discordapp.com/developers/docs/topics/oauth2

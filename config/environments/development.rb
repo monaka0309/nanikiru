@@ -65,6 +65,10 @@ Rails.application.configure do
   # config.hosts << '.jp.ngrok.io'
   config.hosts.clear
 
+  # config.sorcery.line_callback_url = 'https://localhost:3000/oauth/callback?provider=line'
+  # config.line.callback_url = "https://localhost:3000/oauth/callback?provider=line"
+
+
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
