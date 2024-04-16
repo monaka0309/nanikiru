@@ -234,6 +234,8 @@ GEM
     pry-byebug (3.10.1)
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
@@ -371,6 +373,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   pg (~> 1.1)
   pry-byebug
+  pry-rails
   puma (~> 5.0)
   rails (~> 7.0.8)
   rubocop

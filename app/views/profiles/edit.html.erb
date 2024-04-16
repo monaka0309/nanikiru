@@ -35,7 +35,7 @@
                     </div>
                     <%= f.submit "更新", class: "btn btn-outline", data: { disable_with: "送信中..." } %>
                 </div>
-            <%end%>
+            <% end %>
     </main>
     <%= render 'layouts/footer' %>
 </body>
@@ -43,7 +43,6 @@
 
 <script>
     document.addEventListener("turbo:load", function() {
-        // 投稿画像のプレビュー表示機能
         const imageInput = document.querySelector('#user_image');
         const imagePreview = document.getElementById('image-preview');
 
