@@ -3,7 +3,6 @@
 # プロフィール用のコントローラー
 class ProfilesController < ApplicationController
   before_action :set_user, only: %i[edit update]
-  before_action :require_login, only: %i[show]
 
   def show
     @user = User.find_by(id: params[:id])
