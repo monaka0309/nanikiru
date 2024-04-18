@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # ユーザー関連のルーティング
   resources :users, only: %i[new create]
 
-  resource :profile, only: %i[show edit update]
+  resources :profiles, only: %i[show edit update]
 
   resources :user_sessions, only: [:create]
   get 'login', to: 'user_sessions#new', as: :login
