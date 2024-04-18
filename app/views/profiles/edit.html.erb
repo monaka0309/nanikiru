@@ -29,7 +29,7 @@
                         <%= f.file_field :image, accept: "image/jpg,image/jpeg,image/gif,image/png,image/webp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight bg-gray-100" %>
                         <div id="image-preview" class="font-mono">
                             <% if @user.image? %>
-                                <%= image_tag current_user.image.url, class: 'rounded-full mb-3  border border-1 border-gray-500'%>
+                                <%= image_tag current_user.image.url, class: 'rounded-full mb-3  border border-1 border-gray-300'%>
                             <% end %>
                         </div>
                     </div>

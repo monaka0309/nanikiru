@@ -6,8 +6,8 @@ class ProfilesController < ApplicationController
   before_action :require_login, only: %i[show]
 
   def show
-    @name = current_user.name
-    @posts = current_user.posts.includes(:user).page(params[:page]).per(10).order(created_at: :desc)
+    @user = User.find_by(id: params[:id])
+    @posts = @user.posts.includes(:user).page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def edit; end
@@ -31,3 +31,4 @@ class ProfilesController < ApplicationController
     params.require(:user).permit(:email, :name, :image)
   end
 end
+
