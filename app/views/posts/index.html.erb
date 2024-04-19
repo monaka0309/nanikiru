@@ -12,8 +12,6 @@
         </style>
     </head>
     <body class="bg-gray-200">
-        <%= render 'layouts/header' %>
-        <%= render 'layouts/sidebar' %>
         <main class="container w-100 sm:w-5/6 mx-auto px-4 pt-8 text-gray-600 mb-10">
             <% if @posts.any? %>
                 <% @posts.each do |post| %>
@@ -27,6 +25,5 @@
                 <%= paginate @posts %>
             </div>
         </main>
-        <%= render 'layouts/footer' %>
     </body>
 </html>

@@ -16,4 +16,12 @@ class User < ApplicationRecord
 
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications
+
+  def self.looks(search, word)
+    if search == "partial_match"
+      @user = User.where("%#{word}%")
+    else
+      @user = User.all
+    end
+  end
 end

@@ -3,9 +3,6 @@
 <head>
 </head>
 <body class="bg-gray-200 font-sans w-full">
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/sidebar' %>
-
     <main class="container mx-auto px-6 text-gray-600 mb-10">
         <%# プロフィール %>
         <% if @user == current_user %>
@@ -43,6 +40,5 @@
             <% end %>
         </div>
     </main>
-    <%= render 'layouts/footer' %>
 </body>
 </html>
