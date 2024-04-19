@@ -2,10 +2,6 @@
 <html lang="ja">
 
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
-
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/sidebar' %>
-
     <div class="flex items-center justify-center bg-gray-200 py-12">
         <div class="w-full max-w-md">
             <h1 class="mb-8 text-4xl text-center text-gray-800">ログイン</h1>
@@ -40,7 +36,5 @@
             <%= link_to image_tag("LINE login.webp", size: "50x50", class: "rounded-lg mx-auto mt-5"), auth_at_provider_path(:provider => :line)%>
         </div>
     </div>
-    <%= render 'layouts/footer' %>
-
 </body>
 </html>

@@ -33,6 +33,7 @@
           <%= link_to raw('<i class="fa-solid fa-circle-user fa-lg"></i> マイページ'), login_path, class: "my-2" %>
         <% end %>
       </li>
+      <li><%= link_to raw('<i class="fa-solid fa-magnifying-glass"></i> ユーザー検索'), search_path, class: "my-2" %></li>
       <li><%= link_to raw('<i class="fa-solid fa-envelope fa-lg"></i> 問い合わせ'), "https://docs.google.com/forms/d/e/1FAIpQLSdbrCu1Uk1i1-vy5cKPvyG6PTTTWvJ7_hCHw-_xeg1mOPJenw/viewform" %>
       <li><%= link_to raw('<i class="fa-solid fa-users fa-lg"></i> プライバシーポリシー'), static_pages_privacy_policy_path, class: "my-2" %></li>
       <li><%= link_to raw('<i class="fa-regular fa-address-book fa-lg"></i> 利用規約'), static_pages_terms_of_service_path, class: "my-2" %></li>

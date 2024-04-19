@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+</head>
+<body class="bg-gray-200 font-mono">
+    <main class="container w-5/6 mx-auto px-4 sm:px-10 py-20 mt-3 mb-20 text-gray-100 bg-white rounded-lg">
+        <div class="search_form">
+            <%= form_with url: search_path, local: true, method: :get, class: "" do |f| %>
+                <%= f.text_field :query %>
+                <%= f.submit "検索", class: "btn-sm btn-primary" %>
+            <% end %>
+        </div>
+
+        <div class="text-gray-600">
+            <h2>検索ワード "<%= @query %>"</h2>
+            <tbody>
+                <% @users.each do |user| %>
+                    <%= user.name %>
+                <% end %>
+            </tbody>
+        </div>
+    </main>
+</body>
+</html>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'static_pages/about'
   get 'static_pages/privacy_policy'
   get 'static_pages/terms_of_service'
-  # ユーザー関連のルーティング
+
   resources :users, only: %i[new create]
 
   resources :profiles, only: %i[show edit update]
@@ -30,5 +30,7 @@ Rails.application.routes.draw do
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback"
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+
+  get "search" => "searches#search"
 
 end
