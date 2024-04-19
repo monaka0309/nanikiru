@@ -11,8 +11,7 @@
                 <%= f.submit "検索", class: "btn-sm btn-primary" %>
             <% end %>
         </div>
-
-        <div class="text-gray-600">
+        <div class="text-gray-600 card w-full bg-neutral text-neutral-content">
             <h2>検索ワード "<%= @query %>"</h2>
             <tbody>
                 <% @users.each do |user| %>
