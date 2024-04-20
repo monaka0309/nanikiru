@@ -1,23 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-</head>
-<body class="bg-gray-200 font-mono">
-    <main class="container w-5/6 mx-auto px-4 sm:px-10 py-20 mt-3 mb-20 text-gray-100 bg-white rounded-lg">
-        <div class="search_form">
-            <%= form_with url: search_path, local: true, method: :get, class: "" do |f| %>
-                <%= f.text_field :query %>
-                <%= f.submit "検索", class: "btn-sm btn-primary" %>
+<body class="bg-gray-200 font-mono text-gray-700">
+    <main class="container w-5/6 mx-auto px-4 sm:px-10 pt-10 pb-40 mt-3 mb-40 bg-white rounded-lg">
+        <div class="search-form">
+            <%= form_with url: search_path, method: :get do |f| %>
+                <%= f.text_field :query, class: "rounded-md bg-gray-200 mb-5 p-1" %>
+                <%= f.submit "検索", class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline mb-5" %>
             <% end %>
         </div>
-        <div class="text-gray-600 card w-full bg-neutral text-neutral-content">
-            <h2>検索ワード "<%= @query %>"</h2>
-            <tbody>
-                <% @users.each do |user| %>
-                    <%= user.name %>
-                <% end %>
-            </tbody>
+        <div class="w-full">
+            <h2 class="card border border-gray-300 p-2 w-full break-words mb-2">検索ワード [<%= @query %>]</h2>
+            <table>
+                <tbody>
+                    <% @users.each do |user| %>
+                        <tr>
+                            <td class="py-1 px-2">
+                                <%= image_tag user.image.url, class: 'aspect-square rounded-full ring-1 ring-gray-400', size: '50x50' %>
+                            </td>
+                            <td class="py-1 px-2">
+                                <%= link_to user.name, profile_path(user), class: "my-2" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
         </div>
     </main>
 </body>
