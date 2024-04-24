@@ -34,3 +34,17 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+# Ignore bundler gems.
+vendor/bundle
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+
+*.ngrok
