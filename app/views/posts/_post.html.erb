@@ -1,5 +1,5 @@
 <%= link_to post_path(post) do %>
-    <div class="post-card bg-white rounded p-5 my-4 sm:p-10">
+    <div class="post-card bg-white rounded p-5 mt-2 mb-4 sm:p-10">
         <div class="flex justify-left items-center gap-4">
             <%= image_tag post.user.image.url, class: 'aspect-square rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %>
             <%= link_to post.user.name, "/profiles/#{post.user.id}", class: "my-2" %>

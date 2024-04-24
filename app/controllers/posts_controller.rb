@@ -7,7 +7,16 @@ class PostsController < ApplicationController
   before_action :correct_user, only: %i[edit update]
 
   def index
-    @posts = Post.includes(:votes).order(created_at: :desc).page(params[:page]).per(10)
+    if params[:latest]
+      @posts = Post.latest.page(params[:page]).per(10)
+    elsif params[:old]
+      @posts = Post.old.page(params[:page]).per(10)
+    elsif params[:favorites]
+      @posts = Post.includes(:favorites).sort_by {|x| x.favorites.size}.reverse
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
+    else
+      @posts = Post.all.page(params[:page]).per(10)
+    end
   end
 
   def show
@@ -35,7 +44,7 @@ class PostsController < ApplicationController
       # ここで牌との関連を作成する
       if post_tiles_params['selected_images'].present?
         post_tiles_params['selected_images'].each do |tile_image_path|
-          tile_id = Tile.find_by(image_path: tile_image_path).id # tile_id
+          tile_id = Tile.find_by(image_path: tile_image_path).id
           @post.post_tiles.create(tile_id: tile_id) if tile_id.present?
         end
       end
@@ -85,7 +94,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  # ストロングパラメーター
   # 投稿自体を作るためのパラメータ(=postsテーブル)
   def post_params
     params.require(:post).permit(:content, :image)
@@ -102,4 +110,8 @@ class PostsController < ApplicationController
         redirect_to root_path(current_user)
     end
   end
+
+  # def self.sort_favorites
+  #   Post.includes(:favorites).sort_by {|x| x.favorites.size}.reverse
+  # end
 end

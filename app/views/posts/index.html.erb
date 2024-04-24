@@ -13,6 +13,7 @@
     </head>
     <body class="bg-gray-200">
         <main class="container w-100 sm:w-5/6 mx-auto px-4 pt-8 text-gray-600 mb-10">
+            <%= render "/posts/sort" %>
             <% if @posts.any? %>
                 <% @posts.each do |post| %>
                     <%= render 'posts/post', post: post %>
@@ -21,7 +22,7 @@
                 <p class="mb-10">まだ投稿がありません。</p>
             <% end %>
 
-            <div class="flex justify-center text-2xl font-mono pt-5">
+            <div class="flex justify-center text-lg sm:text-xl font-mono pt-5">
                 <%= paginate @posts %>
             </div>
         </main>
