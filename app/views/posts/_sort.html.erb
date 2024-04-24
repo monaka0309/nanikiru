@@ -1,0 +1,6 @@
+<div class="container lg:px-40">
+    <%= link_to '新しい順', posts_path(latest: "true") %>
+    |<%= link_to '古い順', posts_path(old: "true") %>
+    |<%= link_to 'いいね順', posts_path(favorites: "true") %>
+</div>
+
