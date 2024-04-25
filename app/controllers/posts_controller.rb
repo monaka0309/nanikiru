@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       @posts = Post.includes(:favorites).sort_by {|x| x.favorites.size}.reverse
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
     else
-      @posts = Post.all.page(params[:page]).per(10)
+      @posts = Post.all.page(params[:page]).per(10).order(created_at: :desc)
     end
   end
 
