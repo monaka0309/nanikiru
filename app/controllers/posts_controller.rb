@@ -2,9 +2,7 @@
 
 # 投稿についてのコントローラー
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
   before_action :require_login, only: %i[new create edit update destroy]
-  before_action :correct_user, only: %i[edit update]
 
   def index
     if params[:latest]
@@ -20,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
     @comments = @post.comments
     @comment = Comment.new
@@ -32,6 +31,9 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if current_user != @post.user
+        redirect_to root_path(current_user)
+    end
     @tile_images = Tile.order(id: :asc).pluck(:image_path)
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
   end
@@ -41,7 +43,6 @@ class PostsController < ApplicationController
     @tile_images = Tile.order(id: :asc).pluck(:image_path)
 
     if @post.save
-      # ここで牌との関連を作成する
       if post_tiles_params['selected_images'].present?
         post_tiles_params['selected_images'].each do |tile_image_path|
           tile_id = Tile.find_by(image_path: tile_image_path).id
@@ -55,8 +56,12 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+    if current_user != @post.user
+        redirect_to root_path(current_user)
+    end
+
     if @post.update(post_params)
-      # 投稿に関連する牌の更新処理をここに追加する
       @post.post_tiles.destroy_all
       post_tiles_params['selected_images'].each do |tile_image_path|
         tile_id = Tile.find_by(image_path: tile_image_path).id
@@ -69,11 +74,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_url, notice: I18n.t('posts.destroy.success')
   end
 
-  # 特定のPost IDに対する選択肢（PostTile）と投票数、および関連するタイルの画像をハッシュ化する
+  # 特定のpost_idに対する選択肢（PostTile）と投票数、および関連するタイルの画像をハッシュ化する
   def post_tiles_with_vote_count(post_id)
     # 関連付けられたレコードを一度に読み込むためにincludesを使用
     Post.find(post_id)
@@ -89,11 +95,6 @@ class PostsController < ApplicationController
 
   private
 
-  # 対象の投稿を設定
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
   # 投稿自体を作るためのパラメータ(=postsテーブル)
   def post_params
     params.require(:post).permit(:content, :image)
@@ -103,15 +104,4 @@ class PostsController < ApplicationController
   def post_tiles_params
     params.require(:post).permit(selected_images: [])
   end
-
-  def correct_user
-    @post = Post.find(params[:id])
-    if current_user != @post.user
-        redirect_to root_path(current_user)
-    end
-  end
-
-  # def self.sort_favorites
-  #   Post.includes(:favorites).sort_by {|x| x.favorites.size}.reverse
-  # end
 end
