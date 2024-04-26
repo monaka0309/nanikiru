@@ -3,10 +3,14 @@
         <%= image_tag post.user.image.url, class: 'aspect-square rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %>
         <%= link_to post.user.name, "/profiles/#{post.user.id}", class: "my-2" %>
     </div>
-    <p class="text-gray-700 mb-3 text-base"><%= post.content %></p>
+    <p class="text-gray-700 mb-3 text-base">
+        <%= link_to post.content, post_path(post) %>
+    </p>
     <div class="flex justify-center">
         <% if post.image.present? %>
-            <%= image_tag post.image.url, class: "rounded" %>
+            <%= link_to post_path(post) do %>
+                <%= image_tag post.image.url, class: "rounded" %>
+            <% end %>
         <% end %>
     </div>
     <% if logged_in? %>
@@ -32,11 +36,11 @@
     <div class="grid grid-cols-2">
         <div class="col-start-1">
             <%# 共有機能 %>
-            <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
-                <div class="search-button">
-                <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
-                </div>
-            <% end %>
+            <div class="search-button">
+                <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
+                    <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
+                <% end %>
+            </div>
         </div>
         <div class="col-end-7">
             <p class="text-slate-400 text-sm sm:text-base text-right mt-2">
