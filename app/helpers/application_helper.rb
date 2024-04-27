@@ -33,10 +33,11 @@ module ApplicationHelper
         description:,
         url: request.original_url,
         image:,
-        site_name: site
+        site_name: site,
+        locale: 'ja_JP'
       },
       twitter: {
-        site:,
+        site: '@buri_osashimi',
         card: 'summary_large_image',
         image:
       }
