@@ -1,34 +1,47 @@
 # frozen_string_literal: true
 
 # アプリケーション全体で使用するビューヘルパーメソッドを提供するモジュール。
-# これらのヘルパーメソッドは、どのビューからもアクセス可能です。
 
 module ApplicationHelper
-  def default_meta_tags
-    {
-      site: 'nanikiru-mahjang',
-      title: 'なにきる 〜麻雀何切る相談所〜',
-      reverse: true,
-      charset: 'utf-8',
-      description: 'なにきるを使えば、どの牌を切ったらいいか相談し意見をもらうことができます。',
-      keywords: '麻雀, なにきる',
-      canonical: request.original_url,
+  def show_meta_tags
+    assign_meta_tags if display_meta_tags.blank?
+    display_meta_tags
+  end
+
+  def assign_meta_tags(options = {})
+    defaults = t('meta_tags.defaults')
+    options.reverse_merge!(defaults)
+    site = options[:site]
+    title = options[:title]
+    description = options[:description]
+    keywords = options[:keywords]
+    image = options[:image].presence || image_url('logo.jpg')
+    configs = {
+      site:,
+      title:,
+      description:,
+      keywords:,
       separator: '|',
+      reverse: true,
+      canonical: request.original_url,
+      # icon: {
+      #   href: image_url('favicon.icon')
+      # },
       og: {
-        site_name: :site,
-        title: :title,
-        description: :description,
         type: 'website',
+        title: title.presence || site,
+        description:,
         url: request.original_url,
-        image: image_url('logo.jpg'), # 配置するパスやファイル名によって変更すること
-        local: 'ja-JP'
+        image:,
+        site_name: site
       },
-      # Twitter用の設定を個別で設定する
       twitter: {
-        card: 'summary_large_image', # Twitterで表示する場合は大きいカードにする
-        site: '@buri_osashimi', # アプリの公式Twitterアカウントがあれば、アカウント名を書く
-        image: image_url('logo.jpg') # 配置するパスやファイル名によって変更すること
+        site:,
+        card: 'summary_large_image',
+        image:
       }
     }
+    set_meta_tags(configs)
   end
 end
+

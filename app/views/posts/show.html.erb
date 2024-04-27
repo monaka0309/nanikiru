@@ -5,6 +5,7 @@
 <body class="bg-gray-200 font-sans">
     <main class="container mx-auto px-6 pt-8 text-gray-600 mb-10">
         <h1 class="text-3xl font-bold mb-5 font-mono w-100 sm:w-5/6 mx-auto">投稿詳細</h1>
+        <% assign_meta_tags title: @post.title, image: @post.images.first.url %>
         <div class="w-100 sm:w-5/6 mx-auto post-card bg-white rounded-lg p-5 mb-2 sm:p-8">
             <div class="flex justify-left items-center gap-4">
                 <div><%= image_tag @post.user.image.url, class: 'aspect-square rounded-full ring-1 ring-gray-400 mb-3', size: '50x50' %></div>
