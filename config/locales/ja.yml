@@ -51,7 +51,7 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
   meta_tags:
     defaults:
-      site: "なにきる 〜麻雀何切る相談所〜"
+      site:
       title: "なにきる 〜麻雀何切る相談所〜"
       description: "麻雀中に困った場面を解決するアプリです。"
       keywords: "麻雀, 何切る, なにきる, 麻雀何切る相談所, nanikiru"

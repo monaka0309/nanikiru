@@ -37,7 +37,7 @@
         <div class="col-start-1">
             <%# 共有機能 %>
             <div class="search-button">
-                <%= link_to "https://twitter.com/share?url=#{ request.url }&text=あなただったら何切る？", target: '_blank' do %>
+                <%= link_to "https://twitter.com/intent/tweet?url=#{ request.url }&text=あなただったら何切る？/&hashtags=麻雀&hashtags=なにきる&hashtags=nanikiru", target: '_blank' do %>
                     <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
                 <% end %>
             </div>
