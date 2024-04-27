@@ -49,7 +49,7 @@ class PostsController < ApplicationController
           @post.post_tiles.create(tile_id: tile_id) if tile_id.present?
         end
       end
-      assign_meta_tags(image: @post.image)
+      assign_meta_tags(image: post.image)
       redirect_to @post, notice: I18n.t('posts.create.success')
     else
       render :new, status: :unprocessable_entity
@@ -68,7 +68,7 @@ class PostsController < ApplicationController
         tile_id = Tile.find_by(image_path: tile_image_path).id
         @post.post_tiles.create(tile_id:) if tile_id.present?
       end
-      assign_meta_tags(image: @post.image)
+      assign_meta_tags(image: post.image)
       redirect_to @post, notice: I18n.t('posts.update.success')
     else
       render :edit, status: :unprocessable_entity
