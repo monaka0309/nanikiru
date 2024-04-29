@@ -24,13 +24,13 @@
             <div class="grid grid-cols-1">
                 <div class="rounded-lg px-1">
                     <div>
-                        <%= render 'posts/post_tiles', post: @post %>
+                        <%= render 'posts/shared/post_tiles', post: @post %>
                     </div>
                 </div>
             </div>
             <%# いいね機能 %>
             <div id="post_<%= @post.id %>_favorite" class="my-2 text-xl">
-                <%= render "posts/favorite", post: @post %>
+                <%= render "posts/shared/favorite", post: @post %>
             </div>
             <div class="grid grid-cols-2">
                 <div class="col-start-1">
