@@ -9,7 +9,7 @@ class FavoritesController < ApplicationController
         respond_to do |format|
             if favorite.save
                 format.turbo_stream do
-                    render turbo_stream: turbo_stream.update("post_#{post.id}_favorite", partial: 'posts/favorite', locals: { post: post })
+                    render turbo_stream: turbo_stream.update("post_#{post.id}_favorite", partial: 'posts/shared/favorite', locals: { post: post })
                 end
             else
                 format.html { redirect_to post, alert: 'Failed to favorite.' }
@@ -24,7 +24,7 @@ class FavoritesController < ApplicationController
         respond_to do |format|
             if favorite.destroy
                 format.turbo_stream do
-                    render turbo_stream: turbo_stream.update("post_#{post.id}_favorite", partial: 'posts/favorite', locals: { post: post })
+                    render turbo_stream: turbo_stream.update("post_#{post.id}_favorite", partial: 'posts/shared/favorite', locals: { post: post })
                 end
             else
                 format.html { redirect_to post, alert: 'Failed to unfavorite.' }

@@ -20,7 +20,7 @@
     <% end %>
     <div class="grid grid-cols-1">
         <div class="rounded-lg px-1">
-            <%= render 'posts/post_tiles', post: post %>
+            <%= render 'posts/shared/post_tiles', post: post %>
         </div>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-3">
@@ -29,7 +29,7 @@
             <%= post.comments.count %>
         </li>
         <div id="post_<%= post.id %>_favorite" class="my-2">
-            <%= render "posts/favorite", post: post %>
+            <%= render "posts/shared/favorite", post: post %>
         </div>
     </div>
 
