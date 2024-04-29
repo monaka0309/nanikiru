@@ -36,11 +36,11 @@
     <div class="grid grid-cols-2">
         <div class="col-start-1">
             <%# 共有機能 %>
-            <%# <div class="search-button"> %>
-                <%# <%= link_to "https://twitter.com/intent/tweet?url=#{ request.url }&text=あなただったら何切る？&hashtags=麻雀&hashtags=なにきる&hashtags=nanikiru", target: '_blank' do %> 
-                    <%# <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %> 
-                <%# <% end %> 
-            <%# </div> %>
+            <div class="search-button">
+                <%= link_to "https://twitter.com/intent/tweet?url=https://www.nanikiru-mahjong.com/posts/#{ post.id }&text=あなただったら何切る？&hashtags=麻雀&hashtags=なにきる&hashtags=nanikiru", target: '_blank' do %>
+                    <%= image_submit_tag("x.jpg", class: 'search-icon h-9 p-1 rounded-full bg-black') %>
+                <% end %>
+            </div>
         </div>
         <div class="col-end-7">
             <p class="text-slate-400 text-sm sm:text-base text-right mt-2">
