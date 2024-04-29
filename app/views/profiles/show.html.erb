@@ -30,7 +30,7 @@
         <div class="text-mg w-100 sm:w-5/6 mx-auto">
             <% if @posts.any? %>
                 <% @posts.each do |post| %>
-                    <%= render 'posts/post', post: post %>
+                    <%= render 'posts/shared/post', post: post %>
                 <% end %>
                 <div class="flex justify-center text-2xl font-mono pt-5">
                     <%= paginate @posts %>
