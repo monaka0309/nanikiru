@@ -51,6 +51,11 @@
 ・投票機能(Turbo-rails) ：投稿者があげた選択肢に投票をしてもらい、投票数が投稿に映るようにする。<br>
 ・コメント機能<br>
 ・プロフィール機能 ：名前、プロフィール画像、過去の投稿一覧<br>
+・SNS への共有機能(動的OGP) ：共有時に投稿した盤面の写真を載せて共有できるようにします。<br>
+・ユーザー検索機能<br>
+・LINEアカウントでのログイン機能<br>
+・いいね機能<br>
+・並び替え機能<br>
 <br>
 
 |投稿一覧画面|
@@ -59,25 +64,19 @@
 
 |ユーザー登録画面|ログイン画面|
 |----|----|
-|<a href="https://gyazo.com/305c8b3cff9c5060a6f24e4bf055edc5"><img src="https://i.gyazo.com/305c8b3cff9c5060a6f24e4bf055edc5.png" alt="Image from Gyazo" width="1440"/></a>|<a href="https://gyazo.com/f16b97d1b9b5deb5d79717843c789aae"><img src="https://i.gyazo.com/f16b97d1b9b5deb5d79717843c789aae.png" alt="Image from Gyazo" width="1440"/></a>|
+|<a href="https://gyazo.com/305c8b3cff9c5060a6f24e4bf055edc5"><img src="https://i.gyazo.com/305c8b3cff9c5060a6f24e4bf055edc5.png" alt="Image from Gyazo" width="1440"/></a>|<a href="https://gyazo.com/e423307ec3e8fb374500b650512cae61"><img src="https://i.gyazo.com/e423307ec3e8fb374500b650512cae61.png" alt="Image from Gyazo" width="1417"/></a>|
 
 |新規投稿画面|コメント画面|
 |----|----|
 |<a href="https://gyazo.com/0799ed210aec43c70476b1fa38386135"><img src="https://i.gyazo.com/0799ed210aec43c70476b1fa38386135.png" alt="Image from Gyazo" width="1440"/></a>|<a href="https://gyazo.com/9435cc946ec74301448856e0a952b992"><img src="https://i.gyazo.com/9435cc946ec74301448856e0a952b992.png" alt="Image from Gyazo" width="1440"/></a>|
 
+|並び替え・いいね機能|ユーザー検索画面|
+|----|----|
+|<a href="https://gyazo.com/27e100c562629b22e306f3dd7e6cf5fc"><img src="https://i.gyazo.com/27e100c562629b22e306f3dd7e6cf5fc.png" alt="Image from Gyazo" width="1417"/></a>|<a href="https://gyazo.com/1fdafa4e0903a60ac02754db3b97bf5f"><img src="https://i.gyazo.com/1fdafa4e0903a60ac02754db3b97bf5f.png" alt="Image from Gyazo" width="1416"/></a>|
 
-### その後の機能
-・通知機能（WebSocket） ：投票時、コメント時に投稿者に通知が行きます。<br>
-・SNS への共有機能(Open Graph Protocol) ：共有時に投稿した盤面の写真を載せて共有できるようにします。<br>
-・ユーザー検索機能(Ransack)<br>
-・LINE API（ログイン、通知）<br>
-・いいね機能<br>
-・並び替え機能<br>
-<br>
-
-### 余裕があれば取り入れたいこと。
-・画像認識機能(Google Cloud Vision API ) ：画像を AI に読み込んで学習してもらい、① 自動で手配の選択肢を上げてもらったり、② 考えられる役の提案、③ リーチまでのシャンテン数を教えてくれる機能をつけたい。<br>
-<br>
+|動的OGP画面|プロフィール画面|
+|----|----|
+|<a href="https://gyazo.com/7564ac768831c99ff8c822d59acf9b23"><img src="https://i.gyazo.com/7564ac768831c99ff8c822d59acf9b23.png" alt="Image from Gyazo" width="1428"/></a>|<a href="https://gyazo.com/324b4fbde800e594f516b49e84fbe4aa"><img src="https://i.gyazo.com/324b4fbde800e594f516b49e84fbe4aa.png" alt="Image from Gyazo" width="1414"/></a>|
 
 ## 技術選定
 |フロントエンド|CSS フレームワーク|
@@ -95,7 +94,7 @@
 
 |バージョン管理|Infrastructure|
 |----|----|
-|GitHub|Amazon Web Services|
+|GitHub|AWS|
 
 
 
