@@ -12,11 +12,12 @@ class VotesController < ApplicationController
     # 投票を作成
     vote = current_user.votes.build(post_tile:)
     return unless vote.save
+
     # 投票が成功した場合の処理
     respond_to do |format|
       format.turbo_stream do
         # 全てのpost_tilesを作り直す
-        render turbo_stream: turbo_stream.replace("post_tiles_#{post.id}", partial: 'posts/shared/post_tiles', locals: { post: post }) # localsハッシュのキーと値を修正
+        render turbo_stream: turbo_stream.replace("post_tiles_#{post.id}", partial: 'posts/shared/post_tiles', locals: { post: }) # localsハッシュのキーと値を修正
       end
     end
   end
@@ -29,7 +30,7 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("post_tile_#{post_tile.id}", partial: 'posts/shared/post_tile', locals: { post_tile: post_tile }) # localsハッシュのキーと値を修正
+        render turbo_stream: turbo_stream.replace("post_tile_#{post_tile.id}", partial: 'posts/shared/post_tile', locals: { post_tile: }) # localsハッシュのキーと値を修正
       end
     end
   end

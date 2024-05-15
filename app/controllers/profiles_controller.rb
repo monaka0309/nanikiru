@@ -2,7 +2,6 @@
 
 # プロフィール用のコントローラー
 class ProfilesController < ApplicationController
-
   def show
     @user = User.find_by(id: params[:id])
     @posts = @user.posts.includes(:user).page(params[:page]).per(10).order(created_at: :desc)
@@ -28,4 +27,3 @@ class ProfilesController < ApplicationController
     params.require(:user).permit(:email, :name, :image)
   end
 end
-
