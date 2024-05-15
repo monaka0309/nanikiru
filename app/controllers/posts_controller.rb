@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     elsif params[:old]
       @posts = Post.old.page(params[:page]).per(10)
     elsif params[:favorites]
-      @posts = Post.includes(:favorites).sort_by {|x| x.favorites.size}.reverse
+      @posts = Post.includes(:favorites).sort_by { |x| x.favorites.size }.reverse
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
     else
       @posts = Post.all.page(params[:page]).per(10).order(created_at: :desc)
@@ -31,9 +31,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    if current_user != @post.user
-        redirect_to root_path(current_user)
-    end
+    redirect_to root_path(current_user) if current_user != @post.user
     @tile_images = Tile.order(id: :asc).pluck(:image_path)
     @post_tiles = @post.tiles.order(id: :asc).pluck(:image_path)
   end
@@ -46,7 +44,7 @@ class PostsController < ApplicationController
       if post_tiles_params['selected_images'].present?
         post_tiles_params['selected_images'].each do |tile_image_path|
           tile_id = Tile.find_by(image_path: tile_image_path).id
-          @post.post_tiles.create(tile_id: tile_id) if tile_id.present?
+          @post.post_tiles.create(tile_id:) if tile_id.present?
         end
       end
       redirect_to @post, notice: I18n.t('posts.create.success')
@@ -57,9 +55,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if current_user != @post.user
-        redirect_to root_path(current_user)
-    end
+    redirect_to root_path(current_user) if current_user != @post.user
 
     if @post.update(post_params)
       @post.post_tiles.destroy_all

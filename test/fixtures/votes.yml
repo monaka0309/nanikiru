@@ -1,15 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# one:
+#   user: one
+#   post: one
+#   choice: MyString
+
+# two:
+#   tile: one
+#   tile: two
+#   user: one
+#   user: two
+#   post: one
+#   post: two
 one:
-  user: one
-  post: one
+  user_id: 1
+  post_id: 1
   choice: MyString
 
 two:
-  tile: one
-  tile: two
-  user: one
-  user: two
-  post: one
-  post: two
-
+  user_id: 2
+  post_id: 2
+  choice: MyString

@@ -19,7 +19,7 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  scope :latest, -> {order(created_at: :desc)}
-  scope :old, -> {order(created_at: :asc)}
-  scope :favorites, -> {order(created_at: :asc)}
+  scope :latest, -> { order(created_at: :desc) }
+  scope :old, -> { order(created_at: :asc) }
+  scope :favorites, -> { order(created_at: :asc) }
 end

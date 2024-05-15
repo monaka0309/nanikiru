@@ -18,7 +18,7 @@ class PostsTest < ApplicationSystemTestCase
 
     fill_in 'Content', with: @post.content
     fill_in 'Image', with: @post.image
-    fill_in 'Title', with: @post.title
+    # fill_in 'Title', with: @post.title
     fill_in 'User', with: @post.user_id
     click_on 'Create Post'
 
@@ -32,7 +32,7 @@ class PostsTest < ApplicationSystemTestCase
 
     fill_in 'Content', with: @post.content
     fill_in 'Image', with: @post.image
-    fill_in 'Title', with: @post.title
+    # fill_in 'Title', with: @post.title
     fill_in 'User', with: @post.user_id
     click_on 'Update Post'
 
