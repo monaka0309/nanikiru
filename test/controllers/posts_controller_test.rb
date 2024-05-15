@@ -3,7 +3,6 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  fixtures :all # 必要に応じて他のフィクスチャをロード
 
   setup do
     @post = posts(:one)
