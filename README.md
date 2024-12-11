@@ -98,7 +98,8 @@
 |GitHub|AWS|
 
 ## 構成図
-<img src="">
+<a href="https://gyazo.com/c96b8c8b845b4dc6a3b5023449d2793e"><img src="https://i.gyazo.com/c96b8c8b845b4dc6a3b5023449d2793e.png" alt="Image from Gyazo" width="1395"/></a>
+<br>
 
 ## ER図
 <a href="https://gyazo.com/cd1bf8527a9eeb955bd606da741572ed"><img src="https://i.gyazo.com/cd1bf8527a9eeb955bd606da741572ed.png" alt="Image from Gyazo" width="1115"/></a>
